@@ -1,0 +1,24 @@
+.main-header{
+    margin: 0;
+    height: 80px;
+
+
+.logo{
+    margin-left: 10px;
+}
+
+.link {
+    font-family: longCang;
+    text-decoration: none;
+    font-size: rem(25px);
+    color:  #181718;
+    padding: 0 16px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+}
+
+
+
+
