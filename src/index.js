@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import {store} from './store/store';
 import  {App} from './App.jsx';
+import './assets/styles/global.scss' 
 
 
 ReactDOM.render(
