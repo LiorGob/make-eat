@@ -1,0 +1,22 @@
+// Setup:
+@import "setup/variables.scss";
+@import "setup/typography.scss";
+@import "setup/functions.scss";
+@import "setup/mixins.scss";
+
+// Basics:
+@import "basics/base.scss";
+@import "basics/buttons.scss";
+@import "basics/helpers.scss";
+@import "basics/layout.scss";
+
+//pages components:
+@import "components/pages/Header.scss";
+@import "components/pages/LoginSinup.scss";
+@import "components/pages/RecipeApp.scss";
+@import "components/pages/RecipeDetails.scss";
+@import "components/pages/RecipeEdit.scss";
+@import "components/pages/ShoppingCart.scss";
+@import "components/pages/UserDetails.scss";
+
+//cmps components:
