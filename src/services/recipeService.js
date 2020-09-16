@@ -3,7 +3,6 @@ import httpService from './httpService'
 
 export const recipeService={
     query,
-    getRecipes,
     getById,
     save,
     remove
@@ -16,9 +15,6 @@ function query(filterBy) {
     return httpService.get(`recipe${queryStr || ''}`);
 }
 
-function getRecipes() {
-    return httpService.get('recipe')
-}
 
 function getById(recipeId) {
     return httpService.get(`recipe/${recipeId}`)
