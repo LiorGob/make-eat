@@ -15,6 +15,7 @@
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "simple-rating-stars": "^1.5.3",
     "socket.io-client": "^2.3.0"
   },
   "scripts": {
