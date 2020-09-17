@@ -4,7 +4,7 @@ import { RecipeApp } from './pages/RecipeApp.jsx'
 import { RecipeDetails } from './pages/RecipeDetails.jsx'
 import { RecipeEdit } from './pages/RecipeEdit.jsx'
 import { ShoppingCart } from './pages/ShoppingCart.jsx'
-import { UserDetails } from './pages/UserDetails.jsx'
+import { UserHome } from './pages/UserHome.jsx'
 import { UserList } from './pages/UserList.jsx'
 
 export default [
@@ -21,8 +21,8 @@ export default [
         component: UserList
     },
     {
-        path: '/user/:id',
-        component: UserDetails
+        path: '/user/:id/:path',
+        component: UserHome
     },
     {
         path: '/recipe/edit/:id?',

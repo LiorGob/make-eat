@@ -20,7 +20,9 @@ class _UserList extends Component {
                 <ul>
                 {
                     users.map((user) => {
-                        return <li key={user._id}><Link to={`/user/${user._id}`}>{user.fullName}</Link></li>
+                        return <li key={user._id}>
+                            <Link to={`/user/${user._id}`}>{user.fullName}</Link>
+                            </li>
                     })
                 }
                 </ul>

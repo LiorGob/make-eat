@@ -24,8 +24,8 @@ let arr =[
                     <source  src={hero} type="video/mp4" />
                 </video>
                 <div className="main content flex">
-                    {arr.map((imageItem)=>{
-                      return  <img className="tag" onClick={()=>this.changeRoute(imageItem.route)} src={imageItem.image}></img>
+                    {arr.map((imageItem, ind)=>{
+                        return <img className="tag" onClick={() => this.changeRoute(imageItem.route)} src={imageItem.image} key={`${ind}${imageItem.image}`}></img>
 
                     })}
                 </div>
