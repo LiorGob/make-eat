@@ -1,9 +1,13 @@
 import React from 'react'
+import { RecipeList } from '../RecipeList';
 
-export function MadeIt() {
+export function MadeIt({ recipes }) {
     return (
         <div>
-            I Made It:
+            <div className="container">
+                <h3>I Made It:</h3>
+                <RecipeList recipes={recipes} />
+            </div>
         </div>
     )
 }
