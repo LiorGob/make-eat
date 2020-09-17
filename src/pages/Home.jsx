@@ -19,7 +19,6 @@ class _Home extends Component {
     }
     render() {
         const { recipes } = this.props
-        console.log(recipes);
         let images = [
             { image: sushi, route: '/recipe', description: 'Japaneese' },
             { image: mouls, route: '/recipe', description: 'French' },
