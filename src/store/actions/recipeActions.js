@@ -11,3 +11,11 @@ export function loadRecipes() {
         }
     };
 }
+
+
+export function getRecipe(id) {
+    return async dispatch => {
+        const recipe = await recipeService.getById(id)
+        dispatch({ type: 'GET_RECIPE', recipe })
+    }
+}
