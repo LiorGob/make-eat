@@ -1,24 +1,32 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { recipeService } from '../services/recipeService'
+import { getRecipe } from '../store/actions/recipeActions'
+
 class _RecipeDetails extends Component {
 
     state = {
-        id: '',
-        // recipe: this.props
+
     }
 
     async componentDidMount() {
         const { id } = this.props.match.params
-        this.setState({...id})
-        // const currRecipe = await recipeService.getById(id)
-        // this.setState({ ...recipe})
+        await this.props.getRecipe(id)
+
     }
 
 
     render() {
+        const { recipe } = this.props
+        if(!recipe) return  <div>is Loading..</div>
+        console.log('recipe', recipe);
+
         return (
-            <div>
+            <div className="recipe-details">
+                <img src={recipe.imgs} alt="" />
+                <h2>{recipe.name}</h2>
+                <h3>{recipe.tags}</h3>
+                <p>{recipe.abstract}</p>
+                <h4>{recipe.createdBy.fullName}</h4>
 
             </div>
         )
@@ -28,11 +36,15 @@ class _RecipeDetails extends Component {
 
 const mapStateToProps = state => {
     return {
-        recipes: state.recipeReducer.recipes
+        recipe: state.recipeReducer.recipe
     }
 }
 
-export const RecipeDetails = connect(mapStateToProps)(_RecipeDetails)
+const mapDispatchToProps = {
+    getRecipe
+}
+
+export const RecipeDetails = connect(mapStateToProps, mapDispatchToProps)(_RecipeDetails)
 
 
 // let ratingAvg = recipe.reviews.reduce((acc, a) => acc + a.rating, 0) / recipe.reviews.length

@@ -12,7 +12,7 @@ export function RecipePreview({ recipe }) {
                </Link>
                 <div className="recipe-preview-txt">
                     <h2>{recipe.name}</h2>
-                    <h3><Stars stars={ratingAvg} outOf={5} full={'#ffff00'} empty={'#E1F1FF'} stroke={'#369'} />{recipe.reviews.length}</h3>
+    <h3><Stars stars={1} outOf={2} full={'#ffff00'} empty={'#E1F1FF'} stroke={'#369'} />{ratingAvg}({recipe.reviews.length})</h3>
                     <h4>{recipe.createdBy.fullName}</h4>
                 </div> 
         </div>
