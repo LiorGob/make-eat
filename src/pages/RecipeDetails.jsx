@@ -17,16 +17,19 @@ class _RecipeDetails extends Component {
 
     render() {
         const { recipe } = this.props
-        if(!recipe) return  <div>is Loading..</div>
+        if (!recipe) return <div>is Loading..</div>
         console.log('recipe', recipe);
-
+        let ratingAvg = recipe.reviews.reduce((acc, a) => acc + a.rating, 0) / recipe.reviews.length
         return (
             <div className="recipe-details">
-                <img src={recipe.imgs} alt="" />
                 <h2>{recipe.name}</h2>
-                <h3>{recipe.tags}</h3>
                 <p>{recipe.abstract}</p>
-                <h4>{recipe.createdBy.fullName}</h4>
+        <div> ⭐ {ratingAvg} Ratings | {recipe.reviews.length} Reviews | {recipe.imgs.length} Images</div>
+        <div className="createdBy-recipe">
+                <img  className="circle-img" src={recipe.createdBy.imgUrl} alt=""/>
+                <p> by {recipe.createdBy.fullName}</p>
+                </div>
+                <img src={recipe.imgs} alt="" />
 
             </div>
         )

@@ -2,12 +2,12 @@
     margin-right: 30px;
     height: 80px;
     width: 100vw;
-    background-color: rgb(27, 27, 27);
-    color: white;
+    background-color: $clr6;
+    color: $clr12;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    border-bottom: ridge;
 
     .logo {
         margin-left: rem(20px);
@@ -15,7 +15,7 @@
         a,
         a:visited,
         a:hover {
-            color: white;
+            color: $clr12;
         }
     }
 }
@@ -25,7 +25,7 @@ li {
 }
 .link {
     font-size: rem(20px);
-    color: white;
+    color: $clr12;
     padding: 0 16px;
     &:hover {
         cursor: pointer;

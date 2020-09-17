@@ -7,11 +7,10 @@
 // Basics:
 @import "basics/base.scss";
 @import "basics/buttons.scss";
-@import "basics/helpers.scss";
 @import "basics/layout.scss";
+@import "basics/helpers.scss";
 
 //pages components:
-@import "components/pages/AppHeader.scss";
 @import "components/pages/LoginSinup.scss";
 @import "components/pages/RecipeApp.scss";
 @import "components/pages/RecipeDetails.scss";
@@ -20,10 +19,9 @@
 @import "components/pages/UserDetails.scss";
 @import "components/pages/App.scss";
 @import "components/pages/Home.scss";
-@import "components/pages/HomeNew.scss";
-@import "components/cmps/AppFooter.scss";
-
 
 
 //cmps components:
-@import "components/cmps/RecipePreview.scss"
+@import "components/cmps/AppHeader.scss";
+@import "components/cmps/RecipePreview.scss";
+@import "components/cmps/AppFooter.scss";

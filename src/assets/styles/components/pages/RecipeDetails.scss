@@ -1,9 +1,18 @@
-.recipe-details{
+.recipe-details {
     display: flex;
     flex-direction: column;
 
-    img{
-        width:50%;
+    img {
+        width: 50%;
         padding-top: 1rem;
+    }
+
+    .createdBy-recipe {
+        // display: flex;
+        
+
+        .circle-img {
+            width: 48px;
+        }
     }
 }
