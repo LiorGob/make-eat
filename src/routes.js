@@ -5,6 +5,7 @@ import { RecipeDetails } from './pages/RecipeDetails.jsx'
 import { RecipeEdit } from './pages/RecipeEdit.jsx'
 import { ShoppingCart } from './pages/ShoppingCart.jsx'
 import { UserDetails } from './pages/UserDetails.jsx'
+import { UserList } from './pages/UserList.jsx'
 
 export default [
     {
@@ -14,6 +15,10 @@ export default [
     {
         path: '/signup',
         component: LoginSignup
+    },
+    {
+        path: '/user',
+        component: UserList
     },
     {
         path: '/user/:id',

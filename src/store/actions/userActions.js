@@ -1,6 +1,18 @@
 import {userService} from '../../services/userService'
 
-export function loadUsers(){}
+export function loadUsers(){
+    return async dispatch => {
+        const users = await userService.getUsers()
+        dispatch({ type: 'GET_USERS', users })
+    }
+}
+
+export function getUser(id) {
+    return async dispatch => {
+        const user = await userService.getById(id)
+        dispatch({ type: 'GET_USER', user })
+    }
+}
 
 export function login(userCred) {
     return async dispatch => {
