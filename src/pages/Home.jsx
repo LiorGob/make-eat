@@ -33,7 +33,7 @@ class _Home extends Component {
                 </video>
                 <div className="tag-card">
                     {images.map((imageItem, ind) => {
-                        return(<div className="description"> <img className="tag" onClick={() => this.changeRoute(imageItem.route)} src={imageItem.image} key={`${ind}${imageItem.image}`} alt="" /><span>{imageItem.description}</span></div>)
+                        return (<div className="description" key={`${ind}${imageItem.image}`}><img className="tag" onClick={() => this.changeRoute(imageItem.route)} src={imageItem.image} alt="" /><span>{imageItem.description}</span></div>)
                     })}
                   
                 </div>
