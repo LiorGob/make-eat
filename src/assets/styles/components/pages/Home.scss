@@ -1,17 +1,19 @@
-.main-content{
+.main-content {
     flex-direction: column;
-   
-
 }
-.tag{
+.tag {
     width: 300px;
     height: 300px;
-
 }
 
-.tag-card{
-    
+.tag-card {
     display: flex;
     justify-content: space-evenly;
 }
-
+.home-page {
+    .recipe-card {
+        h3 {
+            display: none;
+        }
+    }
+}
