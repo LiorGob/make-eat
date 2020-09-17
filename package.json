@@ -15,13 +15,9 @@
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-<<<<<<< HEAD
     "socket.io-client": "^2.3.0",
-    "video-react": "^0.14.1"
-=======
-    "simple-rating-stars": "^1.5.3",
-    "socket.io-client": "^2.3.0"
->>>>>>> b5af05d23c24467daae79b52de48d6e8345d8624
+    "video-react": "^0.14.1",
+    "simple-rating-stars": "^1.5.3"
   },
   "scripts": {
     "start": "react-scripts start",

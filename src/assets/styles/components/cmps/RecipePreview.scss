@@ -1,0 +1,10 @@
+.recipe-card {
+    cursor: pointer;
+    width: 310px;
+    height: 500px;
+    border-style: ridge;
+
+    .recipe-preview-txt {
+        padding: 5px 10px;
+    }
+}
