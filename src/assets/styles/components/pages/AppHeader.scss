@@ -1,41 +1,36 @@
-.main-header{
+.main-header {
     margin-right: 30px;
     height: 80px;
     width: 100vw;
-    background-color:  rgb(27, 27, 27);
+    background-color: rgb(27, 27, 27);
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  position: fixed;
-  
+    position: fixed;
+
+    .logo {
+        margin-left: rem(20px);
+        font-size: rem(30px);
+        a,
+        a:visited,
+        a:hover {
+            color: white;
+        }
+    }
 }
 
-li{
+li {
     list-style-type: none;
 }
-
-.logo{
-    margin-right: rem(20px);
-    font-size: rem(30px);
-}
-
-
 .link {
     font-size: rem(20px);
     color: white;
-        padding: 0 16px;
+    padding: 0 16px;
     &:hover {
         cursor: pointer;
     }
-
- 
 }
-.main-nav{
+.main-nav {
     margin-right: 30px;
-  
 }
-
-
-
-
