@@ -1,9 +1,17 @@
 .main-content{
     flex-direction: column;
-    justify-content: space-around; 
+   
 
+}
 .tag{
-    
+    width: 300px;
+    height: 300px;
 
 }
+
+.tag-card{
+    
+    display: flex;
+    justify-content: space-evenly;
 }
+
