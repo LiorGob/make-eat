@@ -1,22 +1,39 @@
 .main-header{
-    margin: 0;
+    margin-right: 30px;
     height: 80px;
-
-
-.logo{
-    margin-left: 10px;
+    width: 100vw;
+    background-color:  rgb(27, 27, 27);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  position: fixed;
+  
 }
 
+li{
+    list-style-type: none;
+}
+
+.logo{
+    margin-right: rem(20px);
+    font-size: rem(40px);
+}
+
+
 .link {
-    font-family: longCang;
-    text-decoration: none;
-    font-size: rem(25px);
-    color:  #181718;
-    padding: 0 16px;
+    font-size: rem(30px);
+    color: white;
+        padding: 0 16px;
     &:hover {
         cursor: pointer;
     }
+
+ 
 }
+.main-nav{
+    margin-right: 30px;
+  
 }
 
 
