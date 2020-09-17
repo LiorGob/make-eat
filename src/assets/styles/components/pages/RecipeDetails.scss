@@ -1,4 +1,9 @@
 .recipe-details{
     display: flex;
     flex-direction: column;
+
+    img{
+        width:50%;
+        padding-top: 1rem;
+    }
 }
