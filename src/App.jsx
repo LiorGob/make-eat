@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import routes from './routes.js'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
+import { Notification } from './cmps/Notification.jsx';
 
 export function App() {
     return (
@@ -15,7 +16,7 @@ export function App() {
                 </Switch>
             </main>
             <AppFooter />
-         
+            <Notification/>
         </div>
     )
 }

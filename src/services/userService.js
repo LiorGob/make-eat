@@ -18,7 +18,9 @@ function getById(userId) {
 
 
 async function login(userCred) {
-    const user = await httpService.post('user/login', userCred)
+    //const user = await httpService.post('user/login', userCred)
+    const users = await httpService.get('user');
+    const user = users.find(user => user.email === userCred.email)
     return _handleLogin(user)
 }
 
@@ -28,7 +30,7 @@ async function signup(userCred) {
 }
 
 async function logout() {
-    await httpService.post('user/logout')
+    //await httpService.post('user/logout')
     sessionStorage.clear();
 
 }
