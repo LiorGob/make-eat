@@ -4,11 +4,16 @@ import { RecipeList } from '../cmps/RecipeList'
 import { loadRecipes } from '../store/actions/recipeActions'
 import { loadProduces } from '../store/actions/produceActions'
 import { ProduceFilter } from '../cmps/produce/ProduceFilter'
+import { RecipeFilter } from '../cmps/RecipeFilter'
 
 class _RecipeApp extends Component {
 
     state = {
-        filterBy: null
+        filterBy: '',
+        filterProduceList:[],
+        filterRecipeList:[]
+
+        
 
     }
 
@@ -27,20 +32,19 @@ class _RecipeApp extends Component {
         this.setState(newState)
     }
 
-    onSetFilter = (filterBy) => {
-        this.setState({ filterBy }, () => this.loadProduces())
-    }
+  
 
 
 
 
     render() {
         const { recipes } = this.props
+        const{produces}=this.props
 
-        console.log('recipes', recipes);
         return (
             <div>
-                <ProduceFilter onSetFilter={this.onSetFilter} />
+                 <ProduceFilter filterField={"name"} getFilterProduceList={(filterProduceList)=>this.setState({filterProduceList})} produceList={produces}/>
+                 <RecipeFilter filterField={"name"} getFilterRecipeList={(filterRecipeList)=>this.setState({filterRecipeList})} recipeList={recipes}  />
                 <RecipeList recipes={recipes} />
 
             </div>
@@ -52,7 +56,8 @@ class _RecipeApp extends Component {
 const mapStateToProps = state => {
     return {
         recipes: state.recipeReducer.recipes,
-        produces: state.produceReducer.produces
+        produces: state.produceReducer.produces,
+        filterBy: state.produceReducer.filterBy
     }
 }
 

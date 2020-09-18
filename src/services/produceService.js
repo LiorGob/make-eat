@@ -9,8 +9,9 @@ export const produceService={
 
 
 function query(filterBy) {
-if (filterBy) var queryStr = `?name=${filterBy.name}&sort=anaAref`;
+if (filterBy) var queryStr = `?name=${filterBy.name}`;
     return httpService.get(`produce${queryStr || ''}`);
+
 }
 
 function getById(produceId) {

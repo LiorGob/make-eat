@@ -1,14 +1,31 @@
-// import React, { Component } from 'react'
-// import { connect } from 'react-redux'
+import React, { Component } from 'react'
 
-// class _RecipeFilter extends Component {
-//     render() {
-//         return (
-//             <div>
-                
-//             </div>
-//         )
-//     }
-// }
+export class RecipeFilter extends Component {
 
-// export const _RecipeFilter
+    state = {
+        name: ''
+    }
+
+
+    onHandleChange = ({ target }) => {
+        const { recipeList, getFilterRecipeList,filterField} = this.props
+        const field = target.name
+        const value = target.value
+        let filteredList = recipeList.filter((recipe) => recipe[filterField].toLowerCase().includes(value.toLowerCase()))
+        getFilterRecipeList && getFilterRecipeList(filteredList)
+
+        this.setState(prevState => ({ ...prevState, [field]: value }))
+    }
+
+    render() {
+        const { name } = this.state
+        return (
+            <div className="recipe-filter">
+                <input type="text" className="name-filter" name="name" autoComplete="off" value={name} onChange={this.onHandleChange} placeholder="Search Recipe" />
+
+            </div>
+        )
+
+    }
+
+}
