@@ -19,9 +19,7 @@ render() {
     return (
         <div className="produce-filter">
             <input className="name-filter" name="name" autoComplete="off" value={name} onChange={this.onHandleChange} placeholder="Enter produce name" />
-
-            <input className="type-filter" list="toy-type" id="type" name="type" onChange={this.onHandleChange} placeholder="Enter toy type" />
-           
+      
         </div>
     )
 
