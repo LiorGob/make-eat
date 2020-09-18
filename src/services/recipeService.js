@@ -5,8 +5,8 @@ export const recipeService={
     query,
     getById,
     save,
-    remove
-
+    remove,
+    getRatingAvg
 }
 
 
@@ -15,6 +15,10 @@ function query(filterBy) {
     return httpService.get(`recipe${queryStr || ''}`);
 }
 
+function getRatingAvg(recipe){
+ let ratingAvg = recipe.reviews.reduce((acc, a) => acc + a.rating, 0) / recipe.reviews.length
+ return ratingAvg
+}
 
 function getById(recipeId) {
     return httpService.get(`recipe/${recipeId}`)
@@ -32,3 +36,4 @@ async function save(recipe) {
         return  httpService.post('recipe', recipe)
     }
 }
+

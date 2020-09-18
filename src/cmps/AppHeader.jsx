@@ -5,7 +5,7 @@ export function AppHeader() {
         <header className="main-header flex align-center space-between">
             <div className="logo"><a href="/">Make Eat</a></div> 
             <ul className="main-nav flex">
-                <Link to='/user/u101/about'><li className="link flex align-center">Profile</li></Link>
+                <Link to='/user/u103/about'><li className="link flex align-center">Profile</li></Link>
             </ul>
         </header>
     )

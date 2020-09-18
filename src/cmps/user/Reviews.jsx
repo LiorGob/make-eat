@@ -1,9 +1,11 @@
 import React from 'react'
+import { ReviewList } from '../Review/ReviewList';
 
-export function Reviews() {
+export function Reviews({user, recipes}) {
     return (
         <div>
-            My Reviews
+            <h3>{user.fullName}'s Reviews</h3>            
+            <ReviewList user={user} recipes={recipes}/>
         </div>
     )
 }
