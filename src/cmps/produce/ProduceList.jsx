@@ -10,13 +10,18 @@ class _ProduceList extends Component {
 
 
     state = {
-        filterBy: null
+        filterBy: '',
+        filterProduceList:[]
 
     }
 
-    componentDidMount() {
-        
-        this.props.loadProduces()
+    async componentDidMount() {
+   
+   await this.props.loadProduces()
+   const { produces}=this.props
+
+     this.setState({filterProduceList:produces})
+    
     }
 
     loadProduces = () => {
@@ -29,21 +34,19 @@ class _ProduceList extends Component {
         this.setState(newState)
     }
 
-    onSetFilter = (filterBy) => {
-        this.setState({ filterBy }, () => this.loadProduces())
-    }
+   
 
 
     render() {
         const {produces} = this.props
-        console.log(produces);
+       
         return (
             
             <div className="produce-container">
-                 <ProduceFilter onSetFilter={this.onSetFilter} />
+                 <ProduceFilter filterField={"name"} getFilterProduceList={(filterProduceList)=>this.setState({filterProduceList})} produceList={produces} />
                 <ul>
                 {
-                    produces.map((produce) => {
+                    this.state.filterProduceList.map((produce) => {
                         return <li key={produce._id}>
                             <Link to={`/produce/`}>{produce.name}</Link>
                             </li>

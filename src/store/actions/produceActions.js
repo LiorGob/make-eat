@@ -4,7 +4,7 @@ export function loadProduces(filterBy) {
     return async dispatch => {
         try {
             const produces = await produceService.query(filterBy);
-            console.log(produces);
+           
             dispatch({ type: 'GET_PRODUCES', produces })
         }
         catch (err) {
