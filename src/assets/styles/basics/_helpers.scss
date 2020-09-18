@@ -68,7 +68,6 @@
         align-items: flex-end;
     }
 
-
     .grow {
         flex-grow: 1;
     }
@@ -76,7 +75,6 @@
     &.align-baseline {
         align-items: baseline;
     }
-
 }
 
 /* List helpers */
@@ -91,11 +89,23 @@
     cursor: pointer;
 }
 
-
-.circle-img{
+.circle-img {
     border-radius: 50%;
 }
 
+.font-bold {
+    font-weight: 600;
+}
+
+// color:
+
+.main-color-bg {
+    background-color: $clr12;
+}
+
+.main-color {
+    color: $clr12;
+}
 // Media helpers
 
 // .square-ratio {

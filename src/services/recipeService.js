@@ -5,7 +5,8 @@ export const recipeService={
     query,
     getById,
     save,
-    remove
+    remove,
+    getRatingAvg
 
 }
 
@@ -14,6 +15,12 @@ function query(filterBy) {
     if (filterBy) var queryStr = `?name=${filterBy.name}&sort=anaAref`;
     return httpService.get(`recipe${queryStr || ''}`);
 }
+
+function getRatingAvg(recipe){
+ let ratingAvg = recipe.reviews.reduce((acc, a) => acc + a.rating, 0) / recipe.reviews.length
+ return ratingAvg
+}
+
 
 
 function getById(recipeId) {

@@ -10,7 +10,7 @@
 html {
     font-family: SourceSanPro;
     line-height: 1.6;
-    color:clr9;
+    color: clr9;
     background-color: $clr6;
 }
 
@@ -37,6 +37,11 @@ p {
     max-width: 40ch;
 }
 
-a{
-    text-decoration:none;
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
 }
