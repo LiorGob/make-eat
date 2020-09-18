@@ -36,6 +36,15 @@ class _UserHome extends Component {
         });
     }
 
+    get reviewedRecipes(){
+        let r = this.props.recipes.filter(recipe => {
+            const made = recipe.reviews.filter(review => review.by._id === this.props.user._id);
+            return made.length > 0;
+        });
+        console.log(r);
+        return r;
+    }
+
     render() {
         const { user } = this.props;
         return (
@@ -52,7 +61,7 @@ class _UserHome extends Component {
                     <Route exact path="/user/:id/about" render={(props) => <About {...props} user={user} />} />
                     <Route exact path="/user/:id/favorites" render={(props) => <Favorites {...props} recipes={this.favorites}/>}/>
                     <Route exact path="/user/:id/madeit" render={(props) => <MadeIt {...props} recipes={this.madeIt} />}/>
-                    <Route exact component={Reviews} path="/user/:id/reviews" />
+                    <Route exact path="/user/:id/reviews" render={(props) => <Reviews {...props} user={user} recipes={this.reviewedRecipes} />}/>
                     <Route exact component={Orders} path="/user/:id/orders" />
                     <Route exact component={AddRecipe} path="/user/:id/add" />
                     {/* <Route exact path="/..." render={(props) => <PAGE {...props} recipes={recepies} />} /> */}

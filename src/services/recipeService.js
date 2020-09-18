@@ -7,7 +7,6 @@ export const recipeService={
     save,
     remove,
     getRatingAvg
-
 }
 
 
@@ -20,8 +19,6 @@ function getRatingAvg(recipe){
  let ratingAvg = recipe.reviews.reduce((acc, a) => acc + a.rating, 0) / recipe.reviews.length
  return ratingAvg
 }
-
-
 
 function getById(recipeId) {
     return httpService.get(`recipe/${recipeId}`)
@@ -39,3 +36,4 @@ async function save(recipe) {
         return  httpService.post('recipe', recipe)
     }
 }
+
