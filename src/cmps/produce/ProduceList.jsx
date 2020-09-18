@@ -20,7 +20,7 @@ class _ProduceList extends Component {
    await this.props.loadProduces()
    const { produces}=this.props
 
-     this.setState({filterProduceList:produces})
+     this.setState({filterProduceList:produces},()=>console.log())
     
     }
 
@@ -39,7 +39,7 @@ class _ProduceList extends Component {
 
     render() {
         const {produces} = this.props
-       
+       console.log(produces);
         return (
             
             <div className="produce-container">
@@ -47,7 +47,8 @@ class _ProduceList extends Component {
                 <ul>
                 {
                     this.state.filterProduceList.map((produce) => {
-                        return <li key={produce._id}>
+                        return <li key={produce._id?produce._id:produce.produceId}>
+                            
                             <Link to={`/produce/`}>{produce.name}</Link>
                             </li>
                     })
