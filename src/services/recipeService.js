@@ -1,7 +1,7 @@
 import httpService from './httpService'
 
 
-export const recipeService={
+export const recipeService = {
     query,
     getById,
     save,
@@ -9,15 +9,9 @@ export const recipeService={
     getRatingAvg
 }
 
-
 function query(filterBy) {
-    if (filterBy) var queryStr = `?name=${filterBy.name}&sort=anaAref`;
+    if (filterBy) var queryStr = `?name=${filterBy.name}`;
     return httpService.get(`recipe${queryStr || ''}`);
-}
-
-function getRatingAvg(recipe){
- let ratingAvg = recipe.reviews.reduce((acc, a) => acc + a.rating, 0) / recipe.reviews.length
- return ratingAvg
 }
 
 function getById(recipeId) {
@@ -33,6 +27,14 @@ async function save(recipe) {
         return httpService.put(`recipe/${recipe._id}`, recipe)
     }
     else {
-        return  httpService.post('recipe', recipe)
+        return httpService.post('recipe', recipe)
+    }
+}
+
+function getRatingAvg(recipe) {
+    if (!recipe.reviews) return 'no reviews yet'
+    else {
+        let ratingAvg = recipe.reviews.reduce((acc, a) => acc + a.rating, 0) / recipe.reviews.length
+        return ratingAvg
     }
 }
