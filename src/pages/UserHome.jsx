@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { getUser } from '../store/actions/userActions';
-import { loadRecipes } from '../store/actions/recipeActions';
+import { loadRecipes, addToFavorites } from '../store/actions/recipeActions';
 import { About } from '../cmps/user/About';
 import { Favorites } from '../cmps/user/Favorites';
 import { MadeIt } from '../cmps/user/MadeIt.jsx';
@@ -22,21 +22,21 @@ class _UserHome extends Component {
         this.props.loadRecipes();
     }
 
-    get favorites(){
+    get favorites() {
         return this.props.recipes.filter(recipe => {
             const liked = recipe.likers.filter(user => user._id === this.props.user._id);
             return liked.length > 0;
         });
     }
 
-    get madeIt(){
+    get madeIt() {
         return this.props.recipes.filter(recipe => {
             const made = recipe.makers.filter(user => user._id === this.props.user._id);
             return made.length > 0;
         });
     }
 
-    get reviewedRecipes(){
+    get reviewedRecipes() {
         let r = this.props.recipes.filter(recipe => {
             const made = recipe.reviews.filter(review => review.by._id === this.props.user._id);
             return made.length > 0;
@@ -44,6 +44,12 @@ class _UserHome extends Component {
         console.log(r);
         return r;
     }
+
+    saveToFavorites = recipeId => {
+        const recipe = this.props.recipes.find(recipe => recipe._id === recipeId)
+        this.props.addToFavorites(recipe, 'u103');
+    }
+
 
     render() {
         const { user } = this.props;
@@ -57,11 +63,12 @@ class _UserHome extends Component {
                     <NavLink to="./orders">My Orders</NavLink>|
                     <NavLink to="./add">Submit a recipe</NavLink>|
                 </nav>
+        {console.log('props: ', this.props)}
                 <Switch>
                     <Route exact path="/user/:id/about" render={(props) => <About {...props} user={user} />} />
-                    <Route exact path="/user/:id/favorites" render={(props) => <Favorites {...props} recipes={this.favorites}/>}/>
-                    <Route exact path="/user/:id/madeit" render={(props) => <MadeIt {...props} recipes={this.madeIt} />}/>
-                    <Route exact path="/user/:id/reviews" render={(props) => <Reviews {...props} user={user} recipes={this.reviewedRecipes} />}/>
+                    <Route exact path="/user/:id/favorites" render={(props) => <Favorites {...props} onAddToFavorites={this.saveToFavorites} recipes={this.favorites} />} />
+                    <Route exact path="/user/:id/madeit" render={(props) => <MadeIt {...props} recipes={this.madeIt} />} />
+                    <Route exact path="/user/:id/reviews" render={(props) => <Reviews {...props} user={user} recipes={this.reviewedRecipes} />} />
                     <Route exact component={Orders} path="/user/:id/orders" />
                     <Route exact component={AddRecipe} path="/user/:id/add" />
                     {/* <Route exact path="/..." render={(props) => <PAGE {...props} recipes={recepies} />} /> */}
@@ -74,13 +81,15 @@ class _UserHome extends Component {
 const mapStateToProps = state => {
     return {
         user: state.userReducer.user,
+        loggedInUser: state.userReducer.loggedInUser,
         recipes: state.recipeReducer.recipes
     }
 }
 
 const mapDispatchToProps = {
     getUser,
-    loadRecipes
+    loadRecipes,
+    addToFavorites
 }
 
 
