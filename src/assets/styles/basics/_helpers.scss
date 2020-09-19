@@ -16,6 +16,10 @@
     display: none;
 }
 
+.inline-flex {
+    display: inline-flex;
+}
+
 /* flex-helpers */
 
 .flex {
@@ -23,6 +27,9 @@
 
     &.column {
         flex-direction: column;
+    }
+    &.row {
+        flex-direction: row;
     }
 
     &.space-evenly {
@@ -104,6 +111,14 @@
 }
 
 .main-color {
+    color: $clr12;
+}
+
+.uncheck-color {
+    color: $clr13;
+}
+
+.check-color {
     color: $clr12;
 }
 // Media helpers
