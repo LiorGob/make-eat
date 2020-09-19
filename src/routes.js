@@ -6,7 +6,7 @@ import { RecipeEdit } from './pages/RecipeEdit.jsx'
 import { ShoppingCart } from './pages/ShoppingCart.jsx'
 import { UserHome } from './pages/UserHome.jsx'
 import { UserList } from './pages/UserList.jsx'
-import {ProduceList} from './cmps/produce/ProduceList.jsx'
+import { ProduceList } from './cmps/produce/ProduceList.jsx'
 
 export default [
     {
@@ -18,12 +18,16 @@ export default [
         component: LoginSignup
     },
     {
-        path: '/user',
-        component: UserList
+        path: '/login',
+        component: LoginSignup
     },
     {
         path: '/user/:id/:path',
         component: UserHome
+    },
+    {
+        path: '/user',
+        component: UserList
     },
     {
         path: '/recipe/edit/:id?',
@@ -46,6 +50,6 @@ export default [
         component: Home
     }
 
-  
+
 
 ]

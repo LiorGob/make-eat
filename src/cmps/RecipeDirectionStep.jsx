@@ -4,7 +4,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 export function RecipeDirectionStep({ direction, idx, onDirectionCheck, directionChecked }) {
 
     function onCheck() {
-        onDirectionCheck(idx)
+        return onDirectionCheck(idx)
     }
 
     let iconClass = directionChecked ? 'check-color' : 'uncheck-color'

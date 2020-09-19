@@ -12,9 +12,9 @@ export class RecipeDirection extends Component {
 
     componentDidMount() {
         var directions = []
-        this.props.recipe.directions.map(() => {
+        this.props.recipe.directions.map(() => 
             directions.push(false)
-        })
+        )
         this.setState({ directions })
     }
 
