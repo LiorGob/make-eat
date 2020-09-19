@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { getUser } from '../store/actions/userActions';
-import { loadRecipes, addToFavorites } from '../store/actions/recipeActions';
-import { About } from '../cmps/user/About';
-import { Favorites } from '../cmps/user/Favorites';
-import { MadeIt } from '../cmps/user/MadeIt.jsx';
-import { Reviews } from '../cmps/user/Reviews';
-import { Orders } from '../cmps/user/Orders';
-import { AddRecipe } from '../cmps/user/AddRecipe';
+import { getUser, setLoggedUserAsUser } from '../../store/actions/userActions';
+import { loadRecipes, addToFavorites } from '../../store/actions/recipeActions';
+import { About } from '../../cmps/user/About';
+import { Favorites } from '../../cmps/user/Favorites';
+import { MadeIt } from '../../cmps/user/MadeIt.jsx';
+import { Reviews } from '../../cmps/user/Reviews';
+import { Orders } from '../../cmps/user/Orders';
+import { AddRecipe } from '../../cmps/user/AddRecipe';
 
 class _UserHome extends Component {
 
@@ -18,13 +18,18 @@ class _UserHome extends Component {
     }
 
     componentDidMount() {
-        this.props.getUser(this.props.match.params.id);
+        if (this.props.match.params.id === 'myprofile'){
+            this.props.setLoggedUserAsUser();
+        }
+        else {
+            this.props.getUser(this.props.match.params.id);
+        }
         this.props.loadRecipes();
     }
 
     get favorites() {
         return this.props.recipes.filter(recipe => {
-            const liked = recipe.likers.filter(user => user._id === this.props.user._id);
+            const liked = recipe.likers.filter(user => user._id === this.props.loggedInUser._id);
             return liked.length > 0;
         });
     }
@@ -47,7 +52,7 @@ class _UserHome extends Component {
 
     saveToFavorites = recipeId => {
         const recipe = this.props.recipes.find(recipe => recipe._id === recipeId)
-        this.props.addToFavorites(recipe, 'u103');
+        this.props.addToFavorites(recipe, this.props.loggedInUser);
     }
 
 
@@ -63,7 +68,7 @@ class _UserHome extends Component {
                     <NavLink to="./orders">My Orders</NavLink>|
                     <NavLink to="./add">Submit a recipe</NavLink>|
                 </nav>
-        {console.log('props: ', this.props)}
+                {console.log('props: ', this.props)}
                 <Switch>
                     <Route exact path="/user/:id/about" render={(props) => <About {...props} user={user} />} />
                     <Route exact path="/user/:id/favorites" render={(props) => <Favorites {...props} onAddToFavorites={this.saveToFavorites} recipes={this.favorites} />} />
@@ -88,6 +93,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     getUser,
+    setLoggedUserAsUser,
     loadRecipes,
     addToFavorites
 }

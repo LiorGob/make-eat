@@ -1,0 +1,20 @@
+.notification {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .notification-content {
+        color: $clr8;
+
+        &:focus {
+            outline: none;
+        }
+    }
+    .notification-icon {
+        text-align: center;
+        color: $clr12;
+    }
+    h4{
+        margin-top: 2em;
+        text-align: center;
+    }
+}

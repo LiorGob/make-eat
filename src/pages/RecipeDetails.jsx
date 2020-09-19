@@ -9,7 +9,7 @@ import GradeIcon from '@material-ui/icons/Grade';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import ScheduleIcon from '@material-ui/icons/Schedule';
-import { OrderList } from './OrderList';
+
 
 
 class _RecipeDetails extends Component {
@@ -27,7 +27,7 @@ class _RecipeDetails extends Component {
 
     getAvg = () => {
         const currRecipe = this.props.recipe
-        console.log('currRecipe', currRecipe);
+        // console.log('currRecipe', currRecipe);
         return recipeService.getRatingAvg(currRecipe)
     }
 
@@ -41,15 +41,16 @@ class _RecipeDetails extends Component {
         const ratingAvg = this.getAvg()
         return (
             <div className="recipe-details card-grid">
+                <Link to={`/recipe/edit/${recipe._id}`}><button>Edit</button></Link>
                 <div className="absract-recipe flex column">
                     <h2>{recipe.name}</h2>
                     <p>{recipe.abstract}</p>
                     <div className="review-details flex row">
-                        <GradeIcon style={{ color: '#ff385c' }} />{ratingAvg} Ratings | {recipe.reviews.length} Reviews | {recipe.imgs.length} Images</div>
+                        <GradeIcon style={{ color: '#ff385c' }} />{ratingAvg} Ratings | {recipe.reviews?.length} Reviews | {recipe.imgs.length} Images</div>
                 </div>
                 <div className="createdBy-recipe">
-                    <img className="circle-img" src={recipe.createdBy.imgUrl} alt="" />
-                    <p> by {recipe.createdBy.fullName}</p>
+                    <img className="circle-img" src={recipe.createdBy?.imgUrl} alt="" />
+                    <p> by {recipe.createdBy?.fullName}</p>
                 </div>
                 <div className="btn-share flex row space-between">
                     {/* <React.Fragment> */}
@@ -57,7 +58,7 @@ class _RecipeDetails extends Component {
                     <button className="share-btn"> <Link to="/user/:id/reviews"><span><FacebookIcon fontSize="small" /></span> SHARE </Link></button>
                     {/* </React.Fragment> */}
                 </div>
-                <img src={recipe.imgs} alt="" />
+                <img src={recipe.imgs[0]} alt="" />
                 <div className="min-info flex row space-between justify-center">
                     <div><ScheduleIcon className="main-color" style={{ float: "right" }} fontSize="large" />
                     </div>
@@ -85,15 +86,3 @@ const mapDispatchToProps = {
 }
 
 export const RecipeDetails = connect(mapStateToProps, mapDispatchToProps)(_RecipeDetails)
-
-
-// let ratingAvg = recipe.reviews.reduce((acc, a) => acc + a.rating, 0) / recipe.reviews.length
-//     return (
-//         <div className="recipe-card">
-//             <Link to={`/recipe/${recipe._id}`}>
-//                 <img src={recipe.imgs[0]} alt="" />
-//                </Link>
-//                 <div className="recipe-preview-txt">
-//                     <h2>{recipe.name}</h2>
-//                     <h3><Stars stars={ratingAvg} outOf={5} full={'#ffff00'} empty={'#E1F1FF'} stroke={'#369'} />{recipe.reviews.length}</h3>
-//                     <h4>{recipe.createdBy.fullName}</h4>

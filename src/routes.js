@@ -1,8 +1,9 @@
 import { Home } from './pages/Home.jsx'
-import { LoginSignup } from './pages/LoginSignup.jsx'
+import { Login } from './pages/user/Login.jsx'
+import { Signup } from './pages/user/Signup.jsx'
 import { RecipeApp } from './pages/RecipeApp.jsx'
 import { RecipeDetails } from './pages/RecipeDetails.jsx'
-import { RecipeEdit } from './pages/RecipeEdit.jsx'
+// import { RecipeEdit } from './pages/RecipeEdit.jsx'
 import { ShoppingCart } from './pages/ShoppingCart.jsx'
 import { UserHome } from './pages/UserHome.jsx'
 import { UserList } from './pages/UserList.jsx'
@@ -14,12 +15,12 @@ export default [
         component: ShoppingCart
     },
     {
-        path: '/signup',
-        component: LoginSignup
+        path: '/user/signup',
+        component: Signup
     },
     {
-        path: '/login',
-        component: LoginSignup
+        path: '/user/login',
+        component: Login
     },
     {
         path: '/user/:id/:path',
@@ -29,10 +30,10 @@ export default [
         path: '/user',
         component: UserList
     },
-    {
-        path: '/recipe/edit/:id?',
-        component: RecipeEdit
-    },
+    // {
+    //     path: '/recipe/edit/:id?',
+    //     component: RecipeEdit
+    // },
     {
         path: '/recipe/:id',
         component: RecipeDetails

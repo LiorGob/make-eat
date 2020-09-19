@@ -25,7 +25,7 @@ async function login(userCred) {
 }
 
 async function signup(userCred) {
-    const user = await httpService.post('user/signup', userCred)
+    const user = await httpService.post('user', userCred)
     return _handleLogin(user)
 }
 
@@ -36,6 +36,11 @@ async function logout() {
 }
 
 function _handleLogin(user) {
-    sessionStorage.setItem('user', JSON.stringify(user))
+    sessionStorage.setItem('loggedInUser', JSON.stringify(user))
     return user;
+}
+
+function getLoggedInUser(){
+    const user = sessionStorage.getItem('loggedInUser');
+    if (user) return user;
 }

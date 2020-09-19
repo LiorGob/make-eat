@@ -12,18 +12,13 @@ class _RecipeApp extends Component {
         filterBy: '',
         filterProduceList: [],
         filterRecipeList: []
-
-
-
     }
 
     async componentDidMount() {
-     
         await this.props.loadRecipes()
         await this.props.loadProduces()
         const {recipes,produces}=this.props
         this.setState({filterProduceList:produces,filterRecipeList:recipes})
-
     }
 
     loadProduces = () => {
@@ -43,14 +38,13 @@ class _RecipeApp extends Component {
 
     render() {
         const { recipes } = this.props
+        if(!recipes) return <div>Loading...</div>
         const { produces } = this.props
-
         return (
             <div>
                 <FilterComponent filterField={"name"} isIngredients getFilterList={(filterRecipeList) => this.setState({ filterRecipeList })} list={recipes} placeholder="Search produce" />
                 <FilterComponent filterField={"name"} getFilterList={(filterRecipeList) => this.setState({ filterRecipeList })} list={recipes} placeholder="Search recipe" />
                 <RecipeList recipes={this.state.filterRecipeList} />
-
             </div>
         )
     }
@@ -62,7 +56,6 @@ const mapStateToProps = state => {
         recipes: state.recipeReducer.recipes,
         produces: state.produceReducer.produces,
         filterBy: state.produceReducer.filterBy,
-
     }
 }
 
@@ -70,7 +63,5 @@ const mapDispatchToProps = {
     loadRecipes,
     loadProduces
 }
-
-
 
 export const RecipeApp = connect(mapStateToProps, mapDispatchToProps)(_RecipeApp)

@@ -28,8 +28,8 @@ export function RecipePreview({ recipe, showReviewBy }) {
                 </div>))}
                 {(!showReviewBy && (
                     <div className="flex">
-                        <RatingStar/>{ratingAvg}({recipe.reviews.length})
-                        <p>{recipe.createdBy.fullName}</p>
+                        <RatingStar/>{ratingAvg}({recipe.reviews?.length})
+                        <p>{recipe.createdBy?.fullName}</p>
                     </div>))}
             </div>
         </div>
