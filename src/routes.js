@@ -37,10 +37,10 @@ export default [
         path: '/recipe',
         component: RecipeApp
     },
-    {
-        path: '/produce',
-        component: ProduceList
-    },
+    // {
+    // //     path: '/produce',
+    // //     component: ProduceList
+    // // },
     {
         path: '/',
         component: Home
