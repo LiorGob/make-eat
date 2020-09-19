@@ -3,27 +3,26 @@ import { connect } from 'react-redux'
 import { RecipeList } from '../cmps/RecipeList'
 import { loadRecipes } from '../store/actions/recipeActions'
 import { loadProduces } from '../store/actions/produceActions'
-import { ProduceFilter } from '../cmps/produce/ProduceFilter'
-import { RecipeFilter } from '../cmps/RecipeFilter'
+import { FilterComponent } from '../cmps/FilterComponent'
+
 
 class _RecipeApp extends Component {
 
     state = {
         filterBy: '',
-        filterProduceList:[],
-        filterRecipeList:[]
-
-        
-
+        filterProduceList: [],
+        filterRecipeList: []
     }
 
-    componentDidMount() {
-        this.props.loadRecipes()
-        this.props.loadProduces()
+    async componentDidMount() {
+        await this.props.loadRecipes()
+        await this.props.loadProduces()
+        const {recipes,produces}=this.props
+        this.setState({filterProduceList:produces,filterRecipeList:recipes})
     }
 
     loadProduces = () => {
-        this.props.loadProduces(this.state.filterBy)
+        this.props.loadProduces(null)
     }
 
     onChange = ({ target }) => {
@@ -32,21 +31,20 @@ class _RecipeApp extends Component {
         this.setState(newState)
     }
 
-  
+
 
 
 
 
     render() {
         const { recipes } = this.props
-        const{produces}=this.props
-
+        if(!recipes) return <div>Loading...</div>
+        const { produces } = this.props
         return (
             <div>
-                 <ProduceFilter filterField={"name"} getFilterProduceList={(filterProduceList)=>this.setState({filterProduceList})} produceList={produces}/>
-                 <RecipeFilter filterField={"name"} getFilterRecipeList={(filterRecipeList)=>this.setState({filterRecipeList})} recipeList={recipes}  />
-                <RecipeList recipes={recipes} />
-
+                <FilterComponent filterField={"name"} isIngredients getFilterList={(filterRecipeList) => this.setState({ filterRecipeList })} list={recipes} placeholder="Search produce" />
+                <FilterComponent filterField={"name"} getFilterList={(filterRecipeList) => this.setState({ filterRecipeList })} list={recipes} placeholder="Search recipe" />
+                <RecipeList recipes={this.state.filterRecipeList} />
             </div>
         )
     }
@@ -57,7 +55,7 @@ const mapStateToProps = state => {
     return {
         recipes: state.recipeReducer.recipes,
         produces: state.produceReducer.produces,
-        filterBy: state.produceReducer.filterBy
+        filterBy: state.produceReducer.filterBy,
     }
 }
 
@@ -65,7 +63,5 @@ const mapDispatchToProps = {
     loadRecipes,
     loadProduces
 }
-
-
 
 export const RecipeApp = connect(mapStateToProps, mapDispatchToProps)(_RecipeApp)

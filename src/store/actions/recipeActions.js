@@ -19,8 +19,40 @@ export function getRecipe(id) {
     }
 }
 
-export function addToFavorites(recipe, user){
-    console.log('add to favs:',recipe);
+export function removeRecipe(id) {
+    return async dispatch => {
+        try {
+            await recipeService.remove(id)
+            dispatch({ type: 'REMOVE_RECIPE', id })
+        }
+        catch (err) {
+            console.log('RecipeAction: err in removeRecipe', err);
+        }
+    };
+}
+
+export function saveRecipe(recipe) {
+    return async dispatch => {
+        try {
+            if (recipe._id) {
+                const editRecipe = await recipeService.save(recipe)
+                console.log('editRecipe:', editRecipe, 'recipe:', recipe);
+                dispatch({ type: 'EDIT_RECIPE', recipe: editRecipe })
+            }
+            else {
+                recipe = await  recipeService.save(recipe)
+                dispatch({ type: 'ADD_RECIPE', recipe })
+            }
+            return Promise.resolve(recipe)
+        }
+        catch (err) {
+            console.log('RecipeAction:err in add or update recipe', err);
+        }
+    };
+}
+
+
+export function addToFavorites(recipe, userId){
     return async dispatch => {
         if (recipe.likers.find((liker)=>liker._id === user._id)){
             dispatch({ type: 'NOTIFY', msg: { type: 'warning', txt: 'This recipe is already to your Favorites' } });    

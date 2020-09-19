@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loadProduces } from '../../store/actions/produceActions.js'
-import { ProduceFilter } from './ProduceFilter'
+import { FilterComponent } from '../FilterComponent.jsx'
+
 
 
 
@@ -39,11 +40,11 @@ class _ProduceList extends Component {
 
     render() {
         const {produces} = this.props
-       console.log(produces);
+     
         return (
             
             <div className="produce-container">
-                 <ProduceFilter filterField={"name"} getFilterProduceList={(filterProduceList)=>this.setState({filterProduceList})} produceList={produces} />
+                 <FilterComponent filterField={"name"} getFilterProduceList={(filterProduceList)=>this.setState({filterProduceList})} produceList={produces} />
                 <ul>
                 {
                     this.state.filterProduceList.map((produce) => {
