@@ -8,7 +8,6 @@
 }
 
 html {
-    font-family: 'Source San Pro';
     line-height: 1.6;
     color: $clr9;
     background-color: $clr6;
@@ -17,6 +16,7 @@ html {
 body {
     font-size: rem(18px);
     margin: 0;
+    font-family: 'Source Sans Pro',Times,serif;
 }
 h1,
 h2,
@@ -26,6 +26,8 @@ h5,
 h6 {
     margin: 0 0 0.6em;
     line-height: 1;
+    font-family: "CopperPot";
+    font-weight: bold;
 }
 
 img {
@@ -35,6 +37,7 @@ img {
 p {
     margin: 0 0 1em;
     // max-width: 40ch;
+    font-family: "Source Sans Pro",Times,serif;
 }
 
 a {
