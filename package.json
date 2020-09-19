@@ -20,7 +20,8 @@
     "redux-thunk": "^2.3.0",
     "simple-rating-stars": "^1.5.3",
     "socket.io-client": "^2.3.0",
-    "video-react": "^0.14.1"
+    "video-react": "^0.14.1",
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",

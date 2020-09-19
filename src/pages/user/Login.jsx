@@ -1,24 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { login } from '../store/actions/userActions'
+import { login } from '../../store/actions/userActions'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-class _LoginSignup extends Component {
-
-    // state = {
-    //     email: '',
-    //     password: ''
-    // }
-    // onLogin = (ev) => {
-    //     ev.preventDefault();
-    //     this.props.login(this.state);
-    // }
-
-    // onHandleChange = ({ target }) => {
-    //     this.setState({ [target.name]: target.value });
-    // }
-
+class _Login extends Component {
     render() {
         return (
             <section className="uiForm login">
@@ -40,6 +26,7 @@ class _LoginSignup extends Component {
                         setTimeout(() => {
                             this.props.login(values);
                             setSubmitting(false);
+                            this.props.history.goBack();
                         }, 400);
                     }}
                 >
@@ -71,4 +58,4 @@ const mapDispatchToProps = {
     login
 }
 
-export const LoginSignup = connect(mapStateToProps, mapDispatchToProps)(_LoginSignup)
+export const Login = connect(mapStateToProps, mapDispatchToProps)(_Login)

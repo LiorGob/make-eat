@@ -1,9 +1,15 @@
-import {userService} from '../../services/userService'
+import { userService } from '../../services/userService'
 
-export function loadUsers(){
+export function loadUsers() {
     return async dispatch => {
         const users = await userService.getUsers()
         dispatch({ type: 'GET_USERS', users })
+    }
+} 
+
+export function setLoggedUserAsUser(){
+    return async dispatch => {
+        dispatch({ type: 'GET_USER', user: JSON.parse(sessionStorage.getItem('loggedInUser')) })
     }
 }
 
@@ -21,16 +27,16 @@ export function login(userCred) {
     }
 }
 
-export function signup(userCreds){
-    return async dispatch=>{
-        const user= await userService.signup(userCreds)
+export function signup(userCreds) {
+    return async dispatch => {
+        const user = await userService.signup(userCreds)
         dispatch({ type: 'SET_USER', user })
     }
 }
 
 export function logout() {
     return async dispatch => {
-      await userService.logout();
-      dispatch({ type: 'SET_USER', user: null });
+        await userService.logout();
+        dispatch({ type: 'SET_USER', user: null });
     };
-  }
+}
