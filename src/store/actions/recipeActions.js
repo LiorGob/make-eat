@@ -52,7 +52,7 @@ export function saveRecipe(recipe) {
 }
 
 
-export function addToFavorites(recipe, userId){
+export function addToFavorites(recipe, user){
     return async dispatch => {
         if (recipe.likers.find((liker)=>liker._id === user._id)){
             dispatch({ type: 'NOTIFY', msg: { type: 'warning', txt: 'This recipe is already to your Favorites' } });    
