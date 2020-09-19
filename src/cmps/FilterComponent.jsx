@@ -54,12 +54,3 @@ export class FilterComponent extends Component {
 
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         filterBy: state.produceReducer.filterBy,
-//     }
-// }
-
-
-
-// export const ProduceFilter = connect(mapStateToProps)(_ProduceFilter)

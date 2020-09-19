@@ -6,7 +6,7 @@ import { RecipeEdit } from './pages/RecipeEdit.jsx'
 import { ShoppingCart } from './pages/ShoppingCart.jsx'
 import { UserHome } from './pages/UserHome.jsx'
 import { UserList } from './pages/UserList.jsx'
-import { ProduceList } from './cmps/produce/ProduceList.jsx'
+import { OrderList } from './pages/OrderList.jsx'
 
 export default [
     {
@@ -48,7 +48,12 @@ export default [
     {
         path: '/',
         component: Home
+    },
+    {
+        path: '/order/',
+        component: OrderList
     }
+
 
 
 

@@ -9,17 +9,19 @@ import GradeIcon from '@material-ui/icons/Grade';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import ScheduleIcon from '@material-ui/icons/Schedule';
+import { OrderList } from './OrderList';
 
 
 class _RecipeDetails extends Component {
 
     state = {
-
+        selectedIngredient: [],
+        showCart: false
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         const { id } = this.props.match.params
-        await this.props.getRecipe(id)
+       this.props.getRecipe(id)
 
     }
 
@@ -27,6 +29,10 @@ class _RecipeDetails extends Component {
         const currRecipe = this.props.recipe
         console.log('currRecipe', currRecipe);
         return recipeService.getRatingAvg(currRecipe)
+    }
+
+    selectIngredient = (ingredient) => {
+       console.log(ingredient);
     }
 
     render() {
@@ -46,10 +52,10 @@ class _RecipeDetails extends Component {
                     <p> by {recipe.createdBy.fullName}</p>
                 </div>
                 <div className="btn-share flex row space-between">
-                {/* <React.Fragment> */}
+                    {/* <React.Fragment> */}
                     <button className="save-btn"> <Link to="/user/:id/favorites"><span><FavoriteBorderIcon fontSize="small" /></span> SAVE</Link></button>
                     <button className="share-btn"> <Link to="/user/:id/reviews"><span><FacebookIcon fontSize="small" /></span> SHARE </Link></button>
-                {/* </React.Fragment> */}
+                    {/* </React.Fragment> */}
                 </div>
                 <img src={recipe.imgs} alt="" />
                 <div className="min-info flex row space-between justify-center">
@@ -59,8 +65,9 @@ class _RecipeDetails extends Component {
                     <div><span className="font-bold"> Total: </span>{recipe.totalTime} min</div>
                     <div><span className="font-bold">Servings:</span> {recipe.servings}</div>
                 </div>
-                <RecipeIngredient recipe={recipe} />
+                <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
                 <RecipeDirection recipe={recipe} />
+               
             </div>
         )
     }
