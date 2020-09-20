@@ -10,7 +10,7 @@ export const recipeService = {
 }
 
 function query(filterBy) {
-    if (filterBy) var queryStr = `?name=${filterBy.name}`;
+    if (filterBy) var queryStr = `?${JSON.stringify(filterBy)}`;
     return httpService.get(`recipe${queryStr || ''}`);
 }
 
