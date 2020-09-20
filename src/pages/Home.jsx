@@ -15,7 +15,7 @@ class _Home extends Component {
     }
 
     changeRoute(route, tag) {
-        this.props.history.push(`${route}&tag=${tag}`);
+        this.props.history.push(`${route}?tag=${tag}`);
     }
     render() {
         const { recipes } = this.props
