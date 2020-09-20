@@ -1,8 +1,27 @@
-.order-list{
-    display: flex;
-    flex-direction: column
-    ;
+.produce-list{   
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-gap: 20px;
+    align-items: center;
+    margin-bottom: 30px;
+
+    button {
+        border: none;
+        background-color: transparent;
+        color: $clr12;
+        &:hover {
+            cursor: pointer;
+           
+        }
+
+        h5{
+            font-family: 'Source Sans Pro',Times,serif;
+        }
+    }
 }
+
+
+
 
 .produce-img{
     width: 100px;

@@ -5,8 +5,8 @@ import { RecipeApp } from './pages/RecipeApp.jsx'
 import { RecipeDetails } from './pages/RecipeDetails.jsx'
 // import { RecipeEdit } from './pages/RecipeEdit.jsx'
 import { ShoppingCart } from './pages/ShoppingCart.jsx'
-import { UserHome } from './pages/UserHome.jsx'
-import { UserList } from './pages/UserList.jsx'
+import { UserHome } from './pages/user/UserHome.jsx'
+import { UserList } from './pages/user/UserList.jsx'
 import { OrderList } from './pages/OrderList.jsx'
 
 export default [

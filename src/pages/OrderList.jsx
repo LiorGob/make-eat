@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { RecipeIngredient } from '../cmps/RecipeIngredient'
 import { getRecipe } from '../store/actions/recipeActions.js';
+import Checkbox from '@material-ui/core/Checkbox';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 
 export class _OrderList extends Component {
@@ -14,7 +17,7 @@ export class _OrderList extends Component {
 
     componentDidMount() {
         // const { location } = this.props
-        const {selectedIngredients} = this.props.location
+        const { selectedIngredients } = this.props.location
         // let selectedIngredients = location.state ? location.state.selectedIngredients : []
         // if (selectedIngredients.length > 0) sessionStorage.setItem("orderList", JSON.stringify(selectedIngredients))
         // else
@@ -30,24 +33,31 @@ export class _OrderList extends Component {
 
 
     render() {
-const {recipe,location} =this.props
-const {selectedIngredients} =location.state
+        const { recipe, location } = this.props
+        const { selectedIngredients } = location.state
+        if (!recipe) return <div>Loading...</div>
         return (
 
             <ul className="order-list">
-                <h1 className="order-title">Order List</h1>
-                { this.state.selectedIngredients.map(ingredient =>
+                <button onClick={()=> this.props.history.push('/')}>Back</button>  
+                <h1 className="order-title">Shopping Cart</h1>
 
-                    <li className="produce-list" key={ingredient.produceId}>
-                        {ingredient.name}
+                {selectedIngredients.map(ingredient =>
+                    <li className="produce-list clean list" key={ingredient.produceId}>
+                        <Checkbox type="checkbox" />
+                        <label>{ingredient.name}</label>
                         <img className="produce-img" src={ingredient.img} />
-                        {ingredient.price}
+                        <label>{`${ingredient.price}`}$</label>
+                        <div className="shopping-cartbtn">
+                            <button><DeleteIcon /></button>
+                            <button><AddShoppingCartIcon /></button>
 
-                        <button>x</button>
-                        <button>+</button>
+                        </div>
                     </li>)
 
                 }
+                <button>Checkout</button>
+
             </ul>
         )
 

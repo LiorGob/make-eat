@@ -21,9 +21,9 @@ class _RecipeApp extends Component {
         this.setState({filterProduceList:produces,filterRecipeList:recipes})
     }
 
-    loadProduces = () => {
-        this.props.loadProduces(null)
-    }
+    // loadProduces = () => {
+    //     this.props.loadProduces(null)
+    // }
 
     onChange = ({ target }) => {
         const newState = JSON.parse(JSON.stringify(this.state));
@@ -39,7 +39,7 @@ class _RecipeApp extends Component {
     render() {
         const { recipes } = this.props
         if(!recipes) return <div>Loading...</div>
-        const { produces } = this.props
+        
         return (
             <div>
                 <FilterComponent filterField={"name"} isIngredients getFilterList={(filterRecipeList) => this.setState({ filterRecipeList })} list={recipes} placeholder="Search produce" />
