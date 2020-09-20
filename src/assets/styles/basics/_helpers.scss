@@ -121,6 +121,23 @@
 .check-color {
     color: $clr12;
 }
+.color-underline {
+    box-shadow: inset 0 -2px 0 $clr12;
+    color: $clr9;
+    font-weight: bold;
+    font-size: 1em;
+}
+.rating-star {
+    margin-right: 0.3em;
+}
+.pipe {
+    span {
+        &:not(:last-child):after {
+            content: "|";
+            padding: 0 1em;
+        }
+    }
+}
 // Media helpers
 
 // .square-ratio {

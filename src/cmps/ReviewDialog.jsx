@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { closeNotification } from '../store/actions/notificationActions';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,7 +9,6 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import { FavoritesIcon } from '../cmps/icons/FavoritesIcon';
 
 const styles = (theme) => ({
     root: {
@@ -22,8 +20,6 @@ const styles = (theme) => ({
         right: theme.spacing(1),
         top: theme.spacing(1),
         color: theme.palette.grey[500],
-        padding: '0.3em',
-        fontSize: '0.5em'
     },
 });
 
@@ -47,53 +43,52 @@ const DialogContent = withStyles((theme) => ({
     },
 }))(MuiDialogContent);
 
+const DialogActions = withStyles((theme) => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(1),
+    },
+}))(MuiDialogActions);
 
-function _Notification2(props) {
 
-    const handleClose = () => {
-        props.closeNotification();
-    };
-
+export function ReviewDialog({recipe, doOpen}) {
+    console.log('doOPen', doOpen);
+    const [open, setOpen] = React.useState(false);
+    console.log('open', open);
+    if (doOpen){
+        setOpen(true);
+    }
     const handleClose = () => {
         setOpen(false);
     };
     
-    function getMsgIcon(iconName) {
-        switch (iconName) {
-            case 'favorites':
-                return <FavoritesIcon style={{ fontSize: 40 }} />;
-            default:
-                return <FavoritesIcon style={{ fontSize: 40 }} />;
-        }
-    }
-    const { txt, type } = props.msg;
-    
-    var [open, setOpen] = React.useState(false);
-    open = (txt != null);
     return (
         <div>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-                <DialogTitle id="customized-dialog-title" onClose={handleClose}/>
-                <DialogContent>
+                <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                    recipe.name
+        </DialogTitle>
+                <DialogContent dividers>
                     <Typography gutterBottom>
-                        {props.msg.icon && getMsgIcon(props.msg.icon)}
-                        {txt}
+                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
           </Typography>
-                    
+                    <Typography gutterBottom>
+                        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
+                        lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+                    <Typography gutterBottom>
+                        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
+                        scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
+                        auctor fringilla.
+          </Typography>
                 </DialogContent>
-               
+                <DialogActions>
+                    <Button autoFocus onClick={handleClose} color="primary">
+                        Save changes
+          </Button>
+                </DialogActions>
             </Dialog>
         </div>
     );
 }
-const mapStateToProps = (state) => {
-    return {
-        msg: state.notificationReducer.msg
-    }
-}
-
-const mapDispatchToProps = {
-    closeNotification
-}
-
-export const Notification2 = connect(mapStateToProps, mapDispatchToProps)(_Notification2)

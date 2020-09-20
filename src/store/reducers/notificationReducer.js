@@ -2,7 +2,8 @@ const initialState = {
     msg: {
         type: null,
         txt: null
-    }
+    },
+    reviewDialog: false
 }
 
 export function notificationReducer(state = initialState, action = {}) {
@@ -11,6 +12,10 @@ export function notificationReducer(state = initialState, action = {}) {
             return { ...state, msg: action.msg };
         case 'CLOSE_NOTIFICATION':
             return { ...state, msg: {type: null, txt: null }};
+        case 'REVIEW_DIALOG_OPEN':
+            return { ...state, reviewDialog: true };
+        case 'REVIEW_DIALOG_CLOSE':
+            return { ...state, reviewDialog: false };
         default:
             return state;
 

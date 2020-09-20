@@ -4,6 +4,7 @@ import { Signup } from './pages/user/Signup.jsx'
 import { RecipeApp } from './pages/RecipeApp.jsx'
 import { RecipeDetails } from './pages/RecipeDetails.jsx'
 import { RecipeEdit } from './pages/RecipeEdit.jsx'
+import { ReviewList } from './cmps/review/ReviewList.jsx'
 import { ShoppingCart } from './pages/ShoppingCart.jsx'
 import { UserHome } from './pages/user/UserHome.jsx'
 import { UserList } from './pages/user/UserList.jsx'
@@ -35,6 +36,10 @@ export default [
         component: RecipeEdit
     },
     {
+        path: '/recipe/:id/review',
+        component: ReviewList
+    },
+    {
         path: '/recipe/:id',
         component: RecipeDetails
     },
@@ -50,7 +55,5 @@ export default [
         path: '/',
         component: Home
     }
-
-
 
 ]
