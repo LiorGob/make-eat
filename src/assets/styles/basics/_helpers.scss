@@ -71,8 +71,8 @@
         flex-wrap: wrap;
     }
 
-    &.align-end {
-        align-items: flex-end;
+    &.align-start {
+        align-self: flex-end;
     }
 
     .grow {
