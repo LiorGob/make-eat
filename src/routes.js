@@ -8,7 +8,7 @@ import { ReviewList } from './cmps/review/ReviewList.jsx'
 import { ShoppingCart } from './pages/ShoppingCart.jsx'
 import { UserHome } from './pages/user/UserHome.jsx'
 import { UserList } from './pages/user/UserList.jsx'
-//import { ProduceList } from './cmps/produce/ProduceList.jsx'
+import { OrderList } from './pages/OrderList.jsx'
 
 export default [
     {
@@ -54,6 +54,9 @@ export default [
     {
         path: '/',
         component: Home
+    },
+    {
+        path: '/order/',
+        component: OrderList
     }
-
 ]

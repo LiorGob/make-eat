@@ -66,7 +66,7 @@ class _RecipeDetails extends Component {
                     <div><span className="font-bold"> Total: </span>{recipe.totalTime} min</div>
                     <div><span className="font-bold">Servings:</span> {recipe.servings}</div>
                 </div>
-                <RecipeIngredient recipe={recipe} />
+                <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
                 <RecipeDirection recipe={recipe} />
                 {/* <ReviewDialog recipe={recipe} doOpen={this.state.openReviewDialog}/> */}
 

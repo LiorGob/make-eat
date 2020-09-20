@@ -6,6 +6,9 @@ import { AppHeader } from './cmps/AppHeader.jsx'
 import { Notification } from './cmps/Notification.jsx';
 
 export function App() {
+
+
+
     return (
         <div className="App">
             <AppHeader />
