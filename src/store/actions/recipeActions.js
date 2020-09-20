@@ -1,9 +1,9 @@
 import {recipeService} from '../../services/recipeService'
 
-export function loadRecipes() {
+export function loadRecipes(filterBy) {
     return async dispatch => {
         try {
-            const recipes = await recipeService.query();
+            const recipes = await recipeService.query(filterBy);
             dispatch({ type: 'SET_RECIPES', recipes })
         }
         catch (err) {

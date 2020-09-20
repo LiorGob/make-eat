@@ -2,27 +2,23 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loadProduces } from '../../store/actions/produceActions.js'
-import { FilterComponent } from '../FilterComponent.jsx'
-
-
-
+import { IngredientSearch } from '../IngredientSearch.jsx'
 
 class _ProduceList extends Component {
 
-
     state = {
         filterBy: '',
-        filterProduceList:[]
+        filterProduceList: []
 
     }
 
     async componentDidMount() {
-   
-   await this.props.loadProduces()
-   const { produces}=this.props
 
-     this.setState({filterProduceList:produces},()=>console.log())
-    
+        await this.props.loadProduces()
+        const { produces } = this.props
+
+        this.setState({ filterProduceList: produces }, () => console.log())
+
     }
 
     loadProduces = () => {
@@ -35,25 +31,25 @@ class _ProduceList extends Component {
         this.setState(newState)
     }
 
-   
+
 
 
     render() {
-        const {produces} = this.props
-     
+        const { produces } = this.props
+
         return (
-            
+
             <div className="produce-container">
-                 <FilterComponent filterField={"name"} getFilterProduceList={(filterProduceList)=>this.setState({filterProduceList})} produceList={produces} />
+                <IngredientSearch filterField={"name"} getFilterProduceList={(filterProduceList) => this.setState({ filterProduceList })} produceList={produces} />
                 <ul>
-                {
-                    this.state.filterProduceList.map((produce) => {
-                        return <li key={produce._id?produce._id:produce.produceId}>
-                            
-                            <Link to={`/produce/`}>{produce.name}</Link>
+                    {
+                        this.state.filterProduceList.map((produce) => {
+                            return <li key={produce._id ? produce._id : produce.produceId}>
+
+                                <Link to={`/produce/`}>{produce.name}</Link>
                             </li>
-                    })
-                }
+                        })
+                    }
                 </ul>
 
             </div>
@@ -69,12 +65,8 @@ const mapStateToProps = state => {
     }
 }
 
-
-
 const mapDispatchToProps = {
     loadProduces
 }
-
-
 
 export const ProduceList = connect(mapStateToProps, mapDispatchToProps)(_ProduceList)

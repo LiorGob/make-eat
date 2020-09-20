@@ -14,15 +14,15 @@ class _Home extends Component {
         this.props.loadRecipes()
     }
 
-    changeRoute(route) {
-        this.props.history.push(route)
+    changeRoute(route, tag) {
+        this.props.history.push(`${route}&tag=${tag}`);
     }
     render() {
         const { recipes } = this.props
         let images = [
-            { image: sushi, route: '/recipe', description: 'Japaneese' },
-            { image: mouls, route: '/recipe', description: 'French' },
-            { image: pizza6, route: '/recipe', description: 'Italian' },
+            { image: sushi, route: '/recipe', tag: 'Japaneese' },
+            { image: mouls, route: '/recipe', tag: 'French' },
+            { image: pizza6, route: '/recipe', tag: 'Italian' },
 
         ]
         return (
@@ -32,8 +32,11 @@ class _Home extends Component {
                     <source src={hero} type="video/mp4" />
                 </video>
                 <div className="tag-card">
-                    {images.map((imageItem, ind) => {
-                        return (<div className="description" key={`${ind}${imageItem.image}`}><img className="tag" onClick={() => this.changeRoute(imageItem.route)} src={imageItem.image} alt="" /><span>{imageItem.description}</span></div>)
+                    {images.map((img, ind) => {
+                        return (<div className="description" key={`${ind}${img.image}`}>
+                            <img className="tag" onClick={() => this.changeRoute(img.route, img.tag)} src={img.image} alt="" />
+                            <span>{img.tag}</span>
+                        </div>)
                     })}
                   
                 </div>
