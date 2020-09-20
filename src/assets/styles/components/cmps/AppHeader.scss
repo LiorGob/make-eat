@@ -1,7 +1,7 @@
 .main-header {
     margin-right: 30px;
-    height: 80px;
-    width: 100vw;
+    margin-bottom: 3rem;
+    width: 100%;
     background-color: $clr6;
     color: $clr12;
     display: flex;
@@ -25,16 +25,17 @@
         font-size: rem(20px);
         color: $clr9;
         padding: 0 10px;
-        a:hover, a:visited {
+        a:hover,
+        a:visited {
             cursor: pointer;
             color: $clr9;
         }
-        &:not(:last-child):after{
+        &:not(:last-child):after {
             content: "|";
             padding-left: 1em;
         }
     }
-    .join-now-img{
+    .join-now-img {
         width: 24px;
         position: relative;
         top: 4px;

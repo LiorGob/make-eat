@@ -10,7 +10,7 @@ function _AppHeader(props) {
             <ul className="main-nav flex">
                 {!props.loggedInUser && 
                     <React.Fragment>
-                    <li className="link flex align-center"><Link to='/user/signup'><img className="join-now-img" src={require('../assets/images/profile.png')} />Join now</Link></li>
+                    <li className="link flex align-center"><Link to='/user/signup'><img className="join-now-img" src={require('../assets/images/profile.png')} alt="" />Join now</Link></li>
                     <li className="link flex align-center"><Link to='/user/login'>Login</Link></li>
                     </React.Fragment>
                 }
