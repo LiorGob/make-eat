@@ -39,8 +39,3 @@ function _handleLogin(user) {
     sessionStorage.setItem('loggedInUser', JSON.stringify(user))
     return user;
 }
-
-function getLoggedInUser(){
-    const user = sessionStorage.getItem('loggedInUser');
-    if (user) return user;
-}

@@ -7,7 +7,7 @@ import { loadRecipes, addToFavorites } from '../../store/actions/recipeActions';
 import { About } from '../../cmps/user/About';
 import { Favorites } from '../../cmps/user/Favorites';
 import { MadeIt } from '../../cmps/user/MadeIt.jsx';
-import { Reviews } from '../../cmps/user/Reviews';
+import { UserReviews } from '../../cmps/user/UserReviews';
 import { Orders } from '../../cmps/user/Orders';
 import { AddRecipe } from '../../cmps/user/AddRecipe';
 
@@ -73,7 +73,7 @@ class _UserHome extends Component {
                     <Route exact path="/user/:id/about" render={(props) => <About {...props} user={user} />} />
                     <Route exact path="/user/:id/favorites" render={(props) => <Favorites {...props} onAddToFavorites={this.saveToFavorites} recipes={this.favorites} />} />
                     <Route exact path="/user/:id/madeit" render={(props) => <MadeIt {...props} recipes={this.madeIt} />} />
-                    <Route exact path="/user/:id/reviews" render={(props) => <Reviews {...props} user={user} recipes={this.reviewedRecipes} />} />
+                    <Route exact path="/user/:id/reviews" render={(props) => <UserReviews {...props} user={user} recipes={this.reviewedRecipes} />} />
                     <Route exact component={Orders} path="/user/:id/orders" />
                     <Route exact component={AddRecipe} path="/user/:id/add" />
                     {/* <Route exact path="/..." render={(props) => <PAGE {...props} recipes={recepies} />} /> */}

@@ -1,11 +1,40 @@
-import React from 'react'
-import { RecipePreview } from '../RecipePreview';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { getRecipe } from '../../store/actions/recipeActions';
+import { ReviewPreview } from './ReviewPreview';
+class _ReviewList extends Component {
+    state = {
 
-export function ReviewList({ user, recipes }) {
+    }
 
-    return (
-        <div className="recipe-list card-grid">
-            {recipes.map((recipe) => { return <RecipePreview key={recipe._id} user={user} recipe={recipe} showReviewBy={user} /> })}
-        </div>
-    )
+    componentDidMount() {
+        console.log(this.props.match.params.id);
+        this.props.getRecipe(this.props.match.params.id);
+    }
+
+    render() {
+        const { recipe } = this.props;
+        return (
+            <section>
+                <h1>All reviews for {recipe.name}</h1>
+                <div className="review-list">
+                    {recipe && recipe.reviews.map((review, ind) => {
+                        return <ReviewPreview key={review._id + '_' + ind} review={review} />
+                    })}
+                </div>
+            </section>
+        )
+    }
 }
+
+const mapStateToProps = state => {
+    return {
+        recipe: state.recipeReducer.recipe
+    }
+}
+
+const mapDispatchToProps = {
+    getRecipe
+}
+
+export const ReviewList = connect(mapStateToProps, mapDispatchToProps)(_ReviewList)
