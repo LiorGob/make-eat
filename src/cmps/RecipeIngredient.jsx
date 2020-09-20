@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import DoneAllIcon from '@material-ui/icons/DoneAll';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import { useHistory } from 'react-router-dom'
-import { SelectAll } from '@material-ui/icons';
+// import { SelectAll } from '@material-ui/icons';
 
 function _RecipeIngredient({ recipe }) {
     let history = useHistory()

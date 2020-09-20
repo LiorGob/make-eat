@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { RecipeIngredient } from '../cmps/RecipeIngredient'
+// import { RecipeIngredient } from '../cmps/RecipeIngredient'
 import { getRecipe } from '../store/actions/recipeActions.js';
 import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';

@@ -2,11 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getUser, logout } from '../store/actions/userActions';
+// import logo from '../assets/images/logo/makeeatlogo.png'
+
 
 function _AppHeader(props) {
     return (
         <header className="main-header flex align-center space-between">
-            <div className="logo"><a href="/">Make Eat</a></div>
+            <div className="logo"><a href="/"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo.png')} alt="logo"/></a></div>
             <ul className="main-nav flex row pipe">
                 {!props.loggedInUser && 
                     <React.Fragment>
