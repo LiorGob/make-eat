@@ -9,14 +9,14 @@
 
 html {
     line-height: 1.6;
-    color: $clr9;
     background-color: $clr6;
 }
 
 body {
-    font-size: rem(18px);
+    font-size: rem(16px);
     margin: 0;
-    font-family: 'Source Sans Pro',Times,serif;
+    font-family: 'Heebo', sans-serif;
+    color: rgba(0,0,0,0.95);
 }
 h1,
 h2,
@@ -26,8 +26,11 @@ h5,
 h6 {
     margin: 0 0 0.6em;
     line-height: 1;
-    font-family: "CopperPot";
+    font-family: 'Noto Sans KR', sans-serif;
     font-weight: bold;
+}
+h1{
+    font-size: 3em;
 }
 
 img {
@@ -36,8 +39,6 @@ img {
 
 p {
     margin: 0 0 1em;
-    // max-width: 40ch;
-    font-family: "Source Sans Pro",Times,serif;
 }
 
 a {
@@ -47,4 +48,9 @@ a {
 button {
     cursor: pointer;
     outline: none;
+}
+ul, li{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }

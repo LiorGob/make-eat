@@ -29,9 +29,9 @@ function _RecipeIngredient({ recipe }) {
     return (
         <div className="ingredient-recipe">
             <span className="font-bold">Ingredients:</span>
-            <button className="select-all" onClick={SelectAll}>Select all</button>
+            <button className="select-all" >Select all</button>
             <ul>
-                {recipe.ingredients.map(ingredient => <li key={ingredient.produceId} ingredient={ingredient}>
+                {recipe.ingredients.map(ingredient => <li className="clean-list" key={ingredient.produceId}>
                     <label>
                         <input type="checkbox" onClick={() => handleSelectIngredient(ingredient)} />
                     </label>

@@ -1,1 +1,15 @@
-// 
+.edit-recipe {
+    .edit-form {
+        flex-direction: row-reverse;
+
+        .edit-left-side,
+        .edit-right-side {
+            display: grid;
+            grid-gap: 10px;
+        }
+    }
+    button {
+        border: none;
+        background: none;
+    }
+}

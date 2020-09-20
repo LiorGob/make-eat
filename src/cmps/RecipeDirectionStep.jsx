@@ -11,7 +11,7 @@ export function RecipeDirectionStep({ direction, idx, onDirectionCheck, directio
 
     return (
         <div>
-            <li key={idx} direction={direction} >
+            <li className="clean-list" key={idx} >
                 <label className="inline-flex">
                     <CheckCircleIcon className={iconClass} onClick={onCheck} />
                     <span className="font-bold">Step {idx + 1}</span>

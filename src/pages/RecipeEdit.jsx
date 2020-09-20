@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Formik, Form, Field } from 'formik';
-// import Input from '@material-ui/core/Input';
+import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import { saveRecipe, removeRecipe } from '../store/actions/recipeActions';
 import { cloudinaryService } from '../services/cloudinaryService'
 import { recipeService } from '../services/recipeService'
@@ -94,26 +95,33 @@ class _RecipeEdit extends Component {
         const { recipe } = this.state
         console.log('recipe edit', recipe.ingredients);
         return (
-            <div className="edit">
-                <form className="edit-recipe" onSubmit={this.onSaveRecipe}>
-                    <section className="edit-right-side">
+            <div className="edit-recipe">
+                <form className="edit-form flex space-around" onSubmit={this.onSaveRecipe}>
+                    <section className="edit-right-side flex column">
+                        
                         <TextField variant="outlined" fullWidth type="text" name="name" label="Recipe title" onChange={this.onHandleChange} value={recipe.name} />
+
                         <TextField type="text" name="abstract" label="Description" multiline rows={4} variant="outlined" onChange={this.onHandleChange} value={recipe.abstract} />
-                        {/* <label>ingredients
-                        <TextField variant="outlined" type="text" name="ingredients" placeholder={this.props.match.params.id ? recipe.ingredients : 'put each ingredient on its own line'} onChange={this.onHandleChange} value={recipe.ingredients}></textarea>
-                        </label> */}
+
+                        <TextField variant="outlined" label="Ingredients" type="text" name="ingredients" placeholder={this.props.match.params.id ? recipe.ingredients : 'put each ingredient on its own line'} onChange={this.onHandleChange} value={recipe.ingredients} />
+
                         <TextField type="text" name="directions" multiline rows={4} variant="outlined" label="Directions" placeholder={this.props.match.params.id ? recipe.directions : 'put each step on its own line'} onChange={this.onHandleChange} value={recipe.directions} />
                     </section>
-                    <section className="edit-left-side">
-                        <input type="file" name="imgs"  onChange={this.onAddImg} />
-                        <AddAPhotoIcon/>
+
+                    <section className="edit-left-side flex column">
+                        <input type="file" name="imgs" onChange={this.onAddImg} />
+                        <AddAPhotoIcon />
+
                         <TextField id="standard-number" variant="outlined" label="Prep Time" type="number" name="prepTime" onChange={this.onHandleChange} value={recipe.prepTime} />
+
                         <TextField type="number" name="totalTime" variant="outlined" label="Ready in" onChange={this.onHandleChange} value={recipe.totalTime} />
+
                         <TextField type="number" name="servings" variant="outlined" label="number of servings" onChange={this.onHandleChange} value={recipe.servings} />
                     </section>
-                    <button>{this.props.match.params.id ? 'EDIT RECIPE' : 'ADD RECIPE'}</button>
+
+                    <button className="flex align-start">{this.props.match.params.id ? <EditIcon className="main-color" fontSize="large"/> : <AddIcon className="main-color" fontSize="large"/>}</button>
                 </form>
-                <button onClick={() => this.onRemove(recipe._id)}>Remove Recipe</button>
+                <button onClick={() => this.onRemove(recipe._id)}><DeleteRoundedIcon className="main-color" fontSize="large"/></button>
             </div>
         )
     }

@@ -7,15 +7,20 @@ export function loadRecipes() {
             dispatch({ type: 'SET_RECIPES', recipes })
         }
         catch (err) {
-            console.log('RecipeAction:err in loadRecipes', err);
+            console.log('RecipeActions: error in loadRecipes', err);
         }
     };
 }
 
 export function getRecipe(id) {
     return async dispatch => {
-        const recipe = await recipeService.getById(id)
-        dispatch({ type: 'GET_RECIPE', recipe })
+        try{
+            const recipe = await recipeService.getById(id);
+            dispatch({ type: 'GET_RECIPE', recipe })
+        }
+        catch(err){
+            console.log('RecipeActions: error in getRecipe(id)');
+        }
     }
 }
 
@@ -26,7 +31,7 @@ export function removeRecipe(id) {
             dispatch({ type: 'REMOVE_RECIPE', id })
         }
         catch (err) {
-            console.log('RecipeAction: err in removeRecipe', err);
+            console.log('RecipeActions: error in removeRecipe', err);
         }
     };
 }
@@ -46,7 +51,7 @@ export function saveRecipe(recipe) {
             return Promise.resolve(recipe)
         }
         catch (err) {
-            console.log('RecipeAction:err in add or update recipe', err);
+            console.log('RecipeAction: error in add or update recipe', err);
         }
     };
 }

@@ -5,23 +5,25 @@ import { getRecipe } from '../store/actions/recipeActions';
 import { RecipeIngredient } from '../cmps/RecipeIngredient';
 import { RecipeDirection } from '../cmps/RecipeDirection'
 import { recipeService } from '../services/recipeService';
-import GradeIcon from '@material-ui/icons/Grade';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import ScheduleIcon from '@material-ui/icons/Schedule';
-
+import RatingStar from '../cmps/RatingStar';
+// import GridList from '@material-ui/core/GridList';
+// <GridList cellHeight={160} className={classes.gridList} cols={3}>
+// {tileData.map((tile) => (
+//   <GridListTile key={tile.img} cols={tile.cols || 1}>
+//     <img src={tile.img} alt={tile.title} />
+//   </GridListTile>
+// ))}
+// </GridList>
 
 
 class _RecipeDetails extends Component {
 
-    state = {
-        selectedIngredient: [],
-        showCart: false
-    }
-
-    componentDidMount() {
+    async componentDidMount() {
         const { id } = this.props.match.params
-       this.props.getRecipe(id)
+        await this.props.getRecipe(id)
 
     }
 
@@ -30,23 +32,21 @@ class _RecipeDetails extends Component {
         // console.log('currRecipe', currRecipe);
         return recipeService.getRatingAvg(currRecipe)
     }
-
-    selectIngredient = (ingredient) => {
-       console.log(ingredient);
-    }
-
     render() {
-        const { recipe } = this.props
-        if (!recipe) return <div>is Loading..</div>
+        const { recipe, loggedInUser } = this.props;
+        if (!recipe) return <div>is loading..</div>
         const ratingAvg = this.getAvg()
         return (
             <div className="recipe-details card-grid">
-                <Link to={`/recipe/edit/${recipe._id}`}><button>Edit</button></Link>
+                {loggedInUser && loggedInUser._id === recipe.createdBy._id && <Link to={`/recipe/edit/${recipe._id}`}><button>Edit</button></Link>}
                 <div className="absract-recipe flex column">
-                    <h2>{recipe.name}</h2>
+                    <h1>{recipe.name}</h1>
                     <p>{recipe.abstract}</p>
-                    <div className="review-details flex row">
-                        <GradeIcon style={{ color: '#ff385c' }} />{ratingAvg} Ratings | {recipe.reviews?.length} Reviews | {recipe.imgs.length} Images</div>
+                    <div className="review-details pipe">
+                        <span><RatingStar />{ratingAvg} ({recipe.reviews.length} Ratings)</span>
+                        <span><Link to={`/recipe/${recipe._id}/review`}>{recipe.reviews?.length} Reviews</Link></span>
+                        <span>{recipe.imgs.length} Images</span>
+                    </div>
                 </div>
                 <div className="createdBy-recipe">
                     <img className="circle-img" src={recipe.createdBy?.imgUrl} alt="" />
@@ -68,7 +68,8 @@ class _RecipeDetails extends Component {
                 </div>
                 <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
                 <RecipeDirection recipe={recipe} />
-               
+                {/* <ReviewDialog recipe={recipe} doOpen={this.state.openReviewDialog}/> */}
+
             </div>
         )
     }
@@ -77,7 +78,8 @@ class _RecipeDetails extends Component {
 
 const mapStateToProps = state => {
     return {
-        recipe: state.recipeReducer.recipe
+        recipe: state.recipeReducer.recipe,
+        loggedInUser: state.userReducer.loggedInUser
     }
 }
 
