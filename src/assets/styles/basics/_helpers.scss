@@ -130,6 +130,9 @@
 .rating-star {
     margin-right: 0.3em;
 }
+.border-botton-grey{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
 .pipe {
     span {
         &:not(:last-child):after {

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export function ReviewPreview({ review }) {
     return (
-        <div className="recipe-review-wrapper">
+        <div className="recipe-review-wrapper border-botton-grey">
             <div className="recipe-review-byline">
                 <Link className="recipe-review-author" to={`/user/${review.by._id}/about`}>
                     <span className="reviewer-image-wrapper">
