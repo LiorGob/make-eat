@@ -24,7 +24,7 @@ class _Home extends Component {
     render() {
         const { recipes } = this.props
         let images = [
-            { image: sushi, route: '/recipe', tag: 'Japaneese' },
+            { image: sushi, route: '/recipe', tag: 'Japanese' },
             {image: crepes2, route: '/recipe', tag: 'French'},
             { image: pasta1, route: '/recipe', tag: 'Italian' },
 
