@@ -28,11 +28,21 @@ class _RecipeDetails extends Component {
     }
 
     onAddToFavorites = () => {
-        this.props.addToFavorites(this.props.recipe, this.props.loggedInUser);
+        if (!this.props.loggedInUser) {
+            this.props.history.push('/user/login');
+        }
+        else {
+            this.props.addToFavorites(this.props.recipe, this.props.loggedInUser);
+        }
     }
 
     onAddToMadeIt = () => {
-        this.props.addToMadeIt(this.props.recipe, this.props.loggedInUser);
+        if (!this.props.loggedInUser) {
+            this.props.history.push('/user/login');
+        }
+        else {
+            this.props.addToMadeIt(this.props.recipe, this.props.loggedInUser);
+        }
     }
 
     render() {

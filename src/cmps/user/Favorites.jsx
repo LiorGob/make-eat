@@ -1,11 +1,18 @@
 import React from 'react'
 import { RecipeList } from '../RecipeList';
 
-export function Favorites({ recipes }) {
+export function Favorites(props) {
     return (
-        <div className="container">
+        <React.Fragment>
             <h3>My Favorites</h3>
-            <RecipeList recipes={recipes}/>
-        </div>
+            <div className="container">
+                {props.about &&
+                    <aside>
+                        {props.about}
+                    </aside>
+                }
+                <RecipeList recipes={props.recipes} />
+            </div>
+        </React.Fragment>
     )
 }
