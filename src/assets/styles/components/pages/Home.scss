@@ -16,4 +16,10 @@
     display: flex;
     justify-content: space-evenly;
 }
-
+.home-page{
+    .recipe-card{
+        .recipe-card-rating{
+            display: none;
+        }
+    }
+}

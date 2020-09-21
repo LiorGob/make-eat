@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RecipeList } from '../cmps/RecipeList'
 import { loadRecipes } from '../store/actions/recipeActions'
-import { IngredientSearch } from '../cmps/IngredientSearch'
 import qs from 'qs';
 class _RecipeApp extends Component {
 

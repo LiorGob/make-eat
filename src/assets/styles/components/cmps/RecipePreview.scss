@@ -1,10 +1,13 @@
 .recipe-card {
-    cursor: pointer;
     width: 310px;
     margin-bottom: 2em;    
     border-style: ridge;
 
-    .recipe-preview-txt {
-        padding: 5px 10px;
+    .recipe-card-body {
+        padding: 1em;
+        font-size: 0.85em;
+        .abstract{
+            margin: 0.7em 0 1em;
+        }
     }
 }
