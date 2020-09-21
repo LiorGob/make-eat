@@ -37,28 +37,29 @@ export class _OrderList extends Component {
         const { selectedIngredients } = location.state
         if (!recipe) return <div>Loading...</div>
         return (
+            <div className="main-container">
+                <ul className="order-list">
+                    <button onClick={() => this.props.history.push('/')}>Back</button>
+                    <h1 className="order-title">Shopping Cart</h1>
 
-            <ul className="order-list">
-                <button onClick={()=> this.props.history.push('/')}>Back</button>  
-                <h1 className="order-title">Shopping Cart</h1>
+                    {selectedIngredients.map(ingredient =>
+                        <li className="produce-list clean list" key={ingredient.produceId}>
+                            <Checkbox type="checkbox" />
+                            <label>{ingredient.name}</label>
+                            <img className="produce-img" src={ingredient.img} />
+                            <label>{`$${ingredient.price}`}</label>
+                            <div className="shopping-cartbtn">
+                                <button><DeleteIcon /></button>
+                                <button><AddShoppingCartIcon /></button>
 
-                {selectedIngredients.map(ingredient =>
-                    <li className="produce-list clean list" key={ingredient.produceId}>
-                        <Checkbox type="checkbox" />
-                        <label>{ingredient.name}</label>
-                        <img className="produce-img" src={ingredient.img} />
-                        <label>{`${ingredient.price}`}$</label>
-                        <div className="shopping-cartbtn">
-                            <button><DeleteIcon /></button>
-                            <button><AddShoppingCartIcon /></button>
+                            </div>
+                        </li>)
 
-                        </div>
-                    </li>)
+                    }
+                    <button>Checkout</button>
 
-                }
-                <button>Checkout</button>
-
-            </ul>
+                </ul>
+            </div>
         )
 
 

@@ -37,6 +37,7 @@ class _RecipeDetails extends Component {
         if (!recipe) return <div>is loading..</div>
         const ratingAvg = this.getAvg()
         return (
+            <div className="main-container">
             <div className="recipe-details card-grid">
                 {loggedInUser && loggedInUser._id === recipe.createdBy._id && <Link to={`/recipe/edit/${recipe._id}`}><button>Edit</button></Link>}
                 <div className="absract-recipe flex column">
@@ -70,6 +71,7 @@ class _RecipeDetails extends Component {
                 <RecipeDirection recipe={recipe} />
                 {/* <ReviewDialog recipe={recipe} doOpen={this.state.openReviewDialog}/> */}
 
+            </div>
             </div>
         )
     }

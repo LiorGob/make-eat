@@ -1,19 +1,39 @@
-.main-content {
-    flex-direction: column;
-}
-.tag {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    margin: 30px 30px;
-}
+.home-page {
+    .video-home {
+        padding-bottom: rem(64px);
+    }
 
-.description {
-    display: flex;
-}
+    .recipe-list {
+        .recipe-card {
+            cursor: pointer;
+            width: 270px;
+            margin-bottom: 2em;
+            border-style: ridge;
 
-.tag-card {
-    display: flex;
-    justify-content: space-evenly;
-}
+            .recipe-preview-txt {
+                padding: 5px 10px;
+            }
+        }
+    }
 
+    .cuisine-card {
+        display: flex;
+        justify-content: space-evenly;
+        // position: relative;
+        padding-bottom: rem(64px);
+
+        img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+        }
+
+        .description {
+            // position: relative;
+            // top: -40px;
+            font-size: 0.85rem;
+            display: block;
+            text-align: center;
+        }
+    }
+}
