@@ -2,13 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import hero from '../assets/images/hero.mp4'
 import sushi from '../assets/images/sushi.jpg'
-// import mouls from '../assets/images/french/mouls.jpg'
-// import carpaccio2 from '../assets/images/french/carpaccio2.jpg'
-// import onionSoup2 from '../assets/images/french/onionSoup2.jpg'
-// import buche from '../assets/images/french/buche.jpg'
-import crepes2 from '../assets/images/french/crepes2.jpg'
-import pasta1 from '../assets/images/italian/pasta1.jpg'
-// import pizza6 from '../assets/images/italian/pizza6.jpg'
+import macaroons1 from '../assets/images/french/macaroons1.jpg'
+import ravioli from '../assets/images/italian/ravioli.jpg'
 import { RecipeList } from '../cmps/RecipeList'
 import { loadRecipes } from '../store/actions/recipeActions.js'
 
@@ -25,8 +20,8 @@ class _Home extends Component {
         const { recipes } = this.props
         let images = [
             { image: sushi, route: '/recipe', tag: 'Japaneese' },
-            {image: crepes2, route: '/recipe', tag: 'French'},
-            { image: pasta1, route: '/recipe', tag: 'Italian' },
+            {image: macaroons1, route: '/recipe', tag: 'French'},
+            { image: ravioli, route: '/recipe', tag: 'Italian' },
 
         ]
         return (
@@ -35,6 +30,7 @@ class _Home extends Component {
                 <video className="video-home" width={window.innerWidth} style={{ objectFit: 'cover' }}  autoPlay loop muted>
                     <source src={hero} type="video/mp4" />
                 </video>
+                <div className="main-container">
                 <div className="cuisine-card">
                     {images.map((img, idx) => {
                         return (<div key={`${idx}${img.image}`}>
@@ -45,6 +41,7 @@ class _Home extends Component {
 
                 </div>
                 <RecipeList recipes={recipes.slice(0, 6)} />
+            </div>
             </div>
         )
     }

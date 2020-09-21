@@ -7,12 +7,16 @@
     .recipe-list {
         .recipe-card {
             cursor: pointer;
-            width: 270px;
+            width: 285px;
             margin-bottom: 2em;
             border-style: ridge;
 
             .recipe-preview-txt {
                 padding: 5px 10px;
+            }
+
+            .recipe-card-rating{
+                display: none;
             }
         }
     }
@@ -20,18 +24,16 @@
     .cuisine-card {
         display: flex;
         justify-content: space-evenly;
-        // position: relative;
         padding-bottom: rem(64px);
 
         img {
             width: 180px;
             height: 180px;
             border-radius: 50%;
+            cursor: pointer;
         }
 
         .description {
-            // position: relative;
-            // top: -40px;
             font-size: 0.85rem;
             display: block;
             text-align: center;

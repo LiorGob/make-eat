@@ -1,13 +1,17 @@
 .recipe-card {
-    width: 310px;
-    margin-bottom: 2em;    
-    border-style: ridge;
+    width: 285px;
+    margin-bottom: 2em;
+    border: 1px solid $clr15;
 
     .recipe-card-body {
         padding: 1em;
         font-size: 0.85em;
-        .abstract{
+        .abstract {
             margin: 0.7em 0 1em;
         }
+    }
+
+    .recipe-card-rating {
+        align-items: center;
     }
 }
