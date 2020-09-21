@@ -5,7 +5,7 @@
     position: relative;
     text-align: center;
     white-space: nowrap;
-   &.btn-small {
+    &.btn-small {
         color: $clr6;
         max-width: 459px;
         padding: 10%;
@@ -18,5 +18,18 @@
         color: $clr9;
         border: 2px solid $clr12;
         background-color: $clr6;
+    }
+    &.action-btn {
+        border: $clr12 solid 2px;
+        background-color: $clr6;
+        color: $clr9;
+        padding: 0.3em 0.8em;
+        display: flex;
+        font-weight: bold;
+        border-radius: 5px;
+        svg{
+            fill: $clr12;
+            margin-right: 0.3em;
+        }
     }
 }

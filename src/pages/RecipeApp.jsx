@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RecipeList } from '../cmps/RecipeList'
 import { loadRecipes } from '../store/actions/recipeActions'
-import { IngredientSearch } from '../cmps/IngredientSearch'
 import qs from 'qs';
 import {setFilteredRecipes} from '../store/actions/filteredRecipeActions'
 import TextField from '@material-ui/core/TextField';
+import {IngredientSearch} from '../cmps/IngredientSearch'
 class _RecipeApp extends Component {
 
     state = {
@@ -50,6 +50,7 @@ class _RecipeApp extends Component {
             <div>
                 <div className="search-recipe">
             <TextField placeholder="Search produce"><IngredientSearch filterField={"name"} isIngredients getFilterList={(filterRecipeList) => this.props.setFilteredRecipes(filterRecipeList )} /></TextField>
+            
             <TextField className="recipe-search" placeholder="Search recipe" ><IngredientSearch filterField={"name"} getFilterList={(filterRecipeList) =>this.props.setFilteredRecipes( filterRecipeList)} /></TextField>
                     {/* <RecipeList recipes={this.props.filteredRecipes} /> */}
                 </div>

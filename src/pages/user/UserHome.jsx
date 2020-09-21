@@ -68,7 +68,6 @@ class _UserHome extends Component {
                     <NavLink to="./orders">My Orders</NavLink>|
                     <NavLink to="./add">Submit a recipe</NavLink>|
                 </nav>
-                {console.log('props: ', this.props)}
                 <Switch>
                     <Route exact path="/user/:id/about" render={(props) => <About {...props} user={user} />} />
                     <Route exact path="/user/:id/favorites" render={(props) => <Favorites {...props} onAddToFavorites={this.saveToFavorites} recipes={this.favorites} />} />

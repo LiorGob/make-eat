@@ -31,7 +31,7 @@ function _Notification(props) {
     }));
     const classes = useStyles();
 
-    const { txt, type } = props.msg;
+    const { txt } = props.msg;
     const open = (txt != null);
     // const [setTimer] = useState({});
 
