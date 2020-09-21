@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { RecipeIngredient } from '../cmps/RecipeIngredient'
 import { getRecipe } from '../store/actions/recipeActions.js';
 import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -16,37 +15,38 @@ export class _OrderList extends Component {
 
 
     componentDidMount() {
-        // const { location } = this.props
-        const { selectedIngredients } = this.props.location
-        // let selectedIngredients = location.state ? location.state.selectedIngredients : []
-        // if (selectedIngredients.length > 0) sessionStorage.setItem("orderList", JSON.stringify(selectedIngredients))
-        // else
-        //     selectedIngredients = JSON.parse(sessionStorage.getItem("orderList"))
-        // this.setState({ selectedIngredients }, console.log(location.state))
+        const { location } = this.props
+        
+        let selectedIngredients =location && location.state ? location.state.selectedIngredients : []
+        if (selectedIngredients.length > 0) sessionStorage.setItem("orderList", JSON.stringify(selectedIngredients))
+        else
+            selectedIngredients = JSON.parse(sessionStorage.getItem("orderList"))
+        this.setState({ selectedIngredients }, console.log(location.state))
+        console.log('mount');
     }
 
     // remove(){
 
     // }
+ 
 
 
 
 
     render() {
-        const { recipe, location } = this.props
-        const { selectedIngredients } = location.state
-        if (!recipe) return <div>Loading...</div>
+       
+        if (!this.state.selectedIngredients.length) return <div>Loading...</div>
         return (
 
             <ul className="order-list">
                 <button onClick={()=> this.props.history.push('/')}>Back</button>  
                 <h1 className="order-title">Shopping Cart</h1>
 
-                {selectedIngredients.map(ingredient =>
-                    <li className="produce-list clean list" key={ingredient.produceId}>
+                {this.state.selectedIngredients.map((ingredient,index) =>
+                    <li className="produce-list clean list" key={`${ingredient.produceId}${index}`}>
                         <Checkbox type="checkbox" />
                         <label>{ingredient.name}</label>
-                        <img className="produce-img" src={ingredient.img} />
+                        <img className="produce-img" src={ingredient.img} alt="produce" />
                         <label>{`${ingredient.price}`}$</label>
                         <div className="shopping-cartbtn">
                             <button><DeleteIcon /></button>

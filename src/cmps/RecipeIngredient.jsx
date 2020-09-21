@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom'
 function _RecipeIngredient({ recipe }) {
     let history = useHistory()
     const [selectedIngredients, setSelectedIngredients] = useState([])
+    const [isAllChecked, setIsAllChecked] = useState(undefined)
 
     function handleSelectIngredient(selectedIngredient) {
         const ingredientsNotFound = -1
@@ -20,8 +21,21 @@ function _RecipeIngredient({ recipe }) {
         console.log(ingredientsList);
     }
 
-    function setToOrderList() {
+    function handleSelectAllIngredients() {
+        let ingredients = recipe.ingredients
+        setIsAllChecked(isAllChecked ? undefined : true)
+        if (!isAllChecked) {
+            setSelectedIngredients(ingredients)
+            console.log(ingredients)
+        }
+        else {
+            setSelectedIngredients([])
+        }
 
+    }
+
+    function setToOrderList() {
+        if (!selectedIngredients.length) return
         history.push({ pathname: '/order', state: { selectedIngredients } })
 
     }
@@ -29,11 +43,11 @@ function _RecipeIngredient({ recipe }) {
     return (
         <div className="ingredient-recipe">
             <span className="font-bold">Ingredients:</span>
-            <button className="select-all" >Select all</button>
+            <button className="select-all" onClick={handleSelectAllIngredients} >Select all</button>
             <ul>
-                {recipe.ingredients.map(ingredient => <li className="clean-list" key={ingredient.produceId}>
+                {recipe.ingredients.map((ingredient,index) => <li className="clean-list" key={`${ingredient.produceId}${index}`}>
                     <label>
-                        <input type="checkbox" onClick={() => handleSelectIngredient(ingredient)} />
+                        <input checked={isAllChecked} type="checkbox" onClick={() => handleSelectIngredient(ingredient)} />
                     </label>
                     {ingredient.amount} {ingredient.spec ? ingredient.spec : ''} {ingredient.name}</li>)}
                 <button className="font-bold" onClick={setToOrderList}>Add Ingredients To Shopping Cart
