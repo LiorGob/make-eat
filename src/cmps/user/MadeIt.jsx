@@ -3,11 +3,11 @@ import { RecipeList } from '../RecipeList';
 
 export function MadeIt({ recipes }) {
     return (
-        <div>
+        <React.Fragment>
+            <h3>I Made It:</h3>
             <div className="container">
-                <h3>I Made It:</h3>
                 <RecipeList recipes={recipes} />
             </div>
-        </div>
+        </React.Fragment>
     )
 }
