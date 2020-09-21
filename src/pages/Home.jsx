@@ -19,7 +19,7 @@ class _Home extends Component {
     }
 
     changeRoute(route, tag) {
-        this.props.history.push(`${route}&tag=${tag}`);
+        this.props.history.push(`${route}?tag=${tag}`);
     }
     render() {
         const { recipes } = this.props
@@ -32,7 +32,7 @@ class _Home extends Component {
         return (
 
             <div className="home-page flex column">
-                <video className="video-home" width={window.innerWidth} style={{ objectFit: 'cover' }}  width="100%" autoPlay loop muted>
+                <video className="video-home" width={window.innerWidth} style={{ objectFit: 'cover' }}  autoPlay loop muted>
                     <source src={hero} type="video/mp4" />
                 </video>
                 <div className="cuisine-card">

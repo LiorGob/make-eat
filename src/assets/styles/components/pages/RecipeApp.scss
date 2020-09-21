@@ -1,1 +1,22 @@
-// 
+.no-results-msg{
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    .nav{
+        margin-left: 3em;
+        margin-bottom: 0.5em;
+        position: relative;
+        bottom: 0.5em;
+    }
+}
+
+.search-recipe{
+    display: flex;
+    justify-content: end;
+    text-align: center;
+    padding-bottom: 30px;
+ 
+}
+// .recipe-search{
+//     margin-right: 50px;
+// }

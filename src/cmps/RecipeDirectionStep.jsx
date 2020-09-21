@@ -1,5 +1,7 @@
 import React from 'react'
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 export function RecipeDirectionStep({ direction, idx, onDirectionCheck, directionChecked }) {
 
@@ -10,13 +12,12 @@ export function RecipeDirectionStep({ direction, idx, onDirectionCheck, directio
     let iconClass = directionChecked ? 'check-color' : 'uncheck-color'
 
     return (
-        <div>
-            <li className="clean-list" key={idx} >
-                <label className="inline-flex">
-                    <CheckCircleIcon className={iconClass} onClick={onCheck} />
-                    <span className="font-bold">Step {idx + 1}</span>
-                </label>
-                <div><p>{direction}</p></div></li>
-        </div>
+        <li className="clean-list">
+            <FormControlLabel
+                control={<Checkbox icon={<CheckCircleIcon className={iconClass} />} onClick={onCheck} />}
+                label={`Step ${idx + 1}`}
+            />
+            <div><p>{direction}</p></div>
+        </li>
     )
 }

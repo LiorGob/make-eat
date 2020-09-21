@@ -4,12 +4,15 @@ import {userReducer} from './reducers/userReducer';
 import {recipeReducer} from './reducers/recipeReducer';
 import {produceReducer} from './reducers/produceReducer';
 import {notificationReducer} from './reducers/notificationReducer';
+import{filteredRecipeReducer} from './reducers/filteredRecipeReducer';
 
 const rootReducer= combineReducers({
     userReducer,
     recipeReducer,
     produceReducer,
-    notificationReducer
+    notificationReducer,
+    filteredRecipeReducer
+
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
