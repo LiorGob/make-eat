@@ -13,7 +13,6 @@ export function UserRecipes({ recipes, user }) {
 
     function countUsers(list) {
         return recipes.reduce((acc, recipe) => {
-            console.log(list, ' ', recipe[list]);
             const userCount = recipe[list] ? recipe[list].length : 0; 
             return acc + userCount;
         }, 0);
