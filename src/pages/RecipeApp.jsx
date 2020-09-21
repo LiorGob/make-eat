@@ -46,7 +46,7 @@ class _RecipeApp extends Component {
         const recipes = this.getRecipesToDisplay(this.props.recipes)
         return (
 
-            <div>
+            <div className="main-container">
                 <div className="search-recipe">
                     <IngredientSearch placeholder="Search produce" filterField={"name"} isIngredients getFilterList={(filterRecipeList) => this.props.setFilteredRecipes(filterRecipeList)} />
 

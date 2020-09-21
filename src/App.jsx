@@ -6,14 +6,11 @@ import { AppFooter } from './cmps/AppFooter.jsx'
 import { Notification } from './cmps/Notification.jsx';
 
 export function App() {
-
-
-
     return (
-        <div className="App">
+        <div className="app">
             <AppHeader />
-           
-            <main className="main-container">
+            {/* <main className="main-container"> */}
+            <main >
                 <Switch>
                     {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
                 </Switch>
