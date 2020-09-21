@@ -16,7 +16,7 @@ function _AppHeader(props) {
      const params=useRouteMatch()
      let path =true
 const {id} = params
-   console.log(params)
+//    console.log(params)
 
     return (
         <header className="main-header flex align-center space-between">
