@@ -1,4 +1,4 @@
-import { Home } from './pages/Home.jsx'
+//import { Home } from './pages/Home.jsx'
 import { Login } from './pages/user/Login.jsx'
 import { Signup } from './pages/user/Signup.jsx'
 import { RecipeApp } from './pages/RecipeApp.jsx'
@@ -51,10 +51,10 @@ export default [
     // //     path: '/produce',
     // //     component: ProduceList
     // // },
-    {
-        path: '/',
-        component: Home
-    },
+    // {
+    //     path: '/',
+    //     component: Home
+    // },
     {
         path: '/order/',
         component: OrderList

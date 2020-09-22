@@ -1,6 +1,5 @@
 import httpService from './httpService'
 
-
 export const recipeService = {
     query,
     getById,

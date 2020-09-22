@@ -1,80 +1,51 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { loadRecipes } from '../store/actions/recipeActions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { searchRecipes, searchIngredients } from '../store/actions/searchActions';
 import TextField from '@material-ui/core/TextField';
+import { Redirect } from 'react-router-dom';
+
 class _IngredientSearch extends Component {
 
     state = {
-        name: ''
+        toList: false
     }
-
-    componentDidMount() {
-        this.props.loadRecipes();
-    }
-    
-    filterWithoutIngredient(value) {
-        const { recipes, getFilterList, filterField } = this.props
-    
-        let filteredList = recipes.filter((item) => item[filterField].toLowerCase().includes(value.toLowerCase()))
-        getFilterList && getFilterList(filteredList)
-        console.log(filteredList);
-    }
-    filterWithIngredient(value) {
-    // console.log(value)
-        const { recipes, getFilterList, filterField } = this.props
-        if (!recipes) return;
-        let filteredList = recipes.filter((recipe) => {
-            let ingredients = recipe.ingredients
-            for (let index in ingredients) {
-                if (ingredients[index][filterField].toLowerCase().includes(value.toLowerCase())) {
-                    // console.log('Found!')
-                    return true
-                }
-            }
-            return false;
-
-        })
-        console.log(filteredList)
-        getFilterList && getFilterList(filteredList)
-    }
-
-    onHandleChange = ({ target }) => {
-        const { isIngredients } = this.props
-        const field = target.name
-        const value = target.value
-        if (isIngredients)
-            this.filterWithIngredient(value)
-        else
-            this.filterWithoutIngredient(value)
-
-        this.setState(prevState => ({ ...prevState, [field]: value }))
+    onHandleChange = (ev) => {
+        if (ev.keyCode === 13) {
+            ev.preventDefault();
+            this.setState({ toList: true });
+        }
+        else {
+            const { isIngredients, recipes } = this.props
+            const searchTerm = ev.target.value;
+            (isIngredients) ? this.props.searchIngredients(recipes, searchTerm) : this.props.searchRecipes(recipes, searchTerm);
+        }
     }
 
     render() {
-        const { name } = this.state
-        const { placeholder,recipes } = this.props
-        console.log(recipes)
+        if (this.state.toList === true) {
+            return <Redirect to='/recipe' />
+        }
+        const { name } = this.props.isIngredients ? 'title' : 'ingredient';
+        const { placeholder } = this.props
         return (
             <div className="produce-filter">
-                <TextField type="text" className="name-filter" name="name" autoComplete="off" value={name}
-                 onChange={this.onHandleChange} placeholder={placeholder} />
+                <TextField type="text" className="name-filter" name={name} autoComplete="off"
+                    onKeyUp={this.onHandleChange} placeholder={placeholder} />
 
             </div>
         )
-
     }
-
 }
 
 const mapStateToProps = state => {
     return {
-        recipes: state.recipeReducer.recipes,
-        filterBy: state.produceReducer.filterBy,
+        recipes: state.recipeReducer.recipes
     }
 }
 
 const mapDispatchToProps = {
-    loadRecipes
+    searchRecipes,
+    searchIngredients
 }
 
 export const IngredientSearch = connect(mapStateToProps, mapDispatchToProps)(_IngredientSearch)
