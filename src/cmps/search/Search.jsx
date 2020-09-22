@@ -1,5 +1,5 @@
 import React from 'react'
-import { IngredientSearch } from '../cmps/IngredientSearch';
+import { IngredientSearch } from './IngredientSearch';
 
 export default function Search() {
     return (

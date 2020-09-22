@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { searchRecipes, searchIngredients } from '../store/actions/searchActions';
+import { searchRecipes, searchIngredients } from '../../store/actions/searchActions';
 import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
 

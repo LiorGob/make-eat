@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getUser, logout } from '../store/actions/userActions';
-import Search from './Search';
+import Search from '../cmps/search/Search';
 
 function _AppHeader(props) {
     return (
