@@ -36,12 +36,6 @@ class _Home extends Component {
         return (
 
             <div className="home-page flex column">
-<<<<<<< HEAD
-                <video className="video-home" width={window.innerWidth} style={{ objectFit: 'cover' }} autoPlay loop muted>
-                    
-                    <source src={hero} type="video/mp4" />
-                </video>
-=======
                 <div className="hero">
                     {/* poster={heroposter} */}
                     <video className="video-home" autoPlay  muted preload="auto">
@@ -54,7 +48,6 @@ class _Home extends Component {
                         <Search/>
                     </div>
                 </div>
->>>>>>> 2f11b58d6fc1fde45da2d90bec13213dcc2ae7cd
                 <div className="main-container cuisine-container">
                     <div className="cuisine-card">
                         {images.map((img, idx) => {
