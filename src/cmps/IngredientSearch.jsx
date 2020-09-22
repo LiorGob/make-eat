@@ -20,14 +20,14 @@ class _IngredientSearch extends Component {
         console.log(filteredList);
     }
     filterWithIngredient(value) {
-    console.log(value)
+    // console.log(value)
         const { recipes, getFilterList, filterField } = this.props
         if (!recipes) return;
         let filteredList = recipes.filter((recipe) => {
             let ingredients = recipe.ingredients
             for (let index in ingredients) {
                 if (ingredients[index][filterField].toLowerCase().includes(value.toLowerCase())) {
-                    console.log('Found!')
+                    // console.log('Found!')
                     return true
                 }
             }

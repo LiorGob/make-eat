@@ -28,11 +28,21 @@ class _RecipeDetails extends Component {
     }
 
     onAddToFavorites = () => {
-        this.props.addToFavorites(this.props.recipe, this.props.loggedInUser);
+        if (!this.props.loggedInUser) {
+            this.props.history.push('/user/login');
+        }
+        else {
+            this.props.addToFavorites(this.props.recipe, this.props.loggedInUser);
+        }
     }
 
     onAddToMadeIt = () => {
-        this.props.addToMadeIt(this.props.recipe, this.props.loggedInUser);
+        if (!this.props.loggedInUser) {
+            this.props.history.push('/user/login');
+        }
+        else {
+            this.props.addToMadeIt(this.props.recipe, this.props.loggedInUser);
+        }
     }
 
     render() {
@@ -42,7 +52,6 @@ class _RecipeDetails extends Component {
         return (
             <div className="main-container">
                 <div className="recipe-details">
-                    {loggedInUser && loggedInUser._id === recipe.createdBy._id && <Link to={`/recipe/edit/${recipe._id}`}><button>Edit</button></Link>}
                     <div className="absract-recipe flex column">
                         <h1>{recipe.name}</h1>
                         <div className="review-details flex row pipe">
@@ -82,6 +91,11 @@ class _RecipeDetails extends Component {
                                         <div><span className="font-bold"> Total: </span>{recipe.totalTime} min</div>
                                         <div><span className="font-bold">Servings:</span> {recipe.servings}</div>
                                     </div>
+                                    {loggedInUser && loggedInUser._id === recipe.createdBy._id && 
+//                                     <Button variant="outlined" color="secondary" onClick={setToOrderList} endIcon={<DoneAllIcon style={{ color: '#ff385c' }} />} className="recipe-details-btn">
+//                                             Add {numOfINgredients === 0 ? 'All' : numOfINgredients} Ingredients To Shopping Cart
+// </Button>
+                                    <Link to={`/recipe/edit/${recipe._id}`}><button>Edit your recipe</button></Link>}
                                 </aside>
                             </div>
                             <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />

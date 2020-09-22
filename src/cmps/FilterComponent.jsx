@@ -24,7 +24,7 @@ export class FilterComponent extends Component {
             return false;
 
         })
-        console.log(filteredList)
+        // console.log(filteredList)
         getFilterList && getFilterList(filteredList)
     }
   
