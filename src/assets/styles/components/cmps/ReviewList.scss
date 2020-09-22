@@ -1,35 +1,34 @@
 .review-list {
     .recipe-review-wrapper {
-        padding-top: 32px;
-        padding-bottom: 32px;
+        padding-bottom: rem(40px);
 
         .recipe-review-byline {
             display: flex;
             flex-wrap: wrap;
-            .recipe-review-author {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: left;
-                height: 40px;
-                .reviewer-image-wrapper {
-                    flex: 0 0 40px;
-                    width: 40px;
-                    height: 40px;
-                    img {
-                        width: 40px;
-                        height: 40px;
-                        border-radius: 50%;
-                    }
-                }
-                .reviewer-name {
-                    display: inline-block;
-                    margin-left: 0.5em;
+            margin-bottom: 1em;
+            align-items: center;
+            .reviewer-image-wrapper {
+                //flex: 0 0 40px;
+                width: 56px;
+                height: 56px;
+                img {
+                    // width: 56px;
+                    // height: 56px;
+                    border-radius: 50%;
                 }
             }
-        }
-        .recipe-review-date {
-            margin-left: 2em;
+            .recipe-review-adr {
+                display: flex;
+                align-items: center;
+                .recipe-review-author {
+                    margin: 0 rem(24px) 0 1em;
+                    font-weight: bold;
+                    .recipe-review-date{
+                        font-size: rem(14px);
+                        font-weight: lighter;
+                    }
+                }
+            }
         }
         .recipe-review-body {
             margin-top: 1em;

@@ -32,29 +32,31 @@ class _RecipeApp extends Component {
     }
 
     getRecipesToDisplay(recipes) {
-        var filtered = recipes;
+        if (this.props.filteredRecipes && this.props.filteredRecipes.length > 0){
+            console.log(this.props.filteredRecipes);
+            return this.props.filteredRecipes;
+        }
         if (this.state.filterBy.tag) {
-            filtered = recipes.filter(recipe => {
+            var filtered = this.props.recipes;
+            filtered = this.props.recipes.filter(recipe => {
                 return recipe.tags.find(tag => tag.toLowerCase() === this.state.filterBy.tag.toLowerCase());
             })
+            return filtered;
         }
-        return filtered;
     }
 
     render() {
         if (!this.props.recipes) return <div>Loading...</div>
-        const recipes = this.getRecipesToDisplay(this.props.recipes)
+        const recipes = this.getRecipesToDisplay();
         return (
 
             <div className="main-container">
                 <div className="search-recipe">
-                    <TextField placeholder="Search produce"><IngredientSearch filterField={"name"} isIngredients getFilterList={(filterRecipeList) => this.props.setFilteredRecipes(filterRecipeList)} /></TextField>
-
-                    <TextField className="recipe-search" placeholder="Search recipe" ><IngredientSearch filterField={"name"} getFilterList={(filterRecipeList) => this.props.setFilteredRecipes(filterRecipeList)} /></TextField>
-                    {/* <RecipeList recipes={this.props.filteredRecipes} /> */}
+                    <IngredientSearch className="recipe-search" placeholder="Search recipe" filterField={"name"} getFilterList={(filterRecipeList) => this.props.setFilteredRecipes(filterRecipeList)} />
+                    <IngredientSearch filterField={"name"} placeholder="Search produce" isIngredients getFilterList={(filterRecipeList) => this.props.setFilteredRecipes(filterRecipeList)} />
                 </div>
-                {recipes.length > 0 && <RecipeList recipes={recipes} />}
-                {recipes.length === 0 && <div className="no-results-msg">
+                {recipes && recipes.length > 0 && <RecipeList recipes={recipes} />}
+                {recipes && recipes.length === 0 && <div className="no-results-msg">
                     <div>Sorry! No results in this category. Please try a different search criteria</div>
                     <div className="nav"><Link to="/" className="btn btn-small">Go to Home page</Link></div>
                 </div>}

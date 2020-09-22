@@ -15,14 +15,16 @@ class _ReviewList extends Component {
     render() {
         const { recipe } = this.props;
         return (
-            <section>
-                <h1>All reviews for {recipe.name}</h1>
-                <div className="review-list">
-                    {recipe && recipe.reviews.map((review, ind) => {
-                        return <ReviewPreview key={review._id + '_' + ind} review={review} />
-                    })}
-                </div>
-            </section>
+            <div className="main-container">
+                <section>
+                    <h1>All reviews for {recipe.name}</h1>
+                    <div className="review-list">
+                        {recipe && recipe.reviews.map((review, ind) => {
+                            return <ReviewPreview key={review._id + '_' + ind} review={review} />
+                        })}
+                    </div>
+                </section>
+            </div>
         )
     }
 }
