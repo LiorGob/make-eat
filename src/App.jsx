@@ -10,6 +10,9 @@ export class App extends Component {
     state = {
         rootClass: ''
     }
+    componentDidMount() {
+        window.scroll(0, 0);
+    }
     setRootClass = (className) => {
         this.setState({rootClass: ' '+className});
     }

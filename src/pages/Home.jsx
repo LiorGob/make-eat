@@ -7,7 +7,7 @@ import heroposter from '../assets/images/hero-poster.jpg'
 import sushi from '../assets/images/sushi.jpg'
 import macaroons1 from '../assets/images/french/macaroons1.jpg'
 import ravioli from '../assets/images/italian/ravioli.jpg'
-import { RecipeList } from '../cmps/RecipeList'
+import { RecipeList } from '../cmps/recipe/RecipeList'
 import { loadRecipes } from '../store/actions/recipeActions.js'
 import Search from '../cmps/Search';
 

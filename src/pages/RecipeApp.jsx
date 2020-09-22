@@ -3,13 +3,14 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import qs from 'qs';
 import { loadRecipes } from '../store/actions/recipeActions'
-import { RecipeList } from '../cmps/RecipeList'
+import { RecipeList } from '../cmps/recipe/RecipeList'
 
 class _RecipeApp extends Component {
     state = {
         filterBy: {}
     }
     componentDidMount() {
+        window.scroll(0, 0);
         const qsTag = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).tag;
         const filterBy = { ...this.state.filterBy, tag: qsTag };
         this.setState({ filterBy });
@@ -21,7 +22,7 @@ class _RecipeApp extends Component {
         this.setState(newState)
     }
     getRecipesToDisplay() {
-        if (this.props.searchedRecipes && this.props.searchedRecipes.length > 0){
+        if (this.props.searchedRecipes && this.props.searchedRecipes.length > 0) {
             console.log(this.props.searchedRecipes);
             return this.props.searchedRecipes;
         }
@@ -36,7 +37,7 @@ class _RecipeApp extends Component {
     render() {
         if (!this.props.recipes) return <div>Loading...</div>
         const recipes = this.getRecipesToDisplay();
-        const {searchTerm, searchedRecipes} = this.props;
+        const { searchTerm, searchedRecipes } = this.props;
         return (
             <div className="main-container">
                 {searchTerm && searchedRecipes && <h3>{searchedRecipes.length} recipe results for "{searchTerm}"</h3>}

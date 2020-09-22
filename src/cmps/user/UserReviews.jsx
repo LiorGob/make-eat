@@ -1,5 +1,5 @@
 import React from 'react'
-import { RecipePreview } from '../RecipePreview';
+import { RecipePreview } from '../recipe/RecipePreview';
 
 export function UserReviews({user, recipes}) {
     return (
