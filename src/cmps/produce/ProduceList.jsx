@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loadProduces } from '../../store/actions/produceActions.js'
-import { IngredientSearch } from '../IngredientSearch.jsx'
 
 class _ProduceList extends Component {
 
@@ -40,7 +39,6 @@ class _ProduceList extends Component {
         return (
 
             <div className="produce-container">
-                <IngredientSearch filterField={"name"} getFilterProduceList={(filterProduceList) => this.setState({ filterProduceList })} produceList={produces} />
                 <ul>
                     {
                         this.state.filterProduceList.map((produce) => {

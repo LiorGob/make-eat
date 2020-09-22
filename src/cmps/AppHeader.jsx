@@ -2,29 +2,12 @@ import React,{useState} from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getUser, logout } from '../store/actions/userActions';
-import { IngredientSearch } from './IngredientSearch';
-// import { RecipeList } from './RecipeList';
-import { useRouteMatch } from 'react-router-dom';
-import {setFilteredRecipes} from '../store/actions/filteredRecipeActions'
-
-
-// import logo from '../assets/images/logo/makeeatlogo.png'
-
+import Search from '../cmps/search/Search';
 
 function _AppHeader(props) {
-    const [filteredRecipeList,setFilteredRecipeList]= useState([])
-     const params=useRouteMatch()
-     let path =true
-const {id} = params
-//    console.log(params)
-
     return (
         <header className="main-header flex align-center space-between">
-            <div style={{display:path ?'none':'none' }}className="header-search">
-              <IngredientSearch filterField={"name"} isIngredients getFilterList={(filterRecipeList) => setFilteredRecipeList( filterRecipeList)} placeholder="Search produce" />
-                    <IngredientSearch filterField={"name"} getFilterList={(filterRecipeList) => setFilteredRecipeList( filterRecipeList)} placeholder="Search recipe" />
-                  
-                    </div>
+            <Search/>
             <div className="logo"><a href="/"><img className="logo-image" src={require('../assets/images/logo/makeeatlogo3.png')} alt="logo"/></a></div>
             <ul className="main-nav flex row pipe">
                 {!props.loggedInUser && 
@@ -43,21 +26,19 @@ const {id} = params
         </header>
     )
 }
+
 const mapStateToProps = state => {
     return {
         loggedInUser: state.userReducer.loggedInUser,
         recipes: state.recipeReducer.recipes,
         filterBy: state.produceReducer.filterBy,
-        filteredRecipes: state.filteredRecipeReducer.filteredRecipes
+        searchedRecipes: state.searchReducer.searchedRecipes
     }
 }
 
 const mapDispatchToProps = {
     getUser,
-    logout,
-    setFilteredRecipes
+    logout
 }
-
-
 
 export const AppHeader = connect(mapStateToProps, mapDispatchToProps)(_AppHeader)

@@ -5,7 +5,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import Button from '@material-ui/core/Button';
-import SpoonIcon from '../cmps/SpoonIcon.jsx'
+import SpoonIcon from './icons/SpoonIcon.jsx'
 
 export function AppFooter() {
     return (

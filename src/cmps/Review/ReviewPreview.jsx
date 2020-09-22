@@ -1,5 +1,5 @@
 import React from 'react'
-import RatingStar from '../RatingStar';
+import RatingStar from '../icons/RatingStar';
 import { Link } from 'react-router-dom';
 
 export function ReviewPreview({ review }) {

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getRecipe, addToFavorites, addToMadeIt } from '../store/actions/recipeActions';
 
-import { RecipeIngredient } from '../cmps/RecipeIngredient';
-import { RecipeDirection } from '../cmps/RecipeDirection'
+import { RecipeIngredient } from '../cmps/recipe/RecipeIngredient';
+import { RecipeDirection } from '../cmps/recipe/RecipeDirection'
 import { recipeService } from '../services/recipeService';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PrintIcon from '@material-ui/icons/Print';
@@ -11,7 +11,7 @@ import PinterestIcon from '@material-ui/icons/Pinterest';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ScheduleIcon from '@material-ui/icons/Schedule';
-import RatingStar from '../cmps/RatingStar';
+import RatingStar from '../cmps/icons/RatingStar';
 import { ImageCarousel } from '../cmps/ImageCarousel';
 import LatestReviews from '../cmps/review/LatestReviews';
 import { HashLink as Link } from 'react-router-hash-link';

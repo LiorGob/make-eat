@@ -9,7 +9,7 @@ export function loadUsers() {
 
 export function setLoggedUserAsUser(){
     return async dispatch => {
-        dispatch({ type: 'GET_USER', user: JSON.parse(sessionStorage.getItem('loggedInUser')) })
+        dispatch({ type: 'SET_LOG_AS_USER', user: JSON.parse(sessionStorage.getItem('loggedInUser')) })
     }
 }
 
@@ -23,20 +23,20 @@ export function getUser(id) {
 export function login(userCred) {
     return async dispatch => {
         const user = await userService.login(userCred)
-        dispatch({ type: 'SET_USER', user })
+        dispatch({ type: 'LOGIN_USER', user })
     }
 }
 
 export function signup(userCreds) {
     return async dispatch => {
         const user = await userService.signup(userCreds)
-        dispatch({ type: 'SET_USER', user })
+        dispatch({ type: 'SINGUP_USER', user })
     }
 }
 
 export function logout() {
     return async dispatch => {
         await userService.logout();
-        dispatch({ type: 'SET_USER', user: null });
+        dispatch({ type: 'LOGOUT_USER', user: null });
     };
 }

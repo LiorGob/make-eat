@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import RatingStar from './RatingStar';
+import RatingStar from '../icons/RatingStar';
 import Truncate from 'react-truncate';
-import { recipeService } from '../services/recipeService';
+import { recipeService } from '../../services/recipeService';
 
 
 export function RecipePreview({ recipe, showReviewBy }) {

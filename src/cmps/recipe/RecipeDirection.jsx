@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SpoonIcon from './SpoonIcon';
+import SpoonIcon from '../icons/SpoonIcon';
 import { RecipeDirectionStep } from './RecipeDirectionStep';
 import Button from '@material-ui/core/Button';
 
