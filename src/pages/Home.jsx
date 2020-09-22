@@ -27,7 +27,8 @@ class _Home extends Component {
         return (
 
             <div className="home-page flex column">
-                <video className="video-home" width={window.innerWidth} style={{ objectFit: 'cover' }}  autoPlay loop muted>
+                <video className="video-home" width={window.innerWidth} style={{ objectFit: 'cover' }} autoPlay loop muted>
+                    
                     <source src={hero} type="video/mp4" />
                 </video>
                 <div className="main-container cuisine-container">
