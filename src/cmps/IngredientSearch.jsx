@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadRecipes } from '../store/actions/recipeActions'
-
+import TextField from '@material-ui/core/TextField';
 class _IngredientSearch extends Component {
 
     state = {
@@ -14,8 +14,10 @@ class _IngredientSearch extends Component {
     
     filterWithoutIngredient(value) {
         const { recipes, getFilterList, filterField } = this.props
+    
         let filteredList = recipes.filter((item) => item[filterField].toLowerCase().includes(value.toLowerCase()))
         getFilterList && getFilterList(filteredList)
+        console.log(filteredList);
     }
     filterWithIngredient(value) {
     // console.log(value)
@@ -50,10 +52,12 @@ class _IngredientSearch extends Component {
 
     render() {
         const { name } = this.state
-        const { placeholder } = this.props
+        const { placeholder,recipes } = this.props
+        console.log(recipes)
         return (
             <div className="produce-filter">
-                <input type="text" className="name-filter" name="name" autoComplete="off" value={name} onChange={this.onHandleChange} placeholder={placeholder} />
+                <TextField type="text" className="name-filter" name="name" autoComplete="off" value={name}
+                 onChange={this.onHandleChange} placeholder={placeholder} />
 
             </div>
         )

@@ -19,8 +19,8 @@ class _Home extends Component {
     render() {
         const { recipes } = this.props
         let images = [
-            { image: sushi, route: '/recipe', tag: 'Japaneese' },
-            {image: macaroons1, route: '/recipe', tag: 'French'},
+            { image: sushi, route: '/recipe', tag: 'Japanese' },
+            { image: macaroons1, route: '/recipe', tag: 'French' },
             { image: ravioli, route: '/recipe', tag: 'Italian' },
 
         ]
@@ -30,7 +30,7 @@ class _Home extends Component {
                 <video className="video-home" width={window.innerWidth} style={{ objectFit: 'cover' }}  autoPlay loop muted>
                     <source src={hero} type="video/mp4" />
                 </video>
-                <div className="main-container">
+                <div className="main-container cuisine-container">
                 <div className="cuisine-card">
                     {images.map((img, idx) => {
                         return (<div key={`${idx}${img.image}`}>

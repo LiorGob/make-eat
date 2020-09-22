@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
 import { getRecipe, addToFavorites, addToMadeIt } from '../store/actions/recipeActions';
 
 import { RecipeIngredient } from '../cmps/RecipeIngredient';
@@ -14,6 +13,8 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import RatingStar from '../cmps/RatingStar';
 import { ImageCarousel } from '../cmps/ImageCarousel';
+import LatestReviews from '../cmps/review/LatestReviews';
+import { HashLink as Link } from 'react-router-hash-link';
 
 class _RecipeDetails extends Component {
 
@@ -57,7 +58,7 @@ class _RecipeDetails extends Component {
                         <div className="review-details flex row pipe">
                             <RatingStar />
                             <span>{`${ratingAvg}(${recipe.reviews.length} Ratings)`} </span>
-                            <span><Link to={`/recipe/${recipe._id}/review`} className="color-underline">{recipe.reviews?.length} Reviews</Link></span>
+                            <span><Link to={`/recipe/${recipe._id}#latest-review-list`} className="color-underline">{recipe.reviews?.length} Reviews</Link></span>
                             <span>{recipe.imgs.length} Images</span>
                         </div>
                         <p>{recipe.abstract}</p>
@@ -100,6 +101,7 @@ class _RecipeDetails extends Component {
                             </div>
                             <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
                             <RecipeDirection recipe={recipe} onAddToMadeIt={this.onAddToMadeIt} />
+                            <LatestReviews recipe={recipe} count="1"/>
                             {/* <ReviewDialog recipe={recipe} doOpen={this.state.openReviewDialog}/> */}
                         </div>
                     </div>
