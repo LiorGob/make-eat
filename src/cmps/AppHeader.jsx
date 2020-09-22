@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getUser, logout } from '../store/actions/userActions';
 import { IngredientSearch } from './IngredientSearch';
-import { RecipeList } from './RecipeList';
+// import { RecipeList } from './RecipeList';
 import { useRouteMatch } from 'react-router-dom';
 import {setFilteredRecipes} from '../store/actions/filteredRecipeActions'
 

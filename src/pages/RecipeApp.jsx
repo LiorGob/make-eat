@@ -5,7 +5,6 @@ import { RecipeList } from '../cmps/RecipeList'
 import { loadRecipes } from '../store/actions/recipeActions'
 import qs from 'qs';
 import { setFilteredRecipes } from '../store/actions/filteredRecipeActions'
-import TextField from '@material-ui/core/TextField';
 import { IngredientSearch } from '../cmps/IngredientSearch'
 class _RecipeApp extends Component {
     state = {
