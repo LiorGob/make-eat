@@ -48,7 +48,7 @@ class _RecipeDetails extends Component {
 
     render() {
         const { recipe, loggedInUser } = this.props;
-        if (!recipe) return <div>is loading..</div>
+        if (!recipe) return <div>Loading...</div>
         const ratingAvg = this.getAvg()
         return (
             <div className="main-container">
@@ -69,8 +69,6 @@ class _RecipeDetails extends Component {
                     </div>
                     <div className="flex row">
                         <div className="share-btns">
-                            {/* <Link to="/user/myprofile/favorites"><span className="btn action-btn"><FavoriteBorderIcon fontSize="small" /><span>Save</span></span></Link> */}
-                            {/* <button className="share-btn"> <Link to="/user/:id/reviews"><span><FacebookIcon fontSize="small" /></span> SHARE </Link></button> */}
                             <div className="docked">
                                 <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group" orientation="vertical">
                                     <Button onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon />}>Save</Button>
@@ -93,9 +91,6 @@ class _RecipeDetails extends Component {
                                         <div><span className="font-bold">Servings:</span> {recipe.servings}</div>
                                     </div>
                                     {loggedInUser && loggedInUser._id === recipe.createdBy._id && 
-//                                     <Button variant="outlined" color="secondary" onClick={setToOrderList} endIcon={<DoneAllIcon style={{ color: '#ff385c' }} />} className="recipe-details-btn">
-//                                             Add {numOfINgredients === 0 ? 'All' : numOfINgredients} Ingredients To Shopping Cart
-// </Button>
                                     <Link to={`/recipe/edit/${recipe._id}`}><button>Edit your recipe</button></Link>}
                                 </aside>
                             </div>

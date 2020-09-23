@@ -12,7 +12,6 @@ export function searchIngredients(recipes, searchTerm) {
     return async dispatch => {
         const searchedRecipes = await searchService.searchIngredients(recipes, searchTerm);
         dispatch({ type: 'SEARCH_INGREDIENTS', searchedRecipes, searchTerm });
-
     }
 }
 

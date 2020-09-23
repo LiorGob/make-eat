@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import hero from '../assets/images/hero.mp4'
 //import heroposter from '../assets/images/hero-poster.jpg'
-//https://www.pexels.com/video/4252289/
-// https://www.pexels.com/video/sprinkling-grated-cheese-a-toppings-for-a-serving-of-pasta-4058076/
 import sushi from '../assets/images/sushi.jpg'
 import macaroons1 from '../assets/images/french/macaroons1.jpg'
 import ravioli from '../assets/images/italian/ravioli.jpg'
@@ -18,38 +16,37 @@ class _Home extends Component {
         this.props.setRootClass('inHomePage');
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.props.setRootClass('');
     }
 
     changeRoute(route, tag) {
         this.props.history.push(`${route}?tag=${tag}`);
     }
+
     render() {
-        const { recipes } = this.props
+        const { recipes } = this.props;
         let images = [
             { image: sushi, route: '/recipe', tag: 'Japanese' },
             { image: macaroons1, route: '/recipe', tag: 'French' },
             { image: ravioli, route: '/recipe', tag: 'Italian' },
-
-        ]
+            // TBD: add more tags
+        ];
         return (
-
             <div className="home-page flex column">
                 <div className="hero">
                     {/* poster={heroposter} */}
-                    <video className="video-home" autoPlay  muted preload="auto">
+                    <video className="video-home" autoPlay muted preload="auto">
                         <source src={hero} type="video/mp4" />
                         Your browser doesn't support the video tag
                     </video>
                     <div className="caption">
                         <div className="hp-titles">
-                        <h1>Make it</h1>
-                        <h1>Eat it</h1>
-                        <h1>Share it</h1>
+                            <h1>Make</h1>
+                            <h1>Eat</h1>
+                            <h1>Share</h1>
                         </div>
-                        {/* <h2>Make the dish of your dream come true</h2> */}
-                        <Search/>
+                        <Search />
                     </div>
                 </div>
                 <div className="main-container cuisine-container">
@@ -68,14 +65,17 @@ class _Home extends Component {
         )
     }
 }
+
 const mapStateToProps = state => {
     return {
         recipes: state.recipeReducer.recipes
     }
 }
+
 const mapDispatchToProps = {
     loadRecipes
 }
+
 export const Home = connect(mapStateToProps, mapDispatchToProps)(_Home)
 
 

@@ -1,6 +1,6 @@
 import httpService from './httpService'
 
-export const produceService={
+export const produceService = {
     query,
     getById,
     remove,
@@ -9,9 +9,8 @@ export const produceService={
 
 
 function query(filterBy) {
-if (filterBy) var queryStr = `?name=${filterBy.name}`;
+    if (filterBy) var queryStr = `?name=${filterBy.name}`;
     return httpService.get(`produce${queryStr || ''}`);
-
 }
 
 function getById(produceId) {
@@ -27,6 +26,6 @@ async function save(produce) {
         return httpService.put(`produce/${produce._id}`, produce)
     }
     else {
-        return  httpService.post('produce', produce)
+        return httpService.post('produce', produce)
     }
 }

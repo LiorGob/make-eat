@@ -34,6 +34,7 @@
             color: white;
             left: 5%;
             //background-color: rgba(171, 144, 120, 0.5);
+            border-radius: 40px;
             // &:after {
             //     width: 100%;
             //     height: 100%;
@@ -46,7 +47,10 @@
             //     background-color: #fff;
             // }
             .hp-titles{
+                width: 300px;
                 display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                justify-content: space-evenly;
                 //grid-template-columns: repeat(autofill);
 
             }
@@ -57,12 +61,12 @@
 
             }
             .search-recipes{
-                //background-color: rgba(255, 255, 255, 0.8);
                 z-index: 7;
                 padding: 2em;
                 .name-filter, .produce-filter{
-                    background-color: white;
-                    padding: 1em 2em;
+                    background-color: rgba(255, 255, 255, 0.9);
+                    //background-color: white;
+                    padding: 0.5em 2em;
                     border-radius: 40px;
                 }
                 .name-filter{

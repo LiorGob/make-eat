@@ -34,24 +34,20 @@ function _RecipeIngredient({ recipe }) {
         <div className="recipe-ingredients recipe-section">
             <h2>Ingredients:</h2>
             <ul>
-                {recipe.ingredients.map((ingredient, idx) => 
-                <li className="clean-list" key={`${ingredient.produceId}_${idx}`}>
-                    <label>
-                        <FormControlLabel
-                            control={<Checkbox onChange={() => handleSelectIngredient(ingredient)} />}
-                            label={`${ingredient.amount} ${ingredient.spec ? ingredient.spec : ''} ${ingredient.name}`}
-                        />
-                        {/* <input type="checkbox" onClick={() => handleSelectIngredient(ingredient)} /> */}
-                    </label>
+                {recipe.ingredients.map((ingredient, idx) =>
+                    <li className="clean-list" key={`${ingredient.produceId}_${idx}`}>
+                        <label>
+                            <FormControlLabel
+                                control={<Checkbox onChange={() => handleSelectIngredient(ingredient)} />}
+                                label={`${ingredient.amount} ${ingredient.spec ? ingredient.spec : ''} ${ingredient.name}`}
+                            />
+                            {/* <input type="checkbox" onClick={() => handleSelectIngredient(ingredient)} /> */}
+                        </label>
                     </li>)}
-                <Button variant="outlined" color="secondary" onClick={setToOrderList} endIcon={<DoneAllIcon style={{ color: '#ff385c' }} />} className="recipe-details-btn">
-                    Add {numOfINgredients === 0 ? 'All' : numOfINgredients} Ingredients To Shopping Cart
-</Button>
-                {console.log(selectedIngredients.length)}
-                {/* <button className="font-bold" onClick={setToOrderList}>Add Ingredients To Shopping Cart
-                    <DoneAllIcon style={{ color: '#ff385c' }} />
-                </button> */}
             </ul>
+            <Button variant="outlined" color="secondary" onClick={setToOrderList} endIcon={<DoneAllIcon style={{ color: '#ff385c' }} />} className="recipe-details-btn">
+                Add {numOfINgredients === 0 ? 'All' : numOfINgredients} Ingredients To Shopping Cart
+            </Button>
         </div>
 
     )
