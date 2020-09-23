@@ -13,6 +13,8 @@ export function recipeReducer(state = initialState, action = {}) {
         case 'REMOVE_RECIPE':
             return { ...state, recipes: state.recipes.filter(recipe => recipe._id !== action.id) }
         case 'ADD_RECIPE':
+        case 'ADD_FAVORITE':
+        case 'ADD_MADEIT':
             return { ...state, recipes: [action.recipe, ...state.recipes] }
         case 'EDIT_RECIPE':
             return {
@@ -21,6 +23,7 @@ export function recipeReducer(state = initialState, action = {}) {
                     return recipe
                 })
             }
+
         default:
             return state;
     }

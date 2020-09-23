@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import qs from 'qs';
 import { getUser, setLoggedUserAsUser } from '../../store/actions/userActions';
 import { loadRecipes, addToFavorites } from '../../store/actions/recipeActions';
 import { About } from '../../cmps/user/About';
@@ -11,7 +12,6 @@ import { UserReviews } from '../../cmps/user/UserReviews';
 import { Orders } from '../../cmps/user/Orders';
 import { AddRecipe } from '../../cmps/user/AddRecipe';
 import { UserRecipes } from '../../cmps/user/UserRecipes';
-// import { RecipeEdit } from '../RecipeEdit;'
 class _UserHome extends Component {
 
     state = {
@@ -64,28 +64,26 @@ class _UserHome extends Component {
         const { user } = this.props;
         return (
             <div className="main-container user-profile">
-                <div className="profile-subnav">
-                    <nav>
-                        <NavLink to="./favorites">My Favorites</NavLink>|
-                        <NavLink to="./madeit">I Made It</NavLink>|
-                        <NavLink to="./reviews">My Reviews</NavLink>|
-                        <NavLink to="./recipes">Personal Recipes</NavLink>|
-                        <NavLink to="./orders">My Orders</NavLink>|
-                        <NavLink to="./add">Submit a recipe</NavLink>|
-                        <NavLink to="./recipe/edit/:id?">Submit a recipe</NavLink>|
-                    </nav>
-                    <Switch>
-                        <Route exact path="/user/:id/about" render={(props) => <Favorites {...props} onAddToFavorites={this.saveToFavorites} recipes={this.favorites} about={<About {...props} user={user} />} />} />
-                        <Route exact path="/user/:id/favorites" render={(props) => <Favorites {...props} onAddToFavorites={this.saveToFavorites} recipes={this.favorites} />} />
-                        <Route exact path="/user/:id/madeit" render={(props) => <MadeIt {...props} recipes={this.madeIt} />} />
-                        <Route exact path="/user/:id/reviews" render={(props) => <UserReviews {...props} user={user} recipes={this.reviewedRecipes} />} />
-                        <Route exact path="/user/:id/recipes" render={(props) => <UserRecipes {...props} user={user} recipes={this.personalRecipes} />} />
-                        <Route exact component={Orders} path="/user/:id/orders" />
-                        <Route exact component={AddRecipe} path="/user/:id/add" />
-                        {/* <Route exact component={RecipeEdit} path="/recipe/edit/:id?"/> */}
-                        {/* <Route exact path="/..." render={(props) => <PAGE {...props} recipes={recepies} />} /> */}
-                    </Switch>
-                </div>
+                <nav className="profile-subnav">
+                    <NavLink to="./favorites">My Favorites</NavLink>
+                    <NavLink to="./madeit">I Made It</NavLink>
+                    <NavLink to="./reviews">My Reviews</NavLink>
+                    <NavLink to="./recipes">Personal Recipes</NavLink>
+                    <NavLink to="./orders">My Orders</NavLink>
+                    <NavLink to="./add">Submit a recipe</NavLink>
+                    <NavLink to="./recipe/edit/:id?">Submit a recipe</NavLink>
+                </nav>
+                <Switch>
+                    <Route exact path="/user/:id/about" render={(props) => <Favorites {...props} onAddToFavorites={this.saveToFavorites} recipes={this.favorites} about={<About {...props} user={user} />} />} />
+                    <Route exact path="/user/:id/favorites" render={(props) => <Favorites {...props} onAddToFavorites={this.saveToFavorites} recipes={this.favorites} />} />
+                    <Route exact path="/user/:id/madeit" render={(props) => <MadeIt {...props} recipes={this.madeIt} />} />
+                    <Route exact path="/user/:id/reviews" render={(props) => <UserReviews {...props} user={user} recipes={this.reviewedRecipes} />} />
+                    <Route exact path="/user/:id/recipes" render={(props) => <UserRecipes {...props} user={user} recipes={this.personalRecipes} />} />
+                    <Route exact component={Orders} path="/user/:id/orders" />
+                    <Route exact component={AddRecipe} path="/user/:id/add" />
+                    {/* <Route exact component={RecipeEdit} path="/recipe/edit/:id?"/> */}
+                    {/* <Route exact path="/..." render={(props) => <PAGE {...props} recipes={recepies} />} /> */}
+                </Switch>
             </div>
         )
     }

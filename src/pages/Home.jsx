@@ -64,9 +64,9 @@ class _Home extends Component {
 
                     </div>
                     <div className="more-recipes"><h2>Top rated</h2> <Link to="/recipe">See all</Link></div>
-                    <RecipeList recipes={recipes.slice(0, 3)} />
+                    <RecipeList recipes={recipes.slice(0, 4)} />
                     <div className="more-recipes"><h2>Latest</h2><Link to="/recipe">See all</Link></div>
-                    <RecipeList recipes={recipes.slice(3, 6)} />
+                    <RecipeList recipes={recipes.slice(3, 7)} />
                 </div>
             </div>
         )
