@@ -43,8 +43,12 @@ class _Home extends Component {
                         Your browser doesn't support the video tag
                     </video>
                     <div className="caption">
-                        <h1>Welcome to makeEat</h1>
-                        <h2>Make the dish of your dream come true</h2>
+                        <div className="hp-titles">
+                        <h1>Make it</h1>
+                        <h1>Eat it</h1>
+                        <h1>Share it</h1>
+                        </div>
+                        {/* <h2>Make the dish of your dream come true</h2> */}
                         <Search/>
                     </div>
                 </div>
