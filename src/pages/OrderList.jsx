@@ -38,7 +38,7 @@ export class _OrderList extends Component {
         if (!this.state.selectedIngredients.length) return <div>Loading...</div>
         return (
             <div className="main-container">
-                    <h1 className="order-title flex">Shopping Cart</h1>
+                <h1 className="order-title flex">Shopping Cart</h1>
                 <ul className="order-list">
                     {/* <button onClick={() => this.props.history.push('/')}>Back</button> */}
                     {this.state.selectedIngredients.map((ingredient, index) =>
@@ -53,11 +53,11 @@ export class _OrderList extends Component {
                             </div>
                         </li>)
                     }
-                    <Button variant="outlined" color="secondary" className="recipe-details-btn" >
+
+                </ul>
+                <Button variant="outlined" color="secondary" className="recipe-details-btn" >
                     Checkout
                 </Button>
-                    {/* <button className="checkout flex">Checkout</button> */}
-                </ul>
             </div>
         )
 
