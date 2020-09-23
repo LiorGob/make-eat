@@ -3,6 +3,14 @@
     flex-direction: column;
     text-align: center;
 
+    .recipe-details-btn{
+        width: 100px;
+    }
+   label{
+ text-transform: capitalize;
+   }
+       
+
     
 }
 .produce-list{   
@@ -12,10 +20,12 @@
     align-items: center;
     margin-bottom: 30px;
     border-bottom: 1px solid #00000026;
+    width: 800px;
 
     button {
       
         border: none;
+        width: 100px;
         background-color: transparent;
         color: $clr12;
         &:hover {

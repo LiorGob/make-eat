@@ -4,6 +4,7 @@ import { getRecipe } from '../store/actions/recipeActions.js';
 import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import Button from '@material-ui/core/Button';
 
 
 export class _OrderList extends Component {
@@ -25,6 +26,7 @@ export class _OrderList extends Component {
 
     // remove(){
 
+
     // }
 
 
@@ -36,9 +38,9 @@ export class _OrderList extends Component {
         if (!this.state.selectedIngredients.length) return <div>Loading...</div>
         return (
             <div className="main-container">
+                    <h1 className="order-title flex">Shopping Cart</h1>
                 <ul className="order-list">
                     {/* <button onClick={() => this.props.history.push('/')}>Back</button> */}
-                    <h1 className="order-title flex">Shopping Cart</h1>
                     {this.state.selectedIngredients.map((ingredient, index) =>
                         <li className="produce-list clean list" key={`${ingredient.produceId}${index}`}>
                             <Checkbox type="checkbox" />
@@ -51,7 +53,10 @@ export class _OrderList extends Component {
                             </div>
                         </li>)
                     }
-                    <button className="checkout flex">Checkout</button>
+                    <Button variant="outlined" color="secondary" className="recipe-details-btn" >
+                    Checkout
+                </Button>
+                    {/* <button className="checkout flex">Checkout</button> */}
                 </ul>
             </div>
         )
