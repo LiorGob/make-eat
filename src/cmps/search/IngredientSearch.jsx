@@ -1,36 +1,51 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { searchRecipes, searchIngredients } from '../../store/actions/searchActions';
+import { searchIngredients, resetRecipeSearch } from '../../store/actions/searchActions';
 import TextField from '@material-ui/core/TextField';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 class _IngredientSearch extends Component {
 
     state = {
-        toList: false
+        searchTerm: ''
+        , recipeSearchReset: false
+    }
+
+    componentDidMount() {
+        this.setState({ searchTerm: this.props.ingredientSearchTerm });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.ingredientSearchTerm !== prevProps.ingredientSearchTerm) {
+            this.setState({ searchTerm: this.props.ingredientSearchTerm, recipeSearchReset: false });
+        }
     }
     onHandleChange = (ev) => {
+        this.setState({ searchTerm: ev.target.value });
+    }
+
+    get defaultSearchTerm() {
+        return (this.state.searchTerm);
+    }
+
+    onKeyUp = (ev) => {
+        if (!this.state.recipeSearchReset) {
+            this.props.resetRecipeSearch();
+            this.setState({ recipeSearchReset: true });
+        }
         if (ev.keyCode === 13) {
             ev.preventDefault();
-            this.setState({ toList: true });
-        }
-        else {
-            const { isIngredients, recipes } = this.props
-            const searchTerm = ev.target.value;
-            (isIngredients) ? this.props.searchIngredients(recipes, searchTerm) : this.props.searchRecipes(recipes, searchTerm);
+            this.props.searchIngredients(this.props.recipes, this.state.searchTerm);
+            this.props.history.push('/recipe');
         }
     }
 
     render() {
-        if (this.state.toList === true) {
-            return <Redirect to='/recipe' />
-        }
-        const { name } = this.props.isIngredients ? 'title' : 'ingredient';
-        const { placeholder } = this.props
+        const { placeholder } = this.props;
         return (
             <div className="produce-filter">
-                <TextField type="text" className="name-filter" name={name} autoComplete="off"
-                    onKeyUp={this.onHandleChange} placeholder={placeholder} />
+                <TextField type="text" name="ingredient" autoComplete="off" value={this.defaultSearchTerm}
+                    onKeyUp={this.onKeyUp} placeholder={placeholder} onChange={this.onHandleChange} />
 
             </div>
         )
@@ -39,13 +54,14 @@ class _IngredientSearch extends Component {
 
 const mapStateToProps = state => {
     return {
-        recipes: state.recipeReducer.recipes
+        recipes: state.recipeReducer.recipes,
+        ingredientSearchTerm: state.searchReducer.ingredientSearchTerm,
+        lastIngredientSearchTerm: state.searchReducer.lastIngredientSearchTerm
     }
 }
 
 const mapDispatchToProps = {
-    searchRecipes,
-    searchIngredients
+    searchIngredients,
+    resetRecipeSearch
 }
-
-export const IngredientSearch = connect(mapStateToProps, mapDispatchToProps)(_IngredientSearch)
+export const IngredientSearch = connect(mapStateToProps, mapDispatchToProps)(withRouter(_IngredientSearch))
