@@ -37,8 +37,8 @@ export class _OrderList extends Component {
         return (
             <div className="main-container">
                 <ul className="order-list">
-                    <button onClick={() => this.props.history.push('/')}>Back</button>
-                    <h1 className="order-title">Shopping Cart</h1>
+                    {/* <button onClick={() => this.props.history.push('/')}>Back</button> */}
+                    <h1 className="order-title flex">Shopping Cart</h1>
                     {this.state.selectedIngredients.map((ingredient, index) =>
                         <li className="produce-list clean list" key={`${ingredient.produceId}${index}`}>
                             <Checkbox type="checkbox" />
@@ -51,7 +51,7 @@ export class _OrderList extends Component {
                             </div>
                         </li>)
                     }
-                    <button>Checkout</button>
+                    <button className="checkout flex">Checkout</button>
                 </ul>
             </div>
         )

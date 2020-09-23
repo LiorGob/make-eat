@@ -1,11 +1,20 @@
+.order-list{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    
+}
 .produce-list{   
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     grid-gap: 20px;
     align-items: center;
     margin-bottom: 30px;
+    border-bottom: 1px solid #00000026;
 
     button {
+      
         border: none;
         background-color: transparent;
         color: $clr12;
@@ -15,7 +24,7 @@
         }
 
         h5{
-            font-family: 'Source Sans Pro',Times,serif;
+            font-family: 'Noto Sans KR', sans-serif;
         }
     }
 }
