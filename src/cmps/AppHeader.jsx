@@ -7,8 +7,8 @@ import UserImage from '../cmps/user/UserImage';
 
 function _AppHeader(props) {
     return (
-        <header className="main-header flex align-center space-between">
-            <div className="logo"><a href="/"><img className="logo-image" src={require('../assets/images/logo/makeeatlogo3.png')} alt="logo"/></a></div>
+        <header className="main-header main-container flex align-center space-between">
+            <div className="logo"><a href="/"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo5.png')} alt="logo"/></a></div>
             <Search/>
             
             <ul className="main-nav flex row pipe">

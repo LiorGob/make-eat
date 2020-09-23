@@ -11,9 +11,7 @@ export function AppFooter() {
     return (
       <footer>
             <section className="section-footer">
-                <div className="logo"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo3.png')} alt="logo" /></div>
-                {/* <div className="logo"><img className="logo-img" src={require('../assets/images/logo/flying cargo logo.png')} alt="logo" /></div> */}
-                {/* <div className="logo"><img className="logo-img" src={require('../assets/images/logo/flying cargo logox.png')} alt="logo" /></div> */}
+                <div className="logo"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo5.png')} alt="logo" /></div>
                 <div className="footer-coloums">
                     <div className="more"><h4>Magazines & More</h4>
                         <a href="https://www.thedailymeal.com/10-best-food-magazines-around-world"><img className="magazine-img" src={require('../assets/images/footer.jpg')} alt="magazine" /></a>
