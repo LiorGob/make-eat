@@ -13,8 +13,12 @@ export function userReducer(state = initialState, action = {}) {
             return { ...state, users: action.users }
         case 'GET_USER':
             return { ...state, user: action.user }
-        case 'SET_USER':
+        case 'LOGIN_USER':
+        case 'SINGUP_USER':
+        case 'LOGOUT_USER':
             return { ...state, loggedInUser: action.user }
+        case 'SET_LOG_AS_USER':
+            return { ...state, user: action.user }
         default:
             return state;
     }

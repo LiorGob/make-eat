@@ -33,12 +33,13 @@ class _RecipeApp extends Component {
     getRecipesToDisplay() {
         if (this.props.searchReady)
             return this.props.searchedRecipes;
-
-        if (this.props.searchInRecipes && this.props.lastRecipeSearchTerm !== '') {
+//this.props.searchInRecipes && 
+        if (this.props.lastRecipeSearchTerm !== '') {
             this.props.searchRecipes(this.props.recipes, this.props.lastRecipeSearchTerm);
             return [];
         }
-        if (this.props.searchInIngredients && this.props.lastIngredientSearchTerm !== '') {
+        //this.props.searchInIngredients && 
+        if (this.props.lastIngredientSearchTerm !== '') {
             this.props.searchIngredients(this.props.recipes, this.props.lastIngredientSearchTerm);
             return [];
         }
