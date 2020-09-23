@@ -38,7 +38,7 @@ export function searchReducer(state = initialState, action = {}) {
                 lastRecipeSearchTerm: state.recipeSearchTerm,
                 recipeSearchTerm: '',
                 searchReady: false,
-                searchInIngredients: true,
+                //searchInIngredients: true,
                 searchInRecipes: false
             };
         case 'SEARCH_INGREDIENT_RESET':
@@ -47,7 +47,7 @@ export function searchReducer(state = initialState, action = {}) {
                 lastIngredientSearchTerm: state.ingredientSearchTerm,
                 ingredientSearchTerm: '',
                 searchReady: false,
-                searchInRecipes: true,
+                //searchInRecipes: true,
                 searchInIngredients: false
             };
         case 'SEARCH_RESET':
