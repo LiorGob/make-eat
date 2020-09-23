@@ -11,7 +11,7 @@ import { UserReviews } from '../../cmps/user/UserReviews';
 import { Orders } from '../../cmps/user/Orders';
 import { AddRecipe } from '../../cmps/user/AddRecipe';
 import { UserRecipes } from '../../cmps/user/UserRecipes';
-
+// import { RecipeEdit } from '../RecipeEdit;'
 class _UserHome extends Component {
 
     state = {
@@ -72,6 +72,7 @@ class _UserHome extends Component {
                         <NavLink to="./recipes">Personal Recipes</NavLink>|
                         <NavLink to="./orders">My Orders</NavLink>|
                         <NavLink to="./add">Submit a recipe</NavLink>|
+                        <NavLink to="./recipe/edit/:id?">Submit a recipe</NavLink>|
                     </nav>
                     <Switch>
                         <Route exact path="/user/:id/about" render={(props) => <Favorites {...props} onAddToFavorites={this.saveToFavorites} recipes={this.favorites} about={<About {...props} user={user} />} />} />
@@ -81,6 +82,7 @@ class _UserHome extends Component {
                         <Route exact path="/user/:id/recipes" render={(props) => <UserRecipes {...props} user={user} recipes={this.personalRecipes} />} />
                         <Route exact component={Orders} path="/user/:id/orders" />
                         <Route exact component={AddRecipe} path="/user/:id/add" />
+                        {/* <Route exact component={RecipeEdit} path="/recipe/edit/:id?"/> */}
                         {/* <Route exact path="/..." render={(props) => <PAGE {...props} recipes={recepies} />} /> */}
                     </Switch>
                 </div>
