@@ -18,6 +18,5 @@ export function notificationReducer(state = initialState, action = {}) {
             return { ...state, reviewDialog: false };
         default:
             return state;
-
     }
 }

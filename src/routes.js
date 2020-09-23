@@ -48,10 +48,6 @@ export default [
         component: RecipeApp
     },
     // {
-    // //     path: '/produce',
-    // //     component: ProduceList
-    // // },
-    // {
     //     path: '/',
     //     component: Home
     // },

@@ -7,9 +7,8 @@ import Search from '../cmps/search/Search';
 function _AppHeader(props) {
     return (
         <header className="main-header flex align-center space-between">
+            <div className="logo"><a href="/"><img className="logo-image" src={require('../assets/images/logo/makeeatlogo3.png')} alt="logo"/></a></div>
             <Search/>
-                     <div className="logo"><a href="/"><img className="logo-image" src={require('../assets/images/logo/makeeatlogo3.png')} alt="logo"/></a></div>
-            {/* <div className="logo"><a href="/"><img className="logo-image" src={require('../assets/images/logo/flying cargo logo.png')} alt="logo"/></a></div> */}
             
             <ul className="main-nav flex row pipe">
                 {!props.loggedInUser && 

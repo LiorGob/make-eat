@@ -19,7 +19,6 @@ export function RecipePreview({ recipe, showReviewBy }) {
             </div>
             <div className="recipe-card-body">
                 <h3>{recipe.name}</h3>
-
                 {(showReviewBy && (
                     <div>
                         <div>
@@ -36,9 +35,11 @@ export function RecipePreview({ recipe, showReviewBy }) {
                             <span><RatingStar /></span>
                             <span>{`${ratingAvg}(${recipe.reviews?.length})`}</span>
                         </div>
-                        <div className="abstract"><Truncate lines={3} ellipsis={<span>...</span>}>
-                            {recipe.abstract}
-                        </Truncate></div>
+                        <div className="abstract">
+                            <Truncate lines={3} ellipsis={<span>...</span>}>
+                                {recipe.abstract}
+                            </Truncate>
+                        </div>
                         <div>By <Link to={`/user/${recipe.createdBy._id}/about`} className="link-black">{recipe.createdBy?.fullName}</Link></div>
                     </React.Fragment>
                 ))}

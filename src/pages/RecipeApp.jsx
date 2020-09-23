@@ -7,9 +7,11 @@ import { resetSearchs, searchRecipes, searchIngredients } from '../store/actions
 import { RecipeList } from '../cmps/recipe/RecipeList'
 
 class _RecipeApp extends Component {
+    
     state = {
         filterBy: {}
     }
+    
     async componentDidMount() {
         window.scroll(0, 0);
         const qsTag = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).tag;
@@ -21,11 +23,13 @@ class _RecipeApp extends Component {
     componentWillUnmount() {
         this.props.resetSearchs();
     }
+    
     onChange = ({ target }) => {
         const newState = JSON.parse(JSON.stringify(this.state));
         newState.addVal = target.value;
         this.setState(newState)
     }
+    
     getRecipesToDisplay() {
         if (this.props.searchReady)
             return this.props.searchedRecipes;
@@ -47,6 +51,7 @@ class _RecipeApp extends Component {
         }
         return filtered;
     }
+    
     render() {
         const recipes = this.getRecipesToDisplay();
         if (!recipes) return <div>Loading...</div>

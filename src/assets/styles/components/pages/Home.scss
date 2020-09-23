@@ -16,7 +16,7 @@
         height: 100vh;
         width: 100%;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: flex-start;
         video {
             width: 100%;
@@ -33,7 +33,8 @@
             text-align: center;
             color: white;
             left: 5%;
-            background-color: rgba(171, 144, 120, 0.5);
+            //background-color: rgba(171, 144, 120, 0.5);
+            border-radius: 40px;
             // &:after {
             //     width: 100%;
             //     height: 100%;
@@ -45,9 +46,32 @@
             //     //background-color: rgba(171, 144, 120, 0.2);
             //     background-color: #fff;
             // }
+            .hp-titles{
+                width: 300px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                justify-content: space-evenly;
+                //grid-template-columns: repeat(autofill);
+
+            }
+            h1{
+                font-size: 2.2em;
+                padding-bottom: 0;
+                margin-bottom: 0;
+
+            }
             .search-recipes{
-                //background-color: rgba(255, 255, 255, 0.5);
                 z-index: 7;
+                padding: 2em;
+                .name-filter, .produce-filter{
+                    background-color: rgba(255, 255, 255, 0.9);
+                    //background-color: white;
+                    padding: 0.5em 2em;
+                    border-radius: 40px;
+                }
+                .name-filter{
+                    margin-bottom: 1em;
+                }
             }
         }
     }

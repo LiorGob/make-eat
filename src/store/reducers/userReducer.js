@@ -17,6 +17,5 @@ export function userReducer(state = initialState, action = {}) {
             return { ...state, loggedInUser: action.user }
         default:
             return state;
-
     }
 }

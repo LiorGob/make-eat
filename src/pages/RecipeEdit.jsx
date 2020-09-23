@@ -19,7 +19,7 @@ class _RecipeEdit extends Component {
             // createdBy: '',
             imgs: [],
             // video,
-            // ingredients: [],
+            ingredients: [],
             prepTime: +'',
             totalTime: +'',
             servings: +'',
@@ -28,7 +28,7 @@ class _RecipeEdit extends Component {
     }
 
     componentDidMount = async () => {
-        // await this.props.loadProduces('')
+        // await this.props.loadProduces()
         // console.log('ing: ', this.props);
         const recipeId = this.props.match.params.id
         if (recipeId) {
@@ -118,18 +118,12 @@ class _RecipeEdit extends Component {
         await this.props.removeRecipe(recipeId)
         this.props.history.push('/user')
     }
+    
+    get ingredientsPlaceholder(){
+        return this.props.match.params.id ? this.state.recipe.ingredients : 'put each ingredient on its own line';
+    }
     render() {
         const { recipe } = this.state
-        // console.log('recipe edit', recipe.ingredients);
-        // let ingredientStr = ''
-        // let ingredientName = ''
-        // let ingredientAmount = ''
-        // for (let i = 0; i < recipe.ingredients.length; i++) {
-        //     const ingr = recipe.ingredients[i]
-            // ingredientStr += `${ingr.amount} ${ingr.name}\n`
-            // ingredientName += ingr.name
-            // ingredientAmount += ingr.amount
-        // }
         return (
             <div className="main-container">
                 <div className="edit-recipe">
@@ -140,7 +134,7 @@ class _RecipeEdit extends Component {
 
                             <TextField type="text" name="abstract" label="Description" multiline rows={4} variant="outlined" onChange={this.onHandleChange} value={recipe.abstract} />
 
-                            {/* <TextField type="text" variant="outlined" label="Ingredients" multiline rows={4} name="ingredients" placeholder={this.props.match.params.id ? recipe.ingredients : 'put each ingredient on its own line'} onChange={this.onSetIngredients} defaultValue={ingredientStr} /> */}
+                            {/* <TextField type="text" variant="outlined" label="Ingredients" multiline rows={4} name="ingredients" placeholder={this.ingredientsPlaceholder} onChange={this.onSetIngredients} defaultValue={recipe.ingredients} /> */}
 
                             {/* <TextField type="text" variant="outlined" label="Ingredients" multiline rows={4} name="ingredientsName" onChange={this.onSetIngredients} defaultValue={ingredientName} />
 
