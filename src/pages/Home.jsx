@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import hero from '../assets/images/hero.mp4'
-import heroposter from '../assets/images/hero-poster.jpg'
+//import heroposter from '../assets/images/hero-poster.jpg'
 //https://www.pexels.com/video/4252289/
 // https://www.pexels.com/video/sprinkling-grated-cheese-a-toppings-for-a-serving-of-pasta-4058076/
 import sushi from '../assets/images/sushi.jpg'
