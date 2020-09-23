@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getUser, logout } from '../store/actions/userActions';
 import Search from '../cmps/search/Search';
+import UserImage from '../cmps/user/UserImage';
 
 function _AppHeader(props) {
     return (
@@ -19,7 +20,9 @@ function _AppHeader(props) {
                 }
                 {props.loggedInUser &&
                     <React.Fragment>
-                    <li className="link flex align-center"><Link to={`/user/myprofile/about`}>Profile</Link></li>
+                    <li className="link flex align-center">
+                        <UserImage user={props.loggedInUser}/>
+                        <Link to={`/user/myprofile/about`}>Profile</Link></li>
                     <li className="link flex align-center"><Link to='' onClick={props.logout}>Log out</Link></li>
                     </React.Fragment>
                 }

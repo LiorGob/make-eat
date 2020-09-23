@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import hero from '../assets/images/hero.mp4'
+import { Link } from 'react-router-dom';
+import hero from '../assets/images/hero.mp4';
+//https://res.cloudinary.com/dbfuiddgm/video/upload/v1600855132/makeeat/WhatsApp_Video_2020-09-23_at_12.56.49_v8du5a.mp4
 //import heroposter from '../assets/images/hero-poster.jpg'
 import sushi from '../assets/images/sushi.jpg'
 import macaroons1 from '../assets/images/french/macaroons1.jpg'
@@ -27,9 +29,11 @@ class _Home extends Component {
     render() {
         const { recipes } = this.props;
         let images = [
-            { image: sushi, route: '/recipe', tag: 'Japanese' },
-            { image: macaroons1, route: '/recipe', tag: 'French' },
-            { image: ravioli, route: '/recipe', tag: 'Italian' },
+            { image: sushi, route: '/recipe', tag: 'japanese' },
+            { image: 'https://res.cloudinary.com/duzhu2ejx/image/upload/v1600716009/sprint%204/mexican/tacos_ejumt3.webp',
+            route: '/recipe', tag:'mexican'},
+            { image: macaroons1, route: '/recipe', tag: 'french' },
+            { image: ravioli, route: '/recipe', tag: 'italian' },
             // TBD: add more tags
         ];
         return (
@@ -42,9 +46,9 @@ class _Home extends Component {
                     </video>
                     <div className="caption">
                         <div className="hp-titles">
-                            <h1>Make</h1>
-                            <h1>Eat</h1>
-                            <h1>Share</h1>
+                            <h1>Make.</h1>
+                            <h1>Eat.</h1>
+                            <h1>Share.</h1>
                         </div>
                         <Search />
                     </div>
@@ -59,7 +63,10 @@ class _Home extends Component {
                         })}
 
                     </div>
-                    <RecipeList recipes={recipes.slice(0, 6)} />
+                    <div className="more-recipes"><h2>Top rated</h2> <Link to="/recipe">See all</Link></div>
+                    <RecipeList recipes={recipes.slice(0, 3)} />
+                    <div className="more-recipes"><h2>Latest</h2><Link to="/recipe">See all</Link></div>
+                    <RecipeList recipes={recipes.slice(3, 6)} />
                 </div>
             </div>
         )
