@@ -27,13 +27,9 @@ function _RecipeIngredient({ recipe }) {
     }
 
     function setToOrderList() {
-        var _selectedIngredients = selectedIngredients;
-        if (numOfINgredients === 0) {
-            _selectedIngredients = recipe.ingredients;
+        if (numOfINgredients === 0) {   
             handleSelectAllIngredients()
         }
-
-
     }
 
     function handleSelectAllIngredients() {
