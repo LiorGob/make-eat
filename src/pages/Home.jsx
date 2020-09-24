@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import hero from '../assets/images/hero.mp4';
-//https://res.cloudinary.com/dbfuiddgm/video/upload/v1600855132/makeeat/WhatsApp_Video_2020-09-23_at_12.56.49_v8du5a.mp4
+// https://res.cloudinary.com/dbfuiddgm/video/upload/v1600855132/makeeat/WhatsApp_Video_2020-09-23_at_12.56.49_v8du5a.mp4
 //import heroposter from '../assets/images/hero-poster.jpg'
 import sushi from '../assets/images/sushi.jpg'
 import macaroons1 from '../assets/images/french/macaroons1.jpg'
@@ -47,9 +47,7 @@ class _Home extends Component {
                     </video>
                     <div className="caption">
                         <div className="hp-titles">
-                            <h1>Make.</h1>
-                            <h1>Eat.</h1>
-                            <h1>Share.</h1>
+                            <h1>Make Eat Share</h1>
                         </div>
                         <Search />
                     </div>
