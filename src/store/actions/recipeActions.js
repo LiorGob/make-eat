@@ -67,7 +67,7 @@ export function addToFavorites(recipe, user){
         var recipeToUpdate = { ...recipe, likers: _updateRecipeUserList(recipe.likers, user)};
         console.log('recipeToUpdate', recipeToUpdate);
         const recipeU = await recipeService.save(recipeToUpdate);
-        dispatch({ type: 'ADD_FAVORITE', recipeU })
+        dispatch({ type: 'ADD_FAVORITE', recipe: recipeU })
         dispatch({type: 'NOTIFY', msg: {type: 'success', txt: 'Congrats! The recipe was added to your Favorites', icon: 'favorites'}});
     }
 }
@@ -81,7 +81,7 @@ export function addToMadeIt(recipe, user) {
         
         var recipeToUpdate = { ...recipe, makers: _updateRecipeUserList(recipe.makers, user)};
         const recipeU = await recipeService.save(recipeToUpdate);
-        dispatch({ type: 'ADD_MADEIT', recipeU })
+        dispatch({ type: 'ADD_MADEIT', recipe: recipeU })
         dispatch({ type: 'NOTIFY', msg: { type: 'success', txt: 'Congrats! The recipe was added to your Made It list', icon: 'favorites' } });
     }
 }

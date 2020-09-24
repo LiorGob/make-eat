@@ -1,16 +1,17 @@
 import React from 'react'
 import RatingStar from '../icons/RatingStar';
-import { Link } from 'react-router-dom';
+import UserImage from '../user/UserImage';
 
 export function ReviewPreview({ review }) {
     return (
         <div className="recipe-review-wrapper">
             <div className="recipe-review-byline">
-                <div className="reviewer-image-wrapper">
+                {/* <div className="reviewer-image-wrapper">
                     <Link to={`/user/${review.by._id}/about`}>
                         <img className="" alt="profile-img" src={review.by.imgUrl} />
                     </Link>
-                </div>
+                </div> */}
+                <UserImage user={review.by}/>
                 <div className="recipe-review-adr">
                     <div className="recipe-review-author">
                         <div className="reviewer-name">

@@ -1,76 +1,88 @@
-.app{
-&.inHomePage{
-    .main-header .search-recipes{
-        display: none;
+.app {
+    &.inHomePage {
+        .main-header .search-recipes {
+            display: none;
+        }
+        .main-header {
+            position: absolute;
+            z-index: 6;
+            border: none;
+            background-color: rgba(0, 0, 0, 0);
+        }
+        .main-nav li {
+            color: $clr6;
+            a:hover,
+            a:visited {
+                color: $clr6;
+            }
+            &:not(:last-child):after {
+                color: $clr6;
+            }
+        }
     }
-    .main-header{
-        position: relative;
-        z-index: 6;
-        border: none;
-        background-color: rgba(0,0,0,0);
-    }
-}
 }
 .home-page {
     .hero {
-        height: 100vh;
+        height: 80vh;
         width: 100%;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: flex-start;
+        position: relative;
+        padding-bottom: rem(72px);
         video {
             width: 100%;
             height: 100%;
-            position: absolute;
+            // position: relative;
             top: 0;
             left: 0;
             z-index: 5;
             object-fit: cover;
         }
         .caption {
-            position: relative;
+            position: absolute;
             z-index: 10;
             text-align: center;
             color: white;
-            left: 5%;
-            //background-color: rgba(171, 144, 120, 0.5);
-            border-radius: 40px;
-            // &:after {
-            //     width: 100%;
-            //     height: 100%;
-            //     content: '';
-            //     position: absolute;
-            //     top: 0;
-            //     left: 0;
-            //     z-index: 6;
-            //     //background-color: rgba(171, 144, 120, 0.2);
-            //     background-color: #fff;
-            // }
-            .hp-titles{
-                width: 300px;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                justify-content: space-evenly;
-                //grid-template-columns: repeat(autofill);
+            left: 50%;
+            top: 50%;
+            border-radius: rem(12px);
+            background-color: rgba(0, 0, 0 ,0.58);
+            transform: translate(-50%, -50%);
+            // display: grid;
+            // grid-template-columns: repeat(3, 1fr);
+            // grid-gap: rem(15px);
+            padding: rem(15px);
 
+            .hp-titles {
+                width: 300px;
+                // display: grid;
+                // grid-template-columns: repeat(3, 1fr);
+                // justify-content: space-evenly;
+                //grid-template-columns: repeat(autofill);
             }
-            h1{
-                font-size: 2.2em;
+            h1 {
+                font-size: 2em;
                 padding-bottom: 0;
                 margin-bottom: 0;
-
+                grid-column: 1/3;
+                grid-row: 1/3;
             }
-            .search-recipes{
+            .search-recipes {
                 z-index: 7;
-                padding: 2em;
-                .name-filter, .produce-filter{
+                grid-column: 1/3;
+                grid-row: 3/4;
+                .name-filter,
+                .produce-filter {
                     background-color: rgba(255, 255, 255, 0.9);
-                    //background-color: white;
                     padding: 0.5em 2em;
                     border-radius: 40px;
                 }
-                .name-filter{
+                .name-filter {
                     margin-bottom: 1em;
+                    .MuiInputBase-root {
+                        border: none;
+                    }
                 }
             }
         }
@@ -82,6 +94,10 @@
     // .cuisine-container {
     //     padding-bottom: rem(64px);
     // }
+    .more-recipes {
+        display: flex;
+        justify-content: space-between;
+    }
     .recipe-list {
         .recipe-card {
             cursor: pointer;
@@ -108,9 +124,10 @@
         }
 
         .description {
-            font-size: 0.85rem;
+            font-size: 1rem;
             display: block;
             text-align: center;
+            text-transform: capitalize;
         }
     }
 }

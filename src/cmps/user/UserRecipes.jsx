@@ -21,13 +21,20 @@ export function UserRecipes({ recipes, user }) {
         <React.Fragment>
             <h3>Personal Recipes</h3>
             <div className="container">
-                <aside>
-                <ul className="clear-list">
-                    <li>Total makers: {getMakersCount()}</li>
-                    <li>Total likers: {getLikersCount()}</li>
-                </ul>
-                </aside>
-                <RecipeList recipes={recipes} />
+                {
+                    recipes.length ? 
+                    <div>
+                    <aside>
+                    <ul className="clear-list">
+                        <li>Total makers: {getMakersCount()}</li>
+                        <li>Total likers: {getLikersCount()}</li>
+                    </ul>
+                    </aside>
+                    <RecipeList recipes={recipes} />
+                    </div>
+                    : 
+                    <h4></h4>
+                }
             </div>
         </React.Fragment>
     )

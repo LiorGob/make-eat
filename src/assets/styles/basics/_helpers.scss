@@ -110,7 +110,6 @@
     background-color: $clr12;
 }
 
-
 .main-color {
     color: $clr12;
 }
@@ -134,11 +133,12 @@
         color: $clr9;
     }
 }
-.link-black{
+.link-black {
     color: $clr9;
     text-decoration: underline;
     font-weight: bold;
-    &.visited, &.active{
+    &.visited,
+    &.active {
         color: $clr9;
     }
 }
@@ -149,13 +149,21 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 .pipe {
-    span {
+    span, li {
         &:not(:last-child):after {
             content: "|";
             padding: 0 1em;
         }
     }
 }
+.user-image-wrapper {
+    width: 56px;
+    height: 56px;
+    img {
+        border-radius: 50%;
+    }
+}
+
 // Media helpers
 
 // .square-ratio {

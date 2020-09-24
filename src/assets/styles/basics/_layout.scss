@@ -22,10 +22,15 @@
             minmax(20px, 1fr);
     }
     @include for-wide-layout {
-        // grid-template-columns: repeat(4, 1fr);
         grid-template-columns:
             minmax(20px, 1fr)
             minmax(auto, $normal-breakpoint)
+            minmax(20px, 1fr);
+    }
+    @include for-x-wide-layout {
+        grid-template-columns:
+            minmax(20px, 1fr)
+            minmax(auto, $wide-breakpoint)
             minmax(20px, 1fr);
     }
 }

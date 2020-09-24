@@ -1,0 +1,46 @@
+.user-profile {
+    .profile-subnav {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        a {
+            flex: 1;
+            padding: 1em 0;
+            justify-self: center;
+            text-align: center;
+            background-color: $clr16;
+            position: relative;
+            &.active {
+                background-color: $clr12;
+                color: $clr6;
+                &:before {
+                    display: block;
+                }
+            }
+            &:before {
+                    display: none;
+                    content: "";
+                    width: 0;
+                    height: 0;
+                    position: absolute;
+                    top: 56px;
+                    border-left: 16px solid transparent;
+                    border-right: 16px solid transparent;
+                    border-top: 8px solid $clr12;
+                    left: 50%;
+                    margin-left: -16px;
+                }
+            &:not(.active):hover {
+                background-color: $clr14;
+            }
+        }
+    }
+    .container {
+        display: flex;
+        padding-top: rem(20px);
+        aside {
+            flex-basis: 30%;
+        }
+    }
+}

@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getUser, logout } from '../store/actions/userActions';
 import Search from '../cmps/search/Search';
+import UserImage from '../cmps/user/UserImage';
 
 function _AppHeader(props) {
     return (
-        <header className="main-header flex align-center space-between">
-            <div className="logo"><a href="/"><img className="logo-image" src={require('../assets/images/logo/makeeatlogo3.png')} alt="logo"/></a></div>
+        <header className="main-header main-container flex align-center space-between">
+            <div className="logo"><a href="/"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo5.png')} alt="logo"/></a></div>
             <Search/>
             
             <ul className="main-nav flex row pipe">
@@ -19,7 +20,9 @@ function _AppHeader(props) {
                 }
                 {props.loggedInUser &&
                     <React.Fragment>
-                    <li className="link flex align-center"><Link to={`/user/myprofile/about`}>Profile</Link></li>
+                    <li className="link flex align-center">
+                        <UserImage user={props.loggedInUser}/>
+                        <Link to={`/user/myprofile/about`}>Profile</Link></li>
                     <li className="link flex align-center"><Link to='' onClick={props.logout}>Log out</Link></li>
                     </React.Fragment>
                 }

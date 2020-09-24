@@ -50,6 +50,7 @@ class _RecipeDetails extends Component {
         const { recipe, loggedInUser } = this.props;
         if (!recipe) return <div>Loading...</div>
         const ratingAvg = this.getAvg()
+        const isOwner = loggedInUser && loggedInUser._id === recipe.createdBy._id;
         return (
             <div className="main-container">
                 <div className="recipe-details">
@@ -90,8 +91,7 @@ class _RecipeDetails extends Component {
                                         <div><span className="font-bold"> Total: </span>{recipe.totalTime} min</div>
                                         <div><span className="font-bold">Servings:</span> {recipe.servings}</div>
                                     </div>
-                                    {loggedInUser && loggedInUser._id === recipe.createdBy._id && 
-                                    <Link to={`/recipe/edit/${recipe._id}`}><button>Edit your recipe</button></Link>}
+                                    {isOwner && <Link to={`/recipe/edit/${recipe._id}`}><button>Edit your recipe</button></Link>}
                                 </aside>
                             </div>
                             <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
