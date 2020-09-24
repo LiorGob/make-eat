@@ -47,7 +47,6 @@ class _UserHome extends Component {
             const made = recipe.reviews.filter(review => review.by._id === this.props.user._id);
             return made.length > 0;
         });
-        console.log(r);
         return r;
     }
 

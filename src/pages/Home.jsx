@@ -72,16 +72,13 @@ class _Home extends Component {
                     <div className="more-recipes"><h2>Latest</h2><Link to="/recipe">See all</Link></div>
                     <RecipeList recipes={recipes.slice(3, 7)} />
                     {!recipes.length &&
-                        <section class="populatedb">
+                        <section className="populatedb">
                             <Button variant="outlined" color="secondary" className="step step1" onClick={this.populateUsers}>
                                 Populate users collection</Button>
                             <Button variant="outlined" color="secondary" className="step step2" onClick={this.populateProduce}>
                                 Populate produce collection</Button>
                             <Button variant="outlined" color="secondary" className="step step3" onClick={this.populateRecipe}>
                                 Populate recipe collection</Button>
-                            {/* <button className="step step1" onClick={this.populateUsers}>Populate users collection</button>
-                        <button className="step step2" ref={this.populatedbStep2} onClick={this.populateProduce}>Populate produce collection</button>
-                        <button className="step step3" ref={this.populatedbStep3} onClick={this.populateRecipe}>Populate recipe collection</button> */}
                         </section>
                     }
                 </div>
