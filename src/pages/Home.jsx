@@ -54,6 +54,7 @@ class _Home extends Component {
                 </div>
                 <div className="main-container cuisine-container">
                     <div className="cuisine-card">
+                        <h2>world Cuisin</h2>
                         {images.map((img, idx) => {
                             return (<div key={`${idx}${img.image}`}>
                                 <img onClick={() => this.changeRoute(img.route, img.tag)} src={img.image} alt="" />
