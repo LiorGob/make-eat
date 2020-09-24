@@ -19,6 +19,9 @@
                 color: $clr6;
             }
         }
+        // .join-now-img{
+        //     display: none;
+        // }
     }
 }
 .home-page {
@@ -113,7 +116,8 @@
 
     .cuisine-card {
         display: flex;
-        justify-content: space-evenly;
+        // justify-content: space-evenly;
+        justify-content: space-between;
         padding-bottom: rem(64px);
 
         img {

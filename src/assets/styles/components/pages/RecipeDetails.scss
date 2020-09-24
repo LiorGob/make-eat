@@ -37,7 +37,7 @@
     }
 
     .gallery {
-        width: 80%;
+        width: 50%;
         padding: 1rem;
     }
     .share-btns {
@@ -56,6 +56,9 @@
                 & > span {
                     flex-direction: column;
                 }
+            }
+            .MuiButton-startIcon{
+                margin-left: 4px;
             }
         }
     }
