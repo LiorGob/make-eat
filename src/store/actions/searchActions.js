@@ -1,4 +1,3 @@
-
 import { searchService } from '../../services/searchService';
 
 export function searchRecipes(recipes, searchTerm) {
@@ -27,7 +26,7 @@ export function resetIngredientSearch() {
     }
 }
 
-export function resetSearchs(){
+export function resetSearchs() {
     return dispatch => {
         dispatch({ type: 'SEARCH_RESET' });
     }

@@ -7,11 +7,11 @@ import { resetSearchs, searchRecipes, searchIngredients } from '../store/actions
 import { RecipeList } from '../cmps/recipe/RecipeList'
 
 class _RecipeApp extends Component {
-    
+
     state = {
         filterBy: {}
     }
-    
+
     async componentDidMount() {
         window.scroll(0, 0);
         const qsTag = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).tag;
@@ -23,17 +23,17 @@ class _RecipeApp extends Component {
     componentWillUnmount() {
         this.props.resetSearchs();
     }
-    
+
     onChange = ({ target }) => {
         const newState = JSON.parse(JSON.stringify(this.state));
         newState.addVal = target.value;
         this.setState(newState)
     }
-    
+
     getRecipesToDisplay() {
         if (this.props.searchReady)
             return this.props.searchedRecipes;
-//this.props.searchInRecipes && 
+        //this.props.searchInRecipes && 
         if (this.props.lastRecipeSearchTerm !== '') {
             this.props.searchRecipes(this.props.recipes, this.props.lastRecipeSearchTerm);
             return [];
@@ -52,14 +52,14 @@ class _RecipeApp extends Component {
         }
         return filtered;
     }
-    
+
     render() {
         const recipes = this.getRecipesToDisplay();
         if (!recipes) return <div>Loading...</div>
         const { searchReady, recipeSearchTerm, ingredientSearchTerm, searchedRecipes } = this.props;
         return (
             <div className="main-container">
-                {searchReady && ingredientSearchTerm!== '' && <h3>{searchedRecipes.length} recipe results for "{ingredientSearchTerm}"</h3>}
+                {searchReady && ingredientSearchTerm !== '' && <h3>{searchedRecipes.length} recipe results for "{ingredientSearchTerm}"</h3>}
                 {searchReady && recipeSearchTerm !== '' && <h3>{searchedRecipes.length} recipe results for "{recipeSearchTerm}"</h3>}
                 {recipes && recipes.length > 0 && <RecipeList recipes={recipes} />}
                 {recipes && recipes.length === 0 && <div className="no-results-msg">
