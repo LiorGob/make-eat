@@ -77,7 +77,7 @@ class _Home extends Component {
                                 Populate users collection</Button>
                             <Button variant="outlined" color="secondary" className="step step2" onClick={this.populateProduce}>
                                 Populate produce collection</Button>
-                            <Button variant="outlined" color="secondary" className="step step3" onClick={this.populpopulateRecipeateUsers}>
+                            <Button variant="outlined" color="secondary" className="step step3" onClick={this.populateRecipe}>
                                 Populate recipe collection</Button>
                             {/* <button className="step step1" onClick={this.populateUsers}>Populate users collection</button>
                         <button className="step step2" ref={this.populatedbStep2} onClick={this.populateProduce}>Populate produce collection</button>
