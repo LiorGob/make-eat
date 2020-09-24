@@ -10,7 +10,10 @@ export const populateDBService = {
 async function populateUsers() {
     var map = {}
     data.user.map(async (user) => {
-        createDocumentMap(user, 'user', 'USERS', map);
+        var newUser = {...user};
+        user.password = '111';
+        user.isAdmin = false;
+        createDocumentMap(user, 'user', 'USERS', map)
     });
 }
 
