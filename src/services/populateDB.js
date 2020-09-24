@@ -38,18 +38,10 @@ function populateRecipe(){
     const produceMap = loadFromStorage('PRODUCES');
     data.recipe.map(async recipe => {
         recipe.createdBy._id = usersMap[recipe.createdBy._id];
-        recipe.makers.map(maker => {
-            updateId(maker, usersMap);
-        });    
-        recipe.likers.map(liker => {
-            updateId(liker, usersMap);
-        });    
-        recipe.reviews.map(review => {
-            updateId(review.by, usersMap);
-        });    
-        recipe.ingredients.map(ingredient => {
-            ingredient.produceId = produceMap[ingredient.produceId];
-        });    
+        recipe.makers.map(maker => updateId(maker, usersMap));
+        recipe.likers.map(liker => updateId(liker, usersMap));    
+        recipe.reviews.map(review => updateId(review.by, usersMap));
+        recipe.ingredients.map(ingredient => ingredient.produceId = produceMap[ingredient.produceId]);
         var newRecipe = { ...recipe };
         delete newRecipe._id;
         httpService.post('recipe', newRecipe);

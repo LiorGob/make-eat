@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchRecipes, resetIngredientSearch } from '../../store/actions/searchActions';
 import TextField from '@material-ui/core/TextField';
-import { OutlinedInput } from '@material-ui/core';
 import { withRouter } from 'react-router';
 
 class _RecipeSearch extends Component {
@@ -45,9 +44,7 @@ class _RecipeSearch extends Component {
         const { placeholder } = this.props;
         return (
             <div className="name-filter">
-                {/* <OutlinedInput type="text" name="title" autoComplete="off" value={this.defaultSearchTerm} */}
                  <TextField type="text" name="title" autoComplete="off" InputProps={{disableUnderline: true }}  value={this.defaultSearchTerm} 
-                    /* <input type="text" name="title" autoComplete="off"  value={this.defaultSearchTerm} */
                   className="input-color"  onKeyUp={this.onKeyUp} placeholder={placeholder} onChange={this.onHandleChange} />
 
             </div>
