@@ -10,6 +10,7 @@
             justify-self: center;
             text-align: center;
             background-color: $clr16;
+            color: $clr13;
             position: relative;
             &.active {
                 background-color: $clr12;
@@ -19,18 +20,18 @@
                 }
             }
             &:before {
-                    display: none;
-                    content: "";
-                    width: 0;
-                    height: 0;
-                    position: absolute;
-                    top: 56px;
-                    border-left: 16px solid transparent;
-                    border-right: 16px solid transparent;
-                    border-top: 8px solid $clr12;
-                    left: 50%;
-                    margin-left: -16px;
-                }
+                display: none;
+                content: "";
+                width: 0;
+                height: 0;
+                position: absolute;
+                top: 56px;
+                border-left: 16px solid transparent;
+                border-right: 16px solid transparent;
+                border-top: 8px solid $clr12;
+                left: 50%;
+                margin-left: -16px;
+            }
             &:not(.active):hover {
                 background-color: $clr14;
             }
