@@ -42,12 +42,8 @@ function _RecipeIngredient({ recipe }) {
         else {
             setNumOfINgredients(ingredients.length);
             setSelectedIngredients([])
-
         }
-
     }
-
-    
 
 
     function isIngredientChecked(name) {
@@ -90,7 +86,7 @@ function _RecipeIngredient({ recipe }) {
                 Add {numOfINgredients === 0 ? 'All' : numOfINgredients} Ingredients To Shopping Cart
             </Button>
             <Tooltip title="Go to shopping Cart">
-                <ShoppingCartIcon className="checkout" color="secondary" style={{ width: "90px", height: "40px", cursor: "pointer", position: "absolute" }} onClick={goToCheckout} />
+                <ShoppingCartIcon className="checkout " color="secondary" style={{ width: "90px", height: "40px", cursor: "pointer", position: "absolute" }} onClick={goToCheckout} />
             </Tooltip>
         </div>
 

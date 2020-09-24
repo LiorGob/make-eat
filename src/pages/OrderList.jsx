@@ -53,7 +53,7 @@ export class _OrderList extends Component {
 
         if (!this.state.selectedIngredients.length) return <div>Loading...</div>
         return (
-            <div className="main-container">
+            <div className="main-content main-container">
                
                 <h1 className="order-title flex">Shopping Cart</h1>
                 {/* <h2 className="total-amount" {this.state.totalAmount}></h2> */}
@@ -73,7 +73,7 @@ export class _OrderList extends Component {
                     }
 
                 </ul>
-                <Button  onClick={()=>this.onCheckout()} variant="outlined" color="secondary" className="recipe-details-btn" style={{ width: '100px' }} >
+                <Button  onClick={()=>this.onCheckout()} variant="outlined" color="secondary" className="recipe-details-btn align-end" style={{ width: '100px' }} >
                     Checkout
                   
                 </Button>
