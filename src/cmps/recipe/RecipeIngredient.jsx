@@ -5,11 +5,15 @@ import { useHistory } from 'react-router-dom'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Tooltip from '@material-ui/core/Tooltip';
 
 function _RecipeIngredient({ recipe }) {
     let history = useHistory()
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [numOfINgredients, setNumOfINgredients] = useState(0);
+    const [isAllChecked, setIsAllChecked] = useState(false)
+    
 
     function handleSelectIngredient(selectedIngredient) {
         const ingredientsNotFound = -1
@@ -23,31 +27,71 @@ function _RecipeIngredient({ recipe }) {
     }
 
     function setToOrderList() {
-        var _selectedIngredients = selectedIngredients;
-        if (numOfINgredients === 0) {
-            _selectedIngredients = recipe.ingredients;
+        if (numOfINgredients === 0) {   
+            handleSelectAllIngredients()
         }
-        history.push({ pathname: '/order', state: { selectedIngredients: _selectedIngredients } })
     }
+
+    function handleSelectAllIngredients() {
+        let ingredients = recipe.ingredients
+        setIsAllChecked(isAllChecked ? false : true)
+        if (!isAllChecked) {
+            setSelectedIngredients(ingredients)
+            console.log(ingredients)
+        }
+        else {
+            setNumOfINgredients(ingredients.length);
+            setSelectedIngredients([])
+
+        }
+
+    }
+
+    
+
+
+    function isIngredientChecked(name) {
+        let ingredientsList = selectedIngredients
+        let checkedIngredientIndex = ingredientsList.findIndex((ingredient) => ingredient.name === name)
+        if (checkedIngredientIndex > -1) return true
+        return false
+
+    }
+
+
+    function goToCheckout() {
+        if (numOfINgredients === 0) return
+        history.push({ pathname: '/order', state: { selectedIngredients: selectedIngredients } })
+
+    }
+
+
+
 
     return (
         <div className="recipe-ingredients recipe-section">
             <h2>Ingredients:</h2>
+            {/* <button className="select-all" onClick={handleSelectAllIngredients} ><AddIcon color="secondary"></AddIcon></button> */}
+           
             <ul>
                 {recipe.ingredients.map((ingredient, idx) =>
                     <li className="clean-list" key={`${ingredient.produceId}_${idx}`}>
                         <label>
                             <FormControlLabel
-                                control={<Checkbox onChange={() => handleSelectIngredient(ingredient)} />}
+
+                                control={<Checkbox checked={isAllChecked || isIngredientChecked(ingredient.name)} onChange={() => handleSelectIngredient(ingredient)} />}
                                 label={`${ingredient.amount} ${ingredient.spec ? ingredient.spec : ''} ${ingredient.name}`}
                             />
-                            {/* <input type="checkbox" onClick={() => handleSelectIngredient(ingredient)} /> */}
+                           
                         </label>
                     </li>)}
             </ul>
             <Button variant="outlined" color="secondary" onClick={setToOrderList} endIcon={<DoneAllIcon style={{ color: '#ff385c' }} />} className="recipe-details-btn">
                 Add {numOfINgredients === 0 ? 'All' : numOfINgredients} Ingredients To Shopping Cart
             </Button>
+            <Tooltip title="Go to shopping Cart">
+                <ShoppingCartIcon className="checkout" color="secondary" style={{ width: "90px", height: "40px", cursor: "pointer", position: "absolute" }} onClick={goToCheckout} />
+            </Tooltip>
         </div>
 
     )

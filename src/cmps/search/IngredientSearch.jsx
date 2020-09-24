@@ -44,7 +44,7 @@ class _IngredientSearch extends Component {
         const { placeholder } = this.props;
         return (
             <div className="produce-filter">
-                <TextField type="text" name="ingredient" autoComplete="off" value={this.defaultSearchTerm}
+                <TextField className="input-color" type="text" name="ingredient" autoComplete="off" InputProps={{disableUnderline: true }} value={this.defaultSearchTerm}
                     onKeyUp={this.onKeyUp} placeholder={placeholder} onChange={this.onHandleChange} />
 
             </div>

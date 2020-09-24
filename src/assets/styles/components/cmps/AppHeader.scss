@@ -9,6 +9,13 @@
     align-items: center;
     border-bottom: ridge;
 
+    .input-color {
+        // background-color: $clr2;
+        background-color: $clr3;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
     .logo {
         margin-left: rem(20px);
         font-size: rem(30px);
@@ -22,11 +29,11 @@
             padding-top: 10px;
         }
     }
-    .search-recipes{
+    .search-recipes {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        div:first-child{
+        div:first-child {
             margin-right: 1em;
         }
     }

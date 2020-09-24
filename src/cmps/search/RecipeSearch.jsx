@@ -44,9 +44,8 @@ class _RecipeSearch extends Component {
         const { placeholder } = this.props;
         return (
             <div className="name-filter">
-                <TextField type="text" name="title" autoComplete="off" value={this.defaultSearchTerm}
-                    /* <input type="text" name="title" autoComplete="off"  value={this.defaultSearchTerm} */
-                    onKeyUp={this.onKeyUp} placeholder={placeholder} onChange={this.onHandleChange} />
+                 <TextField type="text" name="title" autoComplete="off" InputProps={{disableUnderline: true }}  value={this.defaultSearchTerm} 
+                  className="input-color"  onKeyUp={this.onKeyUp} placeholder={placeholder} onChange={this.onHandleChange} />
 
             </div>
         )

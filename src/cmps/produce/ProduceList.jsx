@@ -34,7 +34,7 @@ class _ProduceList extends Component {
 
 
     render() {
-        const { produces } = this.props
+        // const { produces } = this.props
 
         return (
 

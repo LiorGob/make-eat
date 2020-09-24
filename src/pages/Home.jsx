@@ -50,7 +50,7 @@ class _Home extends Component {
                         <source src={hero} type="video/mp4" />
                         Your browser doesn't support the video tag
                     </video>
-                    <div className="caption">
+                    <div className="caption card-grid">
                         <div className="hp-titles">
                             <h1>Make Eat Share</h1>
                         </div>
