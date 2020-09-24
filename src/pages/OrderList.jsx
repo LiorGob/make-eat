@@ -10,7 +10,8 @@ import {addNotification} from '../store/actions/orderActions.js';
 export class _OrderList extends Component {
     state = {
         produceId: '',
-        selectedIngredients:[]
+        selectedIngredients:[],
+        // totalAmount
     }
 
 
@@ -43,10 +44,10 @@ export class _OrderList extends Component {
         
     }
 
-    onTotalAmount=(price)=>{
-        console.log(price);
+    // onTotalAmount=(price)=>{
+    //     console.log(price);
 
-    }
+    // }
 
     render() {
 
@@ -55,6 +56,7 @@ export class _OrderList extends Component {
             <div className="main-container">
                
                 <h1 className="order-title flex">Shopping Cart</h1>
+                {/* <h2 className="total-amount" {this.state.totalAmount}></h2> */}
                 <ul className="order-list">
                     
                     {this.state.selectedIngredients.map((ingredient, index) =>

@@ -1,7 +1,6 @@
-
 const initialState = _getInitialState();
 
-function _getInitialState(){
+function _getInitialState() {
     return {
         searchedRecipes: [],
         recipeSearchTerm: '',
@@ -17,19 +16,19 @@ function _getInitialState(){
 export function searchReducer(state = initialState, action = {}) {
     switch (action.type) {
         case 'SEARCH_RECIPES':
-            return { 
-                ...state, 
-                searchedRecipes: action.searchedRecipes, 
-                recipeSearchTerm: action.searchTerm, 
-                searchReady: true, 
-                lastRecipeSearchTerm: '' 
+            return {
+                ...state,
+                searchedRecipes: action.searchedRecipes,
+                recipeSearchTerm: action.searchTerm,
+                searchReady: true,
+                lastRecipeSearchTerm: ''
             }
         case 'SEARCH_INGREDIENTS':
-            return { 
-                ...state, 
-                searchedRecipes: action.searchedRecipes, 
-                ingredientSearchTerm: action.searchTerm, 
-                searchReady: true, 
+            return {
+                ...state,
+                searchedRecipes: action.searchedRecipes,
+                ingredientSearchTerm: action.searchTerm,
+                searchReady: true,
                 lastIngredientSearchTerm: ''
             }
         case 'SEARCH_RECIPE_RESET':

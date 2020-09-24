@@ -10,13 +10,16 @@ import ravioli from '../assets/images/italian/ravioli.jpg'
 import { RecipeList } from '../cmps/recipe/RecipeList'
 import { loadRecipes } from '../store/actions/recipeActions.js'
 import Search from '../cmps/search/Search';
-import {populateDBService} from '../services/populateDB.js';
+import { populateDBService } from '../services/populateDB.js';
+import { Button } from '@material-ui/core';
 
 class _Home extends Component {
 
     componentDidMount() {
         this.props.loadRecipes();
         this.props.setRootClass('inHomePage');
+        this.populatedbStep2 = React.createRef();
+        this.populatedbStep3 = React.createRef();
     }
 
     componentWillUnmount() {
@@ -31,8 +34,10 @@ class _Home extends Component {
         const { recipes } = this.props;
         let images = [
             { image: sushi, route: '/recipe', tag: 'japanese' },
-            { image: 'https://res.cloudinary.com/duzhu2ejx/image/upload/v1600716009/sprint%204/mexican/tacos_ejumt3.webp',
-            route: '/recipe', tag:'mexican'},
+            {
+                image: 'https://res.cloudinary.com/duzhu2ejx/image/upload/v1600716009/sprint%204/mexican/tacos_ejumt3.webp',
+                route: '/recipe', tag: 'mexican'
+            },
             { image: macaroons1, route: '/recipe', tag: 'french' },
             { image: ravioli, route: '/recipe', tag: 'italian' },
             // TBD: add more tags
@@ -68,21 +73,27 @@ class _Home extends Component {
                     <div className="more-recipes"><h2>Latest</h2><Link to="/recipe">See all</Link></div>
                     <RecipeList recipes={recipes.slice(3, 7)} />
                     {!recipes.length &&
-                        <section>
-                            <button onClick={this.populateUsers}>Populate users collection</button>
-                            <button onClick={this.populateProduce}>Populate produce collection</button>
-                            <button onClick={this.populateRecipe}>Populate recipe collection</button>
+                        <section class="populatedb">
+                            <Button variant="outlined" color="secondary" className="step step1" onClick={this.populateUsers}>
+                                Populate users collection</Button>
+                            <Button variant="outlined" color="secondary" className="step step2" onClick={this.populateProduce}>
+                                Populate produce collection</Button>
+                            <Button variant="outlined" color="secondary" className="step step3" onClick={this.populateRecipe}>
+                                Populate recipe collection</Button>
+                            {/* <button className="step step1" onClick={this.populateUsers}>Populate users collection</button>
+                        <button className="step step2" ref={this.populatedbStep2} onClick={this.populateProduce}>Populate produce collection</button>
+                        <button className="step step3" ref={this.populatedbStep3} onClick={this.populateRecipe}>Populate recipe collection</button> */}
                         </section>
                     }
                 </div>
             </div>
         )
     }
-    populateUsers = () => {
+    populateUsers() {
         populateDBService.populateUsers();
     }
 
-    populateProduce = () => {
+    populateProduce() {
         populateDBService.populateProduce();
     }
 
