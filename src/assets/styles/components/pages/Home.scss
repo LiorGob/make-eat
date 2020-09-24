@@ -23,13 +23,13 @@
 }
 .home-page {
     .hero {
-        height: 78vh;
+        height: 80vh;
         width: 100%;
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
-        position: absolute;
-        // padding-bottom: rem(72px);
+        position: relative;
+        padding-bottom: rem(72px);
         video {
             width: 100%;
             height: 100%;
@@ -40,35 +40,41 @@
             object-fit: cover;
         }
         .caption {
-            position: relative;
+            position: absolute;
             z-index: 10;
             text-align: center;
             color: white;
             left: 50%;
-            right: 50%;
-            border-radius: 40px;
-            background-color: rgb(0, 0, 0 /40%);
+            top: 50%;
+            border-radius: rem(12px);
+            background-color: rgba(0, 0, 0 ,0.58);
             transform: translate(-50%, -50%);
+            // display: grid;
+            // grid-template-columns: repeat(3, 1fr);
+            // grid-gap: rem(15px);
+            padding: rem(15px);
 
             .hp-titles {
                 width: 300px;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                justify-content: space-evenly;
+                // display: grid;
+                // grid-template-columns: repeat(3, 1fr);
+                // justify-content: space-evenly;
                 //grid-template-columns: repeat(autofill);
             }
-            // h1 {
-            //     font-size: 2.2em;
-            //     padding-bottom: 0;
-            //     margin-bottom: 0;
-            // }
+            h1 {
+                font-size: 2em;
+                padding-bottom: 0;
+                margin-bottom: 0;
+                grid-column: 1/3;
+                grid-row: 1/3;
+            }
             .search-recipes {
                 z-index: 7;
-                // padding: 2em;
+                grid-column: 1/3;
+                grid-row: 3/4;
                 .name-filter,
                 .produce-filter {
                     background-color: rgba(255, 255, 255, 0.9);
-                    //background-color: white;
                     padding: 0.5em 2em;
                     border-radius: 40px;
                 }
@@ -118,7 +124,7 @@
         }
 
         .description {
-            font-size: 0.85rem;
+            font-size: 1rem;
             display: block;
             text-align: center;
             text-transform: capitalize;
