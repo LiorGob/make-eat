@@ -13,19 +13,31 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import RatingStar from '../cmps/icons/RatingStar';
 import { ImageCarousel } from '../cmps/ImageCarousel';
-import LatestReviews from '../cmps/review/LatestReviews';
+import { LatestReviews } from '../cmps/review/LatestReviews';
 import { HashLink as Link } from 'react-router-hash-link';
 
 class _RecipeDetails extends Component {
 
+    state = {
+
+    }
+
     componentDidMount() {
-        const { id } = this.props.match.params
-        this.props.getRecipe(id)
+        const { id } = this.props.match.params;
+        this.props.getRecipe(id);
+        const randomReviewsNum = this.getRandomNum();
+        const reviewsNum = randomReviewsNum * 20
+        this.setState({reviewsNum })
+
     }
 
     getAvg = () => {
         const currRecipe = this.props.recipe
         return recipeService.getRatingAvg(currRecipe)
+    }
+
+    getRandomNum = () => {
+        return recipeService.getRandomInt(1, 10)
     }
 
     onAddToFavorites = () => {
@@ -58,9 +70,8 @@ class _RecipeDetails extends Component {
                         <h1>{recipe.name}</h1>
                         <div className="review-details flex row pipe">
                             <RatingStar />
-                            <span>{`${ratingAvg}(${recipe.reviews.length} Ratings)`} </span>
-                            <span><Link to={`/recipe/${recipe._id}#latest-review-list`} className="color-underline">{recipe.reviews?.length} Reviews</Link></span>
-                            <span>{recipe.imgs.length} Images</span>
+                            <span>{`${ratingAvg}(${this.state.reviewsNum} Ratings)`} </span>
+                            <span><Link to={`/recipe/${recipe._id}#latest-review-list`} className="color-underline">{this.state.reviewsNum} Reviews</Link></span>
                         </div>
                         <p>{recipe.abstract}</p>
                     </div>
@@ -96,7 +107,7 @@ class _RecipeDetails extends Component {
                             </div>
                             <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
                             <RecipeDirection recipe={recipe} onAddToMadeIt={this.onAddToMadeIt} />
-                            <LatestReviews recipe={recipe} count="1"/>
+                            <LatestReviews recipe={recipe} count="1" />
                             {/* <ReviewDialog recipe={recipe} doOpen={this.state.openReviewDialog}/> */}
                         </div>
                     </div>

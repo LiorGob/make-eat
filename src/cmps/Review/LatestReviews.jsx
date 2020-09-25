@@ -3,7 +3,7 @@ import { ReviewPreview } from './ReviewPreview';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
-export default function LatestReviews({ recipe, count }) {
+export  function LatestReviews({ recipe, count }) {
 
     const latest = recipe.reviews.sort((review1, review2) => { return review1?.date > review2.date }).slice(0, count);
     return (
