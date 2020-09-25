@@ -11,7 +11,7 @@ export class _OrderList extends Component {
     state = {
         produceId: '',
         selectedIngredients:[],
-        // totalAmount
+        totalAmount:[]
     }
 
 
@@ -46,7 +46,10 @@ export class _OrderList extends Component {
 
     // onTotalAmount=(price)=>{
     //     console.log(price);
-
+    //     let totalAmount=this.props.recipe
+    //  let ingredientPrices=
+    //  .reduce((acc,price)=>acc+price)
+    
     // }
 
     render() {
@@ -74,7 +77,7 @@ export class _OrderList extends Component {
 
                 </ul>
                 <Button  onClick={()=>this.onCheckout()} variant="outlined" color="secondary" className="recipe-details-btn align-end" style={{ width: '100px' }} >
-                    Checkout
+                    Pay Now!
                   
                 </Button>
             </div>

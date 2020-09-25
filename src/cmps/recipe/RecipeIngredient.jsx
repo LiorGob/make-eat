@@ -12,7 +12,7 @@ function _RecipeIngredient({ recipe }) {
     let history = useHistory()
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [numOfINgredients, setNumOfINgredients] = useState(0);
-    const [isAllChecked, setIsAllChecked] = useState(false)
+    const [isAllChecked, setIsAllChecked] = useState(undefined)
     
 
     function handleSelectIngredient(selectedIngredient) {
@@ -27,21 +27,26 @@ function _RecipeIngredient({ recipe }) {
     }
 
     function setToOrderList() {
-        if (numOfINgredients === 0) {   
+    
+        if (numOfINgredients === 0) {
+          
             handleSelectAllIngredients()
         }
+
     }
 
     function handleSelectAllIngredients() {
         let ingredients = recipe.ingredients
-        setIsAllChecked(isAllChecked ? false : true)
+        setIsAllChecked(isAllChecked ?false : true)
+        console.log(isAllChecked);
         if (!isAllChecked) {
             setSelectedIngredients(ingredients)
             console.log(ingredients)
         }
         else {
-            setNumOfINgredients(ingredients.length);
             setSelectedIngredients([])
+           
+            setNumOfINgredients(ingredients.length);
         }
     }
 
@@ -56,7 +61,12 @@ function _RecipeIngredient({ recipe }) {
 
 
     function goToCheckout() {
-        if (numOfINgredients === 0) return
+        // console.log(selectedIngredients,'yes');
+        // if (numOfINgredients === 0) {
+        //     console.log(numOfINgredients);
+        //     return
+        // }
+            
         history.push({ pathname: '/order', state: { selectedIngredients: selectedIngredients } })
 
     }
