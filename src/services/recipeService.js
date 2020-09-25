@@ -5,7 +5,8 @@ export const recipeService = {
     getById,
     save,
     remove,
-    getRatingAvg
+    getRatingAvg,
+    getRandomInt
 }
 
 function query(filterBy) {
@@ -37,3 +38,19 @@ function getRatingAvg(recipe) {
         return ratingAvg
     }
 }
+
+// function getReview(recipe, user) {
+//     return recipe.reviews.map(review => {
+//         review.by._id === user._id 
+
+//     })
+// }
+
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
