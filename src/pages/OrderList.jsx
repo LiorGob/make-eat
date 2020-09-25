@@ -44,13 +44,7 @@ export class _OrderList extends Component {
         
     }
 
-    // onTotalAmount=(price)=>{
-    //     console.log(price);
-    //     let totalAmount=this.props.recipe
-    //  let ingredientPrices=
-    //  .reduce((acc,price)=>acc+price)
-    
-    // }
+   
 
     render() {
 
