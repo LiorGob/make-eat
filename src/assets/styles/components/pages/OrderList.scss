@@ -4,10 +4,17 @@
     align-items: center;
 
     .shopping-details{
+        display: flex;
+        flex-direction: column;
+        align-self: flex-end;
         border: 1px solid rgb(221, 221, 221);
         border-radius: 12px;
         padding: 24px;
         box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+
+        p{
+            font-size:rem(18px) ;
+        }
     }
 
 }

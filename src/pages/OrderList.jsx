@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getRecipe } from '../store/actions/recipeActions.js';
-import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
-// import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Button from '@material-ui/core/Button';
 import { addNotification } from '../store/actions/orderActions.js';
 // import { Badge } from '@material-ui/core';
@@ -17,6 +15,7 @@ export class _OrderList extends Component {
 
 
     componentDidMount() {
+        window.scroll(0, 0);
         const { location } = this.props
         let selectedIngredients = location && location.state ? location.state.selectedIngredients : []
         if (selectedIngredients.length > 0) sessionStorage.setItem("orderList", JSON.stringify(selectedIngredients))
@@ -70,9 +69,9 @@ export class _OrderList extends Component {
 
                     <h1 className="order-title flex">Shopping Cart</h1>
                     <div className="shopping-details">
-                        <h3 className="total-amount">Total Order : ${this.getTotalAmount()}</h3>
-                        <h3>sheeping : 5$</h3>
-                        <h3>Total with Sheeping : ${this.getTotalAmountWithSheepping()}</h3>
+                        <p className="total-amount">Total Order : ${this.getTotalAmount()}</p>
+                        <p>Sheeping : $5</p>
+                        <p>Total With Sheeping : ${this.getTotalAmountWithSheepping()}</p>
                         <Button onClick={() => this.onCheckout()} variant="outlined" color="secondary" className="recipe-details-btn align-end btn btn-primary
 " style={{ width: '100px' }} >
                             Pay Now!
