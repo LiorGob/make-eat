@@ -42,10 +42,12 @@
     }
     .share-btns {
         flex: 0 0 48px;
-        position: relative;
+        position: sticky;
+        top: 0;
         margin-right: 80px;
         .docked {
-            position: fixed;
+            // top: 0;
+            // position: fixed;
             margin-top: 1em;
             button {
                 border-color: $clr12;
@@ -77,13 +79,7 @@
         position: relative;
         li {
             margin-bottom: rem(44px);
-        }
-        .recipe-details-btn {
-            color: $clr9;
-            font-weight: bold;
-            padding: 1em;
-            font-size: 1em;
-        }
+        }        
     }
     .recipe-ingredients {
         &:before {

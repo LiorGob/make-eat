@@ -11,9 +11,9 @@ async function populateUsers() {
     var map = {}
     data.user.map(async (user) => {
         var newUser = {...user};
-        user.password = '111';
-        user.isAdmin = false;
-        createDocumentMap(user, 'user', 'USERS', map)
+        newUser.password = '111';
+        newUser.isAdmin = false;
+        return createDocumentMap(newUser, 'user', 'USERS', map)
     });
 }
 
@@ -22,7 +22,7 @@ async function populateProduce() {
     data.produce.map(produce => {
         var price = produce.price; 
         produce = { ...produce, price: price.toString()};
-        createDocumentMap(produce, 'produce', 'PRODUCES', map) 
+        return createDocumentMap(produce, 'produce', 'PRODUCES', map);
     });
 }
 
@@ -32,6 +32,7 @@ async function createDocumentMap(item, path, key, map) {
     var insertedItem = await httpService.post(path, newItem);
     map[item._id] = insertedItem._id;
     saveToStorage(key, map);
+    return newItem;
 }
 
 function populateRecipe(){
