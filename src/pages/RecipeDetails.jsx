@@ -34,6 +34,7 @@ class _RecipeDetails extends Component {
         this.props.getRecipe(id);
         const randomReviewsNum = this.getRandomNum();
         const reviewsNum = randomReviewsNum * 20
+        // save with session
         this.setState({ reviewsNum })
 
     }
@@ -108,16 +109,16 @@ class _RecipeDetails extends Component {
                     {/* </div> */}
 
                     <div className="grid-container">
-                        <div className="share-btns flex column justify-center">
+                        <div className="share-btns flex column border-grey">
                             {/* <div className="docked"> */}
                                 {/* <ButtonGroup className="btn btn-primary" size="large" color="secondary"  aria-label="large outlined primary button group" orientation="vertical"> */}
-                                    <Button className="btn btn-primary" variant="outlined" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon className="save-icon"/>}>Save</Button>
-                                    <div className="social-btn flex row justify-center space-between">
-                                    <Button className="btn btn-primary"  variant="outlined" color="secondary"  startIcon={<FacebookIcon className="relative-left"/>}></Button>
-                                    <Button className="btn btn-primary"  variant="outlined" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
-                                    <Button className="btn btn-primary"  variant="outlined" color="secondary" startIcon={<InstagramIcon className="relative-left"/>}></Button>
+                                    <Button className="btn btn-primary" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon className="save-icon"/>}>Save</Button>
+                                    <div className="social-btn flex row justify-center">
+                                    <Button className="btn btn-primary"  color="secondary"  startIcon={<FacebookIcon className="relative-left"/>}></Button>
+                                    <Button className="btn btn-primary"  color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
+                                    <Button className="btn btn-primary"  color="secondary" startIcon={<InstagramIcon className="relative-left"/>}></Button>
                                     </div>
-                                    <Button className="made-it btn btn-primary" variant="outlined" color="secondary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt}>
+                                    <Button className="made-it btn btn-primary"  color="secondary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt}>
                                         I Made It
                                        </Button>
                                 {/* </ButtonGroup> */}
