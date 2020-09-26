@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import DoneAllIcon from '@material-ui/icons/DoneAll';
 import { withRouter } from 'react-router'
 import { useHistory } from 'react-router-dom'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -7,7 +6,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Tooltip from '@material-ui/core/Tooltip';
-import { Badge } from '@material-ui/core';
+
 
 
 function _RecipeIngredient({ recipe }) {
@@ -15,7 +14,7 @@ function _RecipeIngredient({ recipe }) {
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [numOfINgredients, setNumOfINgredients] = useState(0);
     const [isAllChecked, setIsAllChecked] = useState(undefined)
-    
+
 
     function handleSelectIngredient(selectedIngredient) {
         const ingredientsNotFound = -1
@@ -29,9 +28,9 @@ function _RecipeIngredient({ recipe }) {
     }
 
     function setToOrderList() {
-    
+
         if (numOfINgredients === 0) {
-          
+
             handleSelectAllIngredients()
         }
 
@@ -39,7 +38,7 @@ function _RecipeIngredient({ recipe }) {
 
     function handleSelectAllIngredients() {
         let ingredients = recipe.ingredients
-        setIsAllChecked(isAllChecked ?false : true)
+        setIsAllChecked(isAllChecked ? false : true)
         console.log(isAllChecked);
         if (!isAllChecked) {
             setSelectedIngredients(ingredients)
@@ -47,7 +46,7 @@ function _RecipeIngredient({ recipe }) {
         }
         else {
             setSelectedIngredients([])
-           
+
             setNumOfINgredients(ingredients.length);
         }
     }
@@ -68,7 +67,7 @@ function _RecipeIngredient({ recipe }) {
         //     console.log(numOfINgredients);
         //     return
         // }
-            
+
         history.push({ pathname: '/order', state: { selectedIngredients: selectedIngredients } })
 
     }
@@ -77,31 +76,30 @@ function _RecipeIngredient({ recipe }) {
 
 
     return (
-        <div className="recipe-ingredients recipe-section">
+        <div className="recipe-ingredients">
             <h2>Ingredients:</h2>
             {/* <button className="select-all" onClick={handleSelectAllIngredients} ><AddIcon color="secondary"></AddIcon></button> */}
-           
+
             <ul>
                 {recipe.ingredients.map((ingredient, idx) =>
                     <li className="clean-list" key={`${ingredient.produceId}_${idx}`}>
                         <label>
                             <FormControlLabel
-
                                 control={<Checkbox checked={isAllChecked || isIngredientChecked(ingredient.name)} onChange={() => handleSelectIngredient(ingredient)} />}
                                 label={`${ingredient.amount} ${ingredient.spec ? ingredient.spec : ''} ${ingredient.name}`}
                             />
-                           
+
                         </label>
                     </li>)}
             </ul>
-            <Button variant="outlined" color="secondary" onClick={setToOrderList} endIcon={<DoneAllIcon style={{ color: '#ff385c' }} />} className="recipe-details-btn">
+            <div className="btn-ingredients flex">
+            <Button variant="outlined" color="secondary" onClick={setToOrderList} className="btn btn-primary">
                 Add {numOfINgredients === 0 ? 'All' : numOfINgredients} Ingredients To Shopping Cart
             </Button>
             <Tooltip title="Go to shopping Cart">
-     
-                <ShoppingCartIcon className="checkout " color="secondary" style={{ width: "50px", height: "40px", cursor: "pointer" }} onClick={goToCheckout} />
-                
+                <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ width: "90px", height: "40px", cursor: "pointer" /*position: "absolute"*/ }} onClick={goToCheckout} />
             </Tooltip>
+            </div>
         </div>
 
     )

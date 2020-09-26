@@ -6,6 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 // import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Button from '@material-ui/core/Button';
 import {addNotification} from '../store/actions/orderActions.js';
+// import { Badge } from '@material-ui/core';
 
 export class _OrderList extends Component {
     state = {

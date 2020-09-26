@@ -1,0 +1,152 @@
+.recipe-details {
+    .absract-recipe {
+        p {
+            &:before {
+                content: "";
+                position: absolute;
+                background-image: url("https://res.cloudinary.com/dbfuiddgm/image/upload/v1600645336/makeeat/ar-quote_lqvbra.svg");
+                background-repeat: no-repeat;
+                background-position: left top;
+                background-size: cover;
+                width: 48px;
+                height: 48px;
+                opacity: 0.25;
+                margin: -12px 0 0 -12px;
+                fill: $clr12;
+            }
+        }
+    }
+    .review-details {
+        font-size: 0.8em;
+        margin-bottom: 1.5em;
+        .rating-star {
+            position: relative;
+            bottom: 3px;
+        }
+    }
+
+    .createdBy-recipe {
+        .circle-img {
+            width: rem(65px);
+        }
+        .createdBy-name {
+            margin-left: 1.5em;
+            font-size: rem(14px);
+            align-self: center;
+        }
+    }
+
+    .gallery {
+        width: 50%;
+        padding: 1rem;
+    }
+    .share-btns {
+        flex: 0 0 48px;
+        position: relative;
+        margin-right: 80px;
+        .docked {
+            position: fixed;
+            margin-top: 1em;
+            button {
+                border-color: $clr12;
+                color: $clr9;
+                &:hover {
+                    border-color: $clr12;
+                }
+                & > span {
+                    flex-direction: column;
+                }
+            }
+            .MuiButton-startIcon{
+                margin-left: 4px;
+            }
+        }
+    }
+    .recipe-content-container {
+        aside {
+            width: rem(220px);
+            margin-left: 2em;
+            margin-top: 1em;
+            font-size: 0.8em;
+        }
+    }
+    .recipe-section {
+        list-style-type: none;
+        border-top: 2px solid $clr14;
+        padding: 1rem;
+        position: relative;
+        li {
+            margin-bottom: rem(44px);
+        }
+        .recipe-details-btn {
+            color: $clr9;
+            font-weight: bold;
+            padding: 1em;
+            font-size: 1em;
+        }
+    }
+    .recipe-ingredients {
+        &:before {
+            border-radius: 100%;
+            content: "";
+            position: absolute;
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: #d9d9d9;
+            box-shadow: 0 0 0 4px #fff;
+            top: -5px;
+            left: 0;
+        }
+    }
+    .min-info {
+        border: 2px solid $clr14;
+        padding: 1rem;
+        position: relative;
+        & > div {
+            margin-bottom: 1em;
+        }
+        .icon-wrapper {
+            position: relative;
+            top: -29px;
+            left: 27px;
+            border-radius: 50%;
+            border: 5px solid white;
+            // display: inline-block;
+            float: right;
+            background-color: white;
+            svg {
+                font-size: 2.6em;
+            }
+        }
+    }
+    .btn-share {
+        justify-content: space-around;
+        button {
+            a {
+                color: $clr9;
+                font-family: SourceSanPro;
+            }
+        }
+    }
+
+    .recipe-directions {
+        .spoon-right {
+            position: relative;
+            top: -36px;
+            left: 27px;
+            border-radius: 50%;
+            border: 5px solid white;
+            // display: inline-block;
+            float: right;
+            background-color: white;
+            svg {
+                width: rem(30px);
+                height: rem(30px);
+            }
+        }
+        label span:nth-child(2){
+            font-weight: bold;
+        }
+    }
+}
