@@ -46,20 +46,20 @@ class _Home extends Component {
             <div className="home-page flex column">
                 <div className="hero">
                     {/* poster={heroposter} */}
-                    <video className="video-home" autoPlay muted preload="auto">
+                    <video className="video-home" autoPlay muted preload="auto" loop>
                         <source src={hero} type="video/mp4" />
                         Your browser doesn't support the video tag
                     </video>
-                    <div className="caption card-grid">
+                    <div className="caption">
                         <div className="hp-titles">
-                            <h1>Make Eat Share</h1>
+                            <h1><span>Make</span> <span>Eat</span> <span>Share</span></h1>
                         </div>
                         <Search />
                     </div>
                 </div>
                 <div className="main-container cuisine-container">
+                        <h2>Best recipes from around the world</h2>
                     <div className="cuisine-card">
-                        <h2>world Cuisin</h2>
                         {images.map((img, idx) => {
                             return (<div key={`${idx}${img.image}`}>
                                 <img onClick={() => this.changeRoute(img.route, img.tag)} src={img.image} alt="" />

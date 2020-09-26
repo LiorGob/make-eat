@@ -1,0 +1,48 @@
+// .shopping-cart-icon-enter {
+//   opacity: 0;
+//   transform: scale(0.9);
+//   background-color: white;
+// }
+// .shopping-cart-icon-enter-active {
+//   opacity: 1;
+//   transform: translateX(0);
+//   background-color: red;
+//   transition: opacity 500ms, transform 300ms, background-color 500ms;
+// }
+// .shopping-cart-icon-exit {
+//   opacity: 1;
+// }
+// .shopping-cart-icon-exit-active {
+//   opacity: 0;
+//   transform: scale(0.9);
+//   transition: opacity 300ms, transform 300ms, background-color 500ms;
+// }
+// .move-btn-exit{
+
+// }
+// .move-btn-exit-active{
+//     transform: translateX(500px) 400ms;
+// }
+.button-container {
+    position: relative;
+}
+.fade-enter button {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+.fade-enter-active button {
+    opacity: 1;
+    transform: translateX(0%);
+}
+.fade-exit button {
+    opacity: 1;
+    transform: translateX(0%);
+}
+.fade-exit-active button {
+    opacity: 0;
+    transform: translateX(100%);
+}
+.fade-enter-active button,
+.fade-exit-active button {
+    transition: opacity 500ms, transform 500ms;
+}
