@@ -67,6 +67,7 @@
         text-align: center;
         margin-bottom: rem(36px);
         border: 1px solid $clr7;
+        border-radius: rem(3px);
         padding: 1rem;
         & > div {
             padding: 1em;
@@ -131,20 +132,29 @@
 
         .share-btns {
             grid-column: 3/4;
+            height: rem(198px);
+            border-radius: rem(3px);
+            box-shadow: $clr17 0px 6px 16px;
             // grid-row: 1/2;
-            justify-content: space-around;
+            // justify-content: space-around;
             // justify-content: space-evenly;
             // justify-content: space-between;
 
+            .MuiButton-iconSizeMedium > *:first-child {
+                font-size: rem(25px);
+            }
             .save-icon {
                 position: relative;
                 bottom: 2px;
             }
 
             .made-it {
+                .MuiButton-label{
+                    height: rem(31px);
+                }
                 svg {
                     position: relative;
-                    top: 5px;
+                    top: 3px;
                 }
             }
 
@@ -171,7 +181,8 @@
         }
         .recipe-section {
             list-style-type: none;
-            border-top: 2px solid $clr14;
+            border-top: 1px solid $clr7;
+            border-bottom: 1px solid $clr7;
             // padding: 1rem;
             // position: relative;
             // li {
@@ -185,13 +196,13 @@
             .spoon-right {
                 position: relative;
                 // top: -36px;
-                bottom: rem(18px);
-                left: rem(33px);
+                bottom: rem(21px);
+                left: rem(8px);
                 // border-radius: 50%;
-                // border: 5px solid white;
+                border: 5px solid white;
                 // display: inline-block;
                 float: right;
-                // background-color: white;
+                background-color: white;
                 svg {
                     grid-column: 1/4;
                     width: rem(30px);

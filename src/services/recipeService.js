@@ -6,7 +6,6 @@ export const recipeService = {
     save,
     remove,
     getRatingAvg,
-    getRandomInt
 }
 
 function query(filterBy) {
@@ -46,11 +45,5 @@ function getRatingAvg(recipe) {
 //     })
 // }
 
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 
