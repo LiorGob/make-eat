@@ -7,6 +7,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Tooltip from '@material-ui/core/Tooltip';
+import { Badge } from '@material-ui/core';
+
 
 function _RecipeIngredient({ recipe }) {
     let history = useHistory()
@@ -96,7 +98,9 @@ function _RecipeIngredient({ recipe }) {
                 Add {numOfINgredients === 0 ? 'All' : numOfINgredients} Ingredients To Shopping Cart
             </Button>
             <Tooltip title="Go to shopping Cart">
-                <ShoppingCartIcon className="checkout " color="secondary" style={{ width: "90px", height: "40px", cursor: "pointer", position: "absolute" }} onClick={goToCheckout} />
+     
+                <ShoppingCartIcon className="checkout " color="secondary" style={{ width: "50px", height: "40px", cursor: "pointer" }} onClick={goToCheckout} />
+                
             </Tooltip>
         </div>
 
