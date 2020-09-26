@@ -10,6 +10,8 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
+
+
 function _RecipeIngredient({ recipe }) {
     let history = useHistory()
     const [ingredients, setIngredients] = useState(recipe.ingredients.map(ingredient => { return { ...ingredient, selected: false } }));
@@ -59,7 +61,7 @@ function _RecipeIngredient({ recipe }) {
     }
 
     return (
-        <div className="recipe-ingredients recipe-section">
+        <div className="recipe-ingredients">
             <h2>Ingredients:</h2>
             <ul>
                 {ingredients.map((ingredient, idx) =>

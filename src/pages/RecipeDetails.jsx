@@ -1,31 +1,50 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getRecipe, addToFavorites, addToMadeIt } from '../store/actions/recipeActions';
+import SpoonIcon from '../cmps/icons/SpoonIcon';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import InstagramIcon from '@material-ui/icons/Instagram';
+// import PrintIcon from '@material-ui/icons/Print';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import PinterestIcon from '@material-ui/icons/Pinterest';
+import AlarmIcon from '@material-ui/icons/Alarm';
+import AlarmOnIcon from '@material-ui/icons/AlarmOn';
+// import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import GroupIcon from '@material-ui/icons/Group';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+// import ScheduleIcon from '@material-ui/icons/Schedule';
+import RatingStar from '../cmps/icons/RatingStar';
+import { ImageCarousel } from '../cmps/ImageCarousel';
+import { HashLink as Link } from 'react-router-hash-link';
 
 import { RecipeIngredient } from '../cmps/recipe/RecipeIngredient';
 import { RecipeDirection } from '../cmps/recipe/RecipeDirection'
 import { recipeService } from '../services/recipeService';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import PrintIcon from '@material-ui/icons/Print';
-import PinterestIcon from '@material-ui/icons/Pinterest';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import ScheduleIcon from '@material-ui/icons/Schedule';
-import RatingStar from '../cmps/icons/RatingStar';
-import { ImageCarousel } from '../cmps/ImageCarousel';
-import LatestReviews from '../cmps/review/LatestReviews';
-import { HashLink as Link } from 'react-router-hash-link';
+import { getRecipe, addToFavorites, addToMadeIt } from '../store/actions/recipeActions';
+import { LatestReviews } from '../cmps/review/LatestReviews';
 
 class _RecipeDetails extends Component {
 
+    state = {
+
+    }
+
     componentDidMount() {
-        const { id } = this.props.match.params
-        this.props.getRecipe(id)
+        const { id } = this.props.match.params;
+        this.props.getRecipe(id);
+        const randomReviewsNum = this.getRandomNum();
+        const reviewsNum = randomReviewsNum * 20
+        this.setState({ reviewsNum })
+
     }
 
     getAvg = () => {
         const currRecipe = this.props.recipe
         return recipeService.getRatingAvg(currRecipe)
+    }
+
+    getRandomNum = () => {
+        return recipeService.getRandomInt(1, 10)
     }
 
     onAddToFavorites = () => {
@@ -50,56 +69,67 @@ class _RecipeDetails extends Component {
         const { recipe, loggedInUser } = this.props;
         if (!recipe) return <div>Loading...</div>
         const ratingAvg = this.getAvg()
-        const isOwner = loggedInUser && loggedInUser._id === recipe.createdBy._id;
+        const { reviewsNum } = this.state
+        // const isOwner = loggedInUser && loggedInUser._id === recipe.createdBy._id;
         return (
             <div className="main-container">
                 <div className="recipe-details">
                     <div className="absract-recipe flex column">
                         <h1>{recipe.name}</h1>
-                        <div className="review-details flex row pipe">
+                        <div className="review-details flex row padding-bottom">
                             <RatingStar />
-                            <span>{`${ratingAvg}(${recipe.reviews.length} Ratings)`} </span>
-                            <span><Link to={`/recipe/${recipe._id}#latest-review-list`} className="color-underline">{recipe.reviews?.length} Reviews</Link></span>
-                            <span>{recipe.imgs.length} Images</span>
+                            <span><Link to={`/recipe/${recipe._id}#latest-review-list`} className="color-underline font-bold">{`${ratingAvg}(${reviewsNum})`}</Link></span>
                         </div>
-                        <p>{recipe.abstract}</p>
+                        <div className="gallery-warapper flex row">
+                            <ImageCarousel images={recipe.imgs} /*recipeName={recipe.name}*/ />
+                        </div>
+                        <div className="createdBy-recipe flex row">
+                            <div><img className="circle-img" src={recipe.createdBy?.imgUrl} alt={`${recipe.createdBy?.fullName} profile`} /></div>
+                            <h2 className="createdBy-name">Recipe By {recipe.createdBy?.fullName}</h2>
+                        </div>
+                        <div className="abstract"><p>{recipe.abstract}</p></div>
                     </div>
-                    <div className="createdBy-recipe flex row">
-                        <div><img className="circle-img" src={recipe.createdBy?.imgUrl} alt={`${recipe.createdBy?.fullName} profile`} /></div>
-                        <div className="createdBy-name">By {recipe.createdBy?.fullName}</div>
-                    </div>
-                    <div className="flex row">
-                        <div className="share-btns">
-                            <div className="docked">
-                                <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group" orientation="vertical">
-                                    <Button onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon />}>Save</Button>
-                                    <Button startIcon={<PrintIcon />}>Print</Button>
-                                    <Button startIcon={<PinterestIcon />}>Pin</Button>
-                                </ButtonGroup>
+                    <div className="min-info">
+                        <div className="prep-time">
+                            <div className="icon-wrapper"><AlarmIcon className="main-color" fontSize="large" /></div>
+                            <span className="font-bold"> Prep:</span> {recipe.prepTime} min
                             </div>
+                        <div className="total-time">
+                            <div className="icon-wrapper"><AlarmOnIcon className="main-color" fontSize="large" /></div>
+                            <span className="font-bold"> Total: </span>{recipe.totalTime} min
+                            </div>
+                        <div className="servings">
+                            <div className="icon-wrapper"><GroupIcon className="main-color" fontSize="large" /></div>
+                            <span className="font-bold">Servings:</span> {recipe.servings}
                         </div>
-                        <div className="recipe-content-container">
-                            <div className="flex row">
-                                <div className="gallery">
-                                    <ImageCarousel images={recipe.imgs} recipeName={recipe.name} />
-                                </div>
-                                <aside>
-                                    <div className="min-info">
-                                        <div className="icon-wrapper"><ScheduleIcon className="main-color" style={{ float: "right" }} fontSize="large" />
-                                        </div>
-                                        <div><span className="font-bold"> Prep:</span> {recipe.prepTime} min</div>
-                                        <div><span className="font-bold"> Total: </span>{recipe.totalTime} min</div>
-                                        <div><span className="font-bold">Servings:</span> {recipe.servings}</div>
+                    </div>
+                    {/* {isOwner && <Link to={`/recipe/edit/${recipe._id}`}><button>Edit your recipe</button></Link>} */}
+                    {/* </aside> */}
+                    {/* </div> */}
+
+                    <div className="grid-container">
+                        <div className="share-btns flex column justify-center">
+                            {/* <div className="docked"> */}
+                                {/* <ButtonGroup className="btn btn-primary" size="large" color="secondary"  aria-label="large outlined primary button group" orientation="vertical"> */}
+                                    <Button className="btn btn-primary" variant="outlined" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon className="save-icon"/>}>Save</Button>
+                                    <div className="social-btn flex row justify-center space-between">
+                                    <Button className="btn btn-primary"  variant="outlined" color="secondary"  startIcon={<FacebookIcon className="relative-left"/>}></Button>
+                                    <Button className="btn btn-primary"  variant="outlined" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
+                                    <Button className="btn btn-primary"  variant="outlined" color="secondary" startIcon={<InstagramIcon className="relative-left"/>}></Button>
                                     </div>
-                                    {isOwner && <Link to={`/recipe/edit/${recipe._id}`}><button>Edit your recipe</button></Link>}
-                                </aside>
-                            </div>
-                            <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
-                            <RecipeDirection recipe={recipe} onAddToMadeIt={this.onAddToMadeIt} />
-                            <LatestReviews recipe={recipe} count="1"/>
-                            {/* <ReviewDialog recipe={recipe} doOpen={this.state.openReviewDialog}/> */}
+                                    <Button className="made-it btn btn-primary" variant="outlined" color="secondary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt}>
+                                        I Made It
+                                       </Button>
+                                {/* </ButtonGroup> */}
+                            {/* </div> */}
                         </div>
+
+                        <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
+                        <RecipeDirection recipe={recipe} /*onAddToMadeIt={this.onAddToMadeIt}*/ />
+                        <LatestReviews recipe={recipe} count="1" reviewsNum={reviewsNum} ratingAvg={ratingAvg} />
+                        {/* <ReviewDialog recipe={recipe} doOpen={this.state.openReviewDialog}/> */}
                     </div>
+
                 </div>
             </div>
         )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SpoonIcon from '../icons/SpoonIcon';
 import { RecipeDirectionStep } from './RecipeDirectionStep';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 
 export class RecipeDirection extends Component {
 
@@ -29,14 +29,15 @@ export class RecipeDirection extends Component {
         return (
             <div className="recipe-directions recipe-section" >
                 <div className="spoon-right"><SpoonIcon /></div>
+                {/* <div className="spoon-right"><SpoonIcon /></div> */}
                 <h2 className="font-bold">Directions</h2>
                 <ul>
                     {recipe.directions.map((direction, idx) =>
                         <RecipeDirectionStep key={idx} direction={direction} idx={idx} onDirectionCheck={this.onDirectionCheck} directionChecked={this.state.directions[idx]} />)}
                 </ul>
-                <Button variant="outlined" color="secondary" startIcon={<SpoonIcon />} className="recipe-details-btn" onClick={this.props.onAddToMadeIt}>
+                {/* <Button variant="outlined" color="secondary" startIcon={<SpoonIcon />} className="btn btn-primary" onClick={this.props.onAddToMadeIt}>
                     I Made It
-                </Button>
+                </Button> */}
             </div>
 
         )

@@ -6,12 +6,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 // import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Button from '@material-ui/core/Button';
 import {addNotification} from '../store/actions/orderActions.js';
+// import { Badge } from '@material-ui/core';
 
 export class _OrderList extends Component {
     state = {
         produceId: '',
         selectedIngredients:[],
-        // totalAmount
+        prices:[]
     }
 
 
@@ -44,19 +45,23 @@ export class _OrderList extends Component {
         
     }
 
-    // onTotalAmount=(price)=>{
-    //     console.log(price);
-
-    // }
+   
+getTotalAmount() {
+  const {selectedIngredients} = this.state
+   let ingredientPriceList =selectedIngredients.map((ingredient)=>ingredient.price)
+ return  ingredientPriceList.reduce((prev,cur)=>prev+cur)
+    
+}
 
     render() {
 
         if (!this.state.selectedIngredients.length) return <div>Loading...</div>
         return (
-            <div className="main-container">
+            <div className="main-content main-container">
                
                 <h1 className="order-title flex">Shopping Cart</h1>
-                {/* <h2 className="total-amount" {this.state.totalAmount}></h2> */}
+                <h2 className="total-amount">Total ${this.getTotalAmount()}</h2>
+                
                 <ul className="order-list">
                     
                     {this.state.selectedIngredients.map((ingredient, index) =>
@@ -73,10 +78,12 @@ export class _OrderList extends Component {
                     }
 
                 </ul>
-                <Button  onClick={()=>this.onCheckout()} variant="outlined" color="secondary" className="recipe-details-btn" style={{ width: '100px' }} >
-                    Checkout
+        
+                <Button  onClick={()=>this.onCheckout()} variant="outlined" color="secondary" className="recipe-details-btn align-end" style={{ width: '100px' }} >
+                    Pay Now!
                   
                 </Button>
+              
             </div>
         )
 
@@ -99,4 +106,11 @@ const mapDispatchToProps = {
 export const OrderList = connect(mapStateToProps, mapDispatchToProps)(_OrderList)
 
 
-
+/* <Tooltip title="Go to shopping Cart">
+<Badge badgeContent={numOfINgredients} anchorOrigin={{
+vertical: 'top',
+horizontal: 'right',
+}} color="secondary">
+    <ShoppingCartIcon className="checkout " color="secondary" style={{ width: "50px", height: "40px", cursor: "pointer" }} onClick={goToCheckout} />
+    </Badge>
+</Tooltip> */
