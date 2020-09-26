@@ -5,6 +5,7 @@ import { getRecipe, addToFavorites, addToMadeIt } from '../store/actions/recipeA
 import { RecipeIngredient } from '../cmps/recipe/RecipeIngredient';
 import { RecipeDirection } from '../cmps/recipe/RecipeDirection'
 import { recipeService } from '../services/recipeService';
+import{utilService} from '../services/utilService';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PrintIcon from '@material-ui/icons/Print';
 import PinterestIcon from '@material-ui/icons/Pinterest';
@@ -37,7 +38,7 @@ class _RecipeDetails extends Component {
     }
 
     getRandomNum = () => {
-        return recipeService.getRandomInt(1, 10)
+        return utilService.getRandomInt(1, 10)
     }
 
     onAddToFavorites = () => {

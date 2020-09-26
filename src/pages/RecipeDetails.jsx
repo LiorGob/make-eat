@@ -20,6 +20,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 import { RecipeIngredient } from '../cmps/recipe/RecipeIngredient';
 import { RecipeDirection } from '../cmps/recipe/RecipeDirection'
 import { recipeService } from '../services/recipeService';
+import { utilService } from '../services/utilService';
 import { getRecipe, addToFavorites, addToMadeIt } from '../store/actions/recipeActions';
 import { LatestReviews } from '../cmps/review/LatestReviews';
 
@@ -45,7 +46,7 @@ class _RecipeDetails extends Component {
     }
 
     getRandomNum = () => {
-        return recipeService.getRandomInt(1, 10)
+        return utilService.getRandomInt(1, 10)
     }
 
     onAddToFavorites = () => {
@@ -111,17 +112,17 @@ class _RecipeDetails extends Component {
                     <div className="grid-container">
                         <div className="share-btns flex column border-grey">
                             {/* <div className="docked"> */}
-                                {/* <ButtonGroup className="btn btn-primary" size="large" color="secondary"  aria-label="large outlined primary button group" orientation="vertical"> */}
-                                    <Button className="btn btn-primary" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon className="save-icon"/>}>Save</Button>
-                                    <div className="social-btn flex row justify-center">
-                                    <Button className="btn btn-primary"  color="secondary"  startIcon={<FacebookIcon className="relative-left"/>}></Button>
-                                    <Button className="btn btn-primary"  color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
-                                    <Button className="btn btn-primary"  color="secondary" startIcon={<InstagramIcon className="relative-left"/>}></Button>
-                                    </div>
-                                    <Button className="made-it btn btn-primary"  color="secondary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt}>
-                                        I Made It
+                            {/* <ButtonGroup className="btn btn-primary" size="large" color="secondary"  aria-label="large outlined primary button group" orientation="vertical"> */}
+                            <Button className="btn btn-primary" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon className="save-icon" />}>Save</Button>
+                            <div className="social-btn flex row justify-center">
+                                <Button className="btn btn-primary" color="secondary" startIcon={<FacebookIcon className="relative-left" />}></Button>
+                                <Button className="btn btn-primary" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
+                                <Button className="btn btn-primary" color="secondary" startIcon={<InstagramIcon className="relative-left" />}></Button>
+                            </div>
+                            <Button className="made-it btn btn-primary" color="secondary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt}>
+                                I Made It
                                        </Button>
-                                {/* </ButtonGroup> */}
+                            {/* </ButtonGroup> */}
                             {/* </div> */}
                         </div>
 

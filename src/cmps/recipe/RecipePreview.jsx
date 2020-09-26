@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import RatingStar from '../icons/RatingStar';
 import Truncate from 'react-truncate';
 import { recipeService } from '../../services/recipeService';
+import {utilService} from '../../services/utilService';
 
 
 export function RecipePreview({ recipe, showReviewBy }) {
 
     let ratingAvg = recipeService.getRatingAvg(recipe);
-    const randomIntRating = recipeService.getRandomInt(1, 10)
+    const randomIntRating = utilService.getRandomInt(1, 10)
     const reviewByUser = showReviewBy ? recipe.reviews.filter(review => review.by._id === showReviewBy._id)[0] : null;
 
     return (
