@@ -9,7 +9,7 @@ import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-
+import { utilService } from '../../services/utilService';
 
 
 function _RecipeIngredient({ recipe }) {
@@ -50,8 +50,11 @@ function _RecipeIngredient({ recipe }) {
     }
 
     function getButtonLabel() {
+        let labelStr = utilService.template`Add ${0} Ingredient${1} To Shopping Cart`;
         const selectedNum = getSelectedIngredientsNum();
-        return (selectedNum === 0) ? 'All' : selectedNum;
+        const pluralForm = selectedNum === 1 ? '' : 's';
+        const selectedStr = ((selectedNum === 0) ? 'All ' : selectedNum);
+        return labelStr(selectedStr, pluralForm);
     }
 
     function goToCheckout() {
@@ -83,7 +86,7 @@ function _RecipeIngredient({ recipe }) {
                     <div className="button-container">
                         {!addedToCart ?
                             <Button variant="outlined" color="secondary" onClick={addIngredients} className="btn btn-primary">
-                                Add {getButtonLabel()} Ingredients To Shopping Cart
+                                {getButtonLabel()}
                             </Button>
                             :
                             <IconButton aria-label="cart" onClick={goToCheckout}>
