@@ -84,6 +84,9 @@
     }
 }
 
+.self-center{
+    align-self: center;
+}
 /* List helpers */
 
 .clean-list {
@@ -146,10 +149,11 @@
     margin-right: 0.3em;
 }
 .border-botton-grey {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid $clr7;
 }
 .pipe {
-    span, li {
+    span,
+    li {
         &:not(:last-child):after {
             content: "|";
             padding: 0 1em;
@@ -164,6 +168,22 @@
     }
 }
 
+.border-grey {
+    border: 1px solid $clr7;
+}
+
+.padding-bottom {
+    padding-bottom: rem(20px);
+}
+
+.font-size-details {
+    font-size: rem(18px);
+}
+
+.relative-left{
+    position: relative;
+    left:5px;
+}
 // Media helpers
 
 // .square-ratio {

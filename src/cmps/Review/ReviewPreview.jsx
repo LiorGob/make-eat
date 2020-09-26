@@ -20,7 +20,7 @@ export function ReviewPreview({ review }) {
                         <div className="recipe-review-date">12/03/2018</div>
                     </div>
                     <div className="recipe-review-rating flex row">
-                        <RatingStar />{review.rating}
+                        {/* <RatingStar />{review.rating} */}
                     </div>
                 </div>
             </div>

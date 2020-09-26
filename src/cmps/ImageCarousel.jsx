@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-var Carousel = require('react-responsive-carousel').Carousel;
+// var Carousel = require('react-responsive-carousel').Carousel;
 
 export class ImageCarousel extends Component {
     render() {
@@ -7,19 +7,21 @@ export class ImageCarousel extends Component {
         //onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}
         return (
 
-            <Carousel showArrows={true} >
+            // <Carousel showArrows={true} >
+            <div className="gallery">
                 {
                     images.map((image, ind) => {
                         return (
-                            <div key={`gallery-image-${ind}`}>
+                            <div className={`gallery-image-${ind}`} key={`gallery-image-${ind}`}>
                                 <img src={image} alt={`${this.props.recipeName}`} />
-                                <p className="legend">{this.props.recipeName}</p>
+                                {/* <p className="legend">{this.props.recipeName}</p> */}
                             </div>
 
                         )
                     })
                 }
-            </Carousel>
+            {/* </Carousel> */}
+            </div>
         );
     }
 }
