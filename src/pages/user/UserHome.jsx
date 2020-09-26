@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import qs from 'qs';
 import { getUser, setLoggedUserAsUser } from '../../store/actions/userActions';
 import { loadRecipes, addToFavorites } from '../../store/actions/recipeActions';
 import { About } from '../../cmps/user/About';

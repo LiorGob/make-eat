@@ -33,7 +33,9 @@ export function UserRecipes({ recipes, user }) {
                     <RecipeList recipes={recipes} />
                     </div>
                     : 
-                    <h4></h4>
+                    <h4>
+                        You didn't submit any recipes yet
+                    </h4>
                 }
             </div>
         </React.Fragment>

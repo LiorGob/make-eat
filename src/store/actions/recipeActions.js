@@ -93,3 +93,4 @@ function _updateRecipeUserList(list, user) {
     updatedList.push(minUser);
     return updatedList;
 }
+
