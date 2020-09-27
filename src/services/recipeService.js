@@ -1,4 +1,5 @@
 import httpService from './httpService';
+import { utilService } from './utilService';
 
 export const recipeService = {
     query,
@@ -6,6 +7,7 @@ export const recipeService = {
     save,
     remove,
     getRatingAvg,
+    getReviewsNum
 }
 
 function query(filterBy) {
@@ -45,5 +47,11 @@ function getRatingAvg(recipe) {
 //     })
 // }
 
+function getReviewsNum(id) {
+    if (!sessionStorage.getItem("recipe-" + id)) {
+        sessionStorage.setItem("recipe-" + id, (utilService.getRandomInt(1,10)) * 50)
+    }
+    return sessionStorage.getItem("recipe-" + id)
+}
 
 

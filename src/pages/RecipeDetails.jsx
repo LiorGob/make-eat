@@ -11,7 +11,7 @@ import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 // import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import GroupIcon from '@material-ui/icons/Group';
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+// import ButtonGroup from '@material-ui/core/ButtonGroup';
 // import ScheduleIcon from '@material-ui/icons/Schedule';
 import RatingStar from '../cmps/icons/RatingStar';
 import { ImageCarousel } from '../cmps/ImageCarousel';
@@ -20,24 +20,16 @@ import { HashLink as Link } from 'react-router-hash-link';
 import { RecipeIngredient } from '../cmps/recipe/RecipeIngredient';
 import { RecipeDirection } from '../cmps/recipe/RecipeDirection'
 import { recipeService } from '../services/recipeService';
-import { utilService } from '../services/utilService';
 import { getRecipe, addToFavorites, addToMadeIt } from '../store/actions/recipeActions';
 import { LatestReviews } from '../cmps/review/LatestReviews';
 
 class _RecipeDetails extends Component {
 
-    state = {
-
-    }
 
     componentDidMount() {
+        window.scroll(0, 0);
         const { id } = this.props.match.params;
         this.props.getRecipe(id);
-        const randomReviewsNum = this.getRandomNum();
-        const reviewsNum = randomReviewsNum * 20
-        // save with session
-        this.setState({ reviewsNum })
-
     }
 
     getAvg = () => {
@@ -45,9 +37,9 @@ class _RecipeDetails extends Component {
         return recipeService.getRatingAvg(currRecipe)
     }
 
-    getRandomNum = () => {
-        return utilService.getRandomInt(1, 10)
-    }
+    // getRandomNum = () => {
+    //     return utilService.getRandomInt(1, 10)
+    // }
 
     onAddToFavorites = () => {
         if (!this.props.loggedInUser) {
@@ -68,10 +60,10 @@ class _RecipeDetails extends Component {
     }
 
     render() {
-        const { recipe, loggedInUser } = this.props;
+        const { recipe /*loggedInUser*/ } = this.props;
         if (!recipe) return <div>Loading...</div>
         const ratingAvg = this.getAvg()
-        const { reviewsNum } = this.state
+        const reviewsNum = recipeService.getReviewsNum(recipe._id)
         // const isOwner = loggedInUser && loggedInUser._id === recipe.createdBy._id;
         return (
             <div className="main-container">
@@ -115,7 +107,7 @@ class _RecipeDetails extends Component {
                             {/* <ButtonGroup className="btn btn-primary" size="large" color="secondary"  aria-label="large outlined primary button group" orientation="vertical"> */}
                             <Button className="btn btn-primary" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon className="save-icon" />}>Save</Button>
                             <div className="social-btn flex row justify-center">
-                                <Button className="btn btn-primary" color="secondary" startIcon={<FacebookIcon className="relative-left" />}></Button>
+                                <Button className="btn btn-primary"  color="secondary" startIcon={<FacebookIcon className="relative-left" />}></Button>
                                 <Button className="btn btn-primary" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
                                 <Button className="btn btn-primary" color="secondary" startIcon={<InstagramIcon className="relative-left" />}></Button>
                             </div>

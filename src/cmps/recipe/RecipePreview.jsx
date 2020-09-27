@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import RatingStar from '../icons/RatingStar';
 import Truncate from 'react-truncate';
 import { recipeService } from '../../services/recipeService';
-import {utilService} from '../../services/utilService';
+// import {utilService} from '../../services/utilService';
 
 
 export function RecipePreview({ recipe, showReviewBy }) {
 
     let ratingAvg = recipeService.getRatingAvg(recipe);
-    const randomIntRating = utilService.getRandomInt(1, 10)
+    const reviewsNum = recipeService.getReviewsNum(recipe._id)
     const reviewByUser = showReviewBy ? recipe.reviews.filter(review => review.by._id === showReviewBy._id)[0] : null;
 
     return (
@@ -35,7 +35,7 @@ export function RecipePreview({ recipe, showReviewBy }) {
                     <React.Fragment>
                         <div className="recipe-card-rating flex row">
                             <span><RatingStar /></span>
-                            <span>{`${ratingAvg}(${(recipe.reviews?.length + 50) * randomIntRating})`}</span>
+                            <span>{`${ratingAvg}(${reviewsNum})`}</span>
                         </div>
                         <div className="abstract">
                             <Truncate lines={3} ellipsis={<span>...</span>}>
