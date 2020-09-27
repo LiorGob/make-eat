@@ -1,5 +1,5 @@
 import React from 'react'
-import RatingStar from '../icons/RatingStar';
+// import RatingStar from '../icons/RatingStar';
 import UserImage from '../user/UserImage';
 
 export function ReviewPreview({ review }) {

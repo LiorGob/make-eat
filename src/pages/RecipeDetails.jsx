@@ -26,17 +26,11 @@ import { LatestReviews } from '../cmps/review/LatestReviews';
 
 class _RecipeDetails extends Component {
 
-    state = {
-
-    }
 
     componentDidMount() {
+        window.scroll(0, 0);
         const { id } = this.props.match.params;
         this.props.getRecipe(id);
-        const randomReviewsNum = this.getRandomNum();
-        const reviewsNum = randomReviewsNum * 20
-        this.setState({ reviewsNum })
-
     }
 
     getAvg = () => {
@@ -44,9 +38,9 @@ class _RecipeDetails extends Component {
         return recipeService.getRatingAvg(currRecipe)
     }
 
-    getRandomNum = () => {
-        return recipeService.getRandomInt(1, 10)
-    }
+    // getRandomNum = () => {
+    //     return utilService.getRandomInt(1, 10)
+    // }
 
     onAddToFavorites = () => {
         if (!this.props.loggedInUser) {
@@ -67,10 +61,10 @@ class _RecipeDetails extends Component {
     }
 
     render() {
-        const { recipe, loggedInUser } = this.props;
+        const { recipe /*loggedInUser*/ } = this.props;
         if (!recipe) return <div>Loading...</div>
         const ratingAvg = this.getAvg()
-        const { reviewsNum } = this.state
+        const reviewsNum = recipeService.getReviewsNum(recipe._id)
         // const isOwner = loggedInUser && loggedInUser._id === recipe.createdBy._id;
         return (
             <div className="main-container">
@@ -109,20 +103,19 @@ class _RecipeDetails extends Component {
                     {/* </div> */}
 
                     <div className="grid-container">
-                        <div className="share-btns flex column justify-center">
+                        <div className="share-btns flex column border-grey">
                             {/* <div className="docked"> */}
-                                {/* <ButtonGroup className="btn btn-primary" size="large" color="secondary"  aria-label="large outlined primary button group" orientation="vertical"> */}
-                                    <Button className="btn btn-primary" variant="outlined" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon className="save-icon"/>}>Save</Button>
-                                    <div className="social-btn flex row justify-center space-between">
-                                    <Button className="btn btn-primary"  variant="outlined" color="secondary"  startIcon={<FacebookIcon className="relative-left"/>}></Button>
-                                    <Button className="btn btn-primary"  variant="outlined" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
-                                    <Button className="btn btn-primary"  variant="outlined" color="secondary" startIcon={<InstagramIcon className="relative-left"/>}></Button>
-                                    </div>
-                                    <Button className="made-it btn btn-primary" variant="outlined" color="secondary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt}>
-                                        I Made It
+                            {/* <ButtonGroup className="btn btn-primary" size="large" color="secondary"  aria-label="large outlined primary button group" orientation="vertical"> */}
+                            <Button className="btn btn-primary" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon className="save-icon" />}>Save</Button>
+                            <div className="social-btn flex row justify-center">
+                                <Button className="btn btn-primary"  color="secondary" startIcon={<FacebookIcon className="relative-left" />}></Button>
+                                <Button className="btn btn-primary" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
+                                <Button className="btn btn-primary" color="secondary" startIcon={<InstagramIcon className="relative-left" />}></Button>
+                            </div>
+                            <Button className="made-it btn btn-primary" color="secondary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt}>
+                                I Made It
                                        </Button>
-                            {/* <SecondaryButton text="I Made It" classes="made-it" onClick={this.onAddToMadeIt} startIcon={<SpoonIcon />}/> */}
-                                {/* </ButtonGroup> */}
+                            {/* </ButtonGroup> */}
                             {/* </div> */}
                         </div>
 
