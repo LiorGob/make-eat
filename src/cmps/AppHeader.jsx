@@ -20,7 +20,7 @@ function _AppHeader(props) {
                     <React.Fragment>
                      
                     <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{  cursor: "pointer", width:"40px" }} />
-                
+                <div>{props.orderList?.length}</div>
                         <li className="link flex align-center"><Link to='/user/signup'><img className="join-now-img" src={require('../assets/images/profile.png')} alt="profile-img" />Join now</Link></li>
                         <li className="link flex align-center"><Link to='/user/login'>Login</Link></li>
                     </React.Fragment>
@@ -44,7 +44,8 @@ const mapStateToProps = state => {
         loggedInUser: state.userReducer.loggedInUser,
         recipes: state.recipeReducer.recipes,
         filterBy: state.produceReducer.filterBy,
-        searchedRecipes: state.searchReducer.searchedRecipes
+        searchedRecipes: state.searchReducer.searchedRecipes,
+        orderList: state.orderReducer.orderList,
     }
 }
 

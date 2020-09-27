@@ -6,6 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { FavoritesIcon } from '../cmps/icons/FavoritesIcon';
+import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 
 function _Notification(props) {
     const handleClose = () => {
@@ -15,9 +16,11 @@ function _Notification(props) {
     function getMsgIcon(iconName) {
         switch (iconName) {
             case 'favorites':
-                return <FavoritesIcon style={{ fontSize: 40 }}/>;
+                return <FavoritesIcon style={{ fontSize: 40 }} />;
+            case 'shipping':
+                return <LocalShippingIcon style={{ fontSize: 40 }} />;
             default:
-                return <FavoritesIcon style={{ fontSize: 40 }}/>;
+                
         }
     }
     const useStyles = makeStyles((theme) => ({
@@ -53,12 +56,12 @@ function _Notification(props) {
         >
             <Fade in={open}>
                 <div className={classes.paper + ' notification-content'}>
-                        <div className="notification-icon">{props.msg.icon && getMsgIcon(props.msg.icon)}</div>
+                    <div className="notification-icon">{props.msg.icon && getMsgIcon(props.msg.icon)}</div>
                     <h4 id="transition-modal-title">
                         {txt}</h4>
                 </div>
             </Fade>
-        </Modal>        
+        </Modal>
     )
 }
 

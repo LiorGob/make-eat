@@ -24,6 +24,11 @@ export function AppFooter() {
                     <div className="connect"><h4>Connect</h4>
                         <a href="/">Follow Us</a>
                         <a href="/"><FacebookIcon /><TwitterIcon /><PinterestIcon /><InstagramIcon /></a>
+                        {/* <div className="social-btn flex row justify-center">
+                                <Button className="btn btn-primary" color="secondary" startIcon={<FacebookIcon className="relative-left" />}></Button>
+                                <Button className="btn btn-primary" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
+                                <Button className="btn btn-primary" color="secondary" startIcon={<InstagramIcon className="relative-left" />}></Button>
+                            </div> */}
                         <Link to={`/user/signup`}> < Button>Sign up</Button></Link>
                     </div>
                 </div>

@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import { getRecipe } from '../store/actions/recipeActions.js';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
-import { addNotification } from '../store/actions/orderActions.js';
+import { addNotification, updateOrderList } from '../store/actions/orderActions.js';
+import SpoonIcon from '../cmps/icons/SpoonIcon';
+
 // import { Badge } from '@material-ui/core';
 
 export class _OrderList extends Component {
@@ -22,6 +24,7 @@ export class _OrderList extends Component {
         else
             selectedIngredients = JSON.parse(sessionStorage.getItem("orderList"))
         this.setState({ selectedIngredients }, console.log(location.state))
+        this.updateProduceInOrderList(selectedIngredients)
         console.log('mount');
     }
 
@@ -34,6 +37,7 @@ export class _OrderList extends Component {
         selectedIngredients.splice(ingredientToRemoveIndex, 1)
 
         this.setState({ selectedIngredients })
+        this.updateProduceInOrderList(selectedIngredients)
 
     }
 
@@ -60,20 +64,25 @@ export class _OrderList extends Component {
         return sumWithSheeping
     }
 
+    updateProduceInOrderList(list) {
+        this.props.updateOrderList(list)
+    }
+
     render() {
 
         if (!this.state.selectedIngredients.length) return <div>Loading...</div>
         return (
             <div className="main-container">
                 <div className="main-content">
-
                     <h1 className="order-title flex">Shopping Cart</h1>
+
                     <div className="shopping-details">
-                        <p className="total-amount">Total Order : ${this.getTotalAmount()}</p>
-                        <p>Sheeping : $5</p>
-                        <p>Total With Sheeping : ${this.getTotalAmountWithSheepping()}</p>
-                        <Button onClick={() => this.onCheckout()} variant="outlined" color="secondary" className="recipe-details-btn align-end btn btn-primary
-" style={{ width: '100px' }} >
+                        <p className="total-amount">Total Order :<span> ${this.getTotalAmount()}</span></p>
+                        <p className="shipping" style={{ borderBottom:"1px solid #00000026"}}>Shipping :<span> $5</span><SpoonIcon/></p>
+                        <p>Total With Shipping : ${this.getTotalAmountWithSheepping()}</p>
+                        <Button onClick={() => this.onCheckout()} variant="outlined"
+                            color="secondary" className="align-end btn btn-primary bg-pan-left
+                            " style={{ width: '250px', height:"60px", backgroundColor:"#ff385c", color:"white" }} >
                             Pay Now!
                 </Button>
 
@@ -84,7 +93,9 @@ export class _OrderList extends Component {
                         {this.state.selectedIngredients.map((ingredient, index) =>
                             <li className="produce-list clean list" key={`${ingredient.produceId}${index}`}>
                                 {/* <Checkbox type="checkbox" /> */}
+                                <div className="ingredient-name">
                                 <label>{ingredient.name}</label>
+                                </div>
                                 <img className="produce-img" src={ingredient.img} alt="produce" />
                                 <label>{`$${ingredient.price}`}</label>
                                 <div className="shopping-cartbtn">
@@ -106,7 +117,9 @@ export class _OrderList extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state);
     return {
+
         recipe: state.recipeReducer.recipe
 
     }
@@ -114,7 +127,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     getRecipe,
-    addNotification
+    addNotification,
+    updateOrderList
 }
 
 export const OrderList = connect(mapStateToProps, mapDispatchToProps)(_OrderList)
