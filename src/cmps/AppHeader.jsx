@@ -31,10 +31,9 @@ function _AppHeader(props) {
             <ul className="main-nav flex row pipe">
                 {!props.loggedInUser &&
                     <React.Fragment>
-                        <li className="link flex align-center"><Link to='/user/signup'><AccountCircleIcon/>Join now</Link></li>
                         <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ cursor: "pointer", width: "40px" }} />
                         <div>{props.orderList?.length}</div>
-                        <li className="link flex align-center"><Link to='/user/signup'><img className="join-now-img" src={require('../assets/images/profile.png')} alt="profile-img" />Join now</Link></li>
+                        <li className="link flex align-center"><Link to='/user/signup'><AccountCircleIcon/>Join now</Link></li>
                         <li className="link flex align-center"><Link to='/user/login'>Login</Link></li>
                     </React.Fragment>
                 }

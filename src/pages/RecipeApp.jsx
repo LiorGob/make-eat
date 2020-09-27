@@ -63,7 +63,7 @@ class _RecipeApp extends Component {
             <div className="main-container">
                 {searchReady && ingredientSearchTerm !== '' && <h3>{searchedRecipes.length} recipe results for "{ingredientSearchTerm}"</h3>}
                 {searchReady && recipeSearchTerm !== '' && <h3>{searchedRecipes.length} recipe results for "{recipeSearchTerm}"</h3>}
-                {tagSearch && searchedRecipes.length && <h2>Our recipes for {this.capitalizeFirst(tagSearch)} cuisine</h2>}
+                {tagSearch !== '' && searchedRecipes.length && <h2>Our recipes for {this.capitalizeFirst(tagSearch)} cuisine</h2>}
                 {recipes && recipes.length > 0 && <RecipeList recipes={recipes} />}
                 {recipes && recipes.length === 0 && <div className="no-results-msg">
                     <div>Sorry! No results in this category. Please try a different search criteria</div>

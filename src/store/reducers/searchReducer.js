@@ -16,7 +16,10 @@ export function searchReducer(state = initialState, action = {}) {
             return {
                 ...state,
                 searchedRecipes: action.searchedRecipes,
-                tagSearch: action.searchTerm
+                tagSearch: action.searchTerm,
+                recipeSearchTerm: '',
+                ingredientSearchTerm: '',
+                searchReady: false
             }
         case 'SEARCH_RECIPES':
             return {
@@ -36,12 +39,14 @@ export function searchReducer(state = initialState, action = {}) {
             return {
                 ...state,
                 recipeSearchTerm: '',
+                tagSearch: '',
                 searchReady: false
             };
         case 'SEARCH_INGREDIENT_RESET':
             return {
                 ...state,
                 ingredientSearchTerm: '',
+                tagSearch: '',
                 searchReady: false
             };
         case 'SEARCH_RESET':
