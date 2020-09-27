@@ -5,6 +5,7 @@ import { getUser, logout } from '../store/actions/userActions';
 import Search from '../cmps/search/Search';
 import UserImage from '../cmps/user/UserImage';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+// import { Badge } from '@material-ui/core';
 
 
 function _AppHeader(props) {
@@ -18,9 +19,13 @@ function _AppHeader(props) {
             <ul className="main-nav flex row pipe">
                 {!props.loggedInUser &&
                     <React.Fragment>
-                     
-                    <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{  cursor: "pointer", width:"40px" }} />
-                <div>{props.orderList?.length}</div>
+                        {/* <Badge badgeContent={props.orderList?.length} anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }} color="secondary"> */}
+                        <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ cursor: "pointer", width: "40px" }} />
+                        {/* </Badge> */}
+                        <div>{props.orderList?.length}</div>
                         <li className="link flex align-center"><Link to='/user/signup'><img className="join-now-img" src={require('../assets/images/profile.png')} alt="profile-img" />Join now</Link></li>
                         <li className="link flex align-center"><Link to='/user/login'>Login</Link></li>
                     </React.Fragment>
@@ -28,7 +33,7 @@ function _AppHeader(props) {
                 {props.loggedInUser &&
                     <React.Fragment>
                         <li className="link flex align-center">
-                            <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{width:"40px", paddingRight:"10px",  cursor: "pointer"}} />
+                            <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ width: "40px", paddingRight: "10px", cursor: "pointer" }} />
                             <UserImage user={props.loggedInUser} />
                             <Link to={`/user/myprofile/about`}>Profile</Link></li>
                         <li className="link flex align-center"><Link to='' onClick={props.logout}>Log out</Link></li>
