@@ -4,61 +4,52 @@ function _getInitialState() {
     return {
         searchedRecipes: [],
         recipeSearchTerm: '',
-        lastRecipeSearchTerm: '',
-        searchInRecipes: false,
         ingredientSearchTerm: '',
-        lastIngredientSearchTerm: '',
-        searchInIngredients: false,
+        tagSearch: '',
         searchReady: false
     }
 }
 
 export function searchReducer(state = initialState, action = {}) {
     switch (action.type) {
+        case 'SEARCH_TAG':
+            return {
+                ...state,
+                searchedRecipes: action.searchedRecipes,
+                tagSearch: action.searchTerm
+            }
         case 'SEARCH_RECIPES':
             return {
                 ...state,
                 searchedRecipes: action.searchedRecipes,
                 recipeSearchTerm: action.searchTerm,
-                searchReady: true,
-                lastRecipeSearchTerm: ''
+                searchReady: true
             }
         case 'SEARCH_INGREDIENTS':
             return {
                 ...state,
                 searchedRecipes: action.searchedRecipes,
                 ingredientSearchTerm: action.searchTerm,
-                searchReady: true,
-                lastIngredientSearchTerm: ''
+                searchReady: true
             }
         case 'SEARCH_RECIPE_RESET':
             return {
                 ...state,
-                lastRecipeSearchTerm: state.recipeSearchTerm,
                 recipeSearchTerm: '',
-                searchReady: false,
-                //searchInIngredients: true,
-                searchInRecipes: false
+                searchReady: false
             };
         case 'SEARCH_INGREDIENT_RESET':
             return {
                 ...state,
-                lastIngredientSearchTerm: state.ingredientSearchTerm,
                 ingredientSearchTerm: '',
-                searchReady: false,
-                //searchInRecipes: true,
-                searchInIngredients: false
+                searchReady: false
             };
         case 'SEARCH_RESET':
             return {
                 ...state,
-                lastRecipeSearchTerm: state.recipeSearchTerm,
                 recipeSearchTerm: '',
-                lastIngredientSearchTerm: state.ingredientSearchTerm,
                 ingredientSearchTerm: '',
-                searchReady: false,
-                searchInRecipes: false,
-                searchInIngredients: false
+                searchReady: false
             };
         default:
             return state;

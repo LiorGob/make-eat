@@ -12,6 +12,7 @@ import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 import GroupIcon from '@material-ui/icons/Group';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+// import SecondaryButton from '../cmps/buttons/SecondaryButton';
 // import ScheduleIcon from '@material-ui/icons/Schedule';
 import RatingStar from '../cmps/icons/RatingStar';
 import { ImageCarousel } from '../cmps/ImageCarousel';
@@ -120,6 +121,7 @@ class _RecipeDetails extends Component {
                                     <Button className="made-it btn btn-primary" variant="outlined" color="secondary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt}>
                                         I Made It
                                        </Button>
+                            {/* <SecondaryButton text="I Made It" classes="made-it" onClick={this.onAddToMadeIt} startIcon={<SpoonIcon />}/> */}
                                 {/* </ButtonGroup> */}
                             {/* </div> */}
                         </div>

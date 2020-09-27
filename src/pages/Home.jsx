@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import hero from '../assets/images/hero.mp4';
-// https://res.cloudinary.com/dbfuiddgm/video/upload/v1600855132/makeeat/WhatsApp_Video_2020-09-23_at_12.56.49_v8du5a.mp4
-//import heroposter from '../assets/images/hero-poster.jpg'
+import hero from '../assets/images/hero/hero.mp4';
 import sushi from '../assets/images/sushi.jpg'
 import macaroons1 from '../assets/images/french/macaroons1.jpg'
 import ravioli from '../assets/images/italian/ravioli.jpg'
 import { RecipeList } from '../cmps/recipe/RecipeList'
 import { loadRecipes } from '../store/actions/recipeActions.js'
-import Search from '../cmps/search/Search';
 import { populateDBService } from '../services/populateDB.js';
+import PrimaryButton from '../cmps/buttons/PrimaryButton';
 import { Button } from '@material-ui/core';
 
 class _Home extends Component {
@@ -19,7 +17,6 @@ class _Home extends Component {
         this.props.loadRecipes();
         this.props.setRootClass('inHomePage');
         this.populatedbStep2 = React.createRef();
-        this.populatedbStep3 = React.createRef();
     }
 
     componentWillUnmount() {
@@ -34,36 +31,40 @@ class _Home extends Component {
         const { recipes } = this.props;
         let images = [
             { image: sushi, route: '/recipe', tag: 'japanese' },
-            {
-                image: 'https://res.cloudinary.com/duzhu2ejx/image/upload/v1600716009/sprint%204/mexican/tacos_ejumt3.webp',
-                route: '/recipe', tag: 'mexican'
-            },
+            { image: 'https://res.cloudinary.com/duzhu2ejx/image/upload/v1600716009/sprint%204/mexican/tacos_ejumt3.webp', route: '/recipe', tag: 'mexican' },
             { image: macaroons1, route: '/recipe', tag: 'french' },
             { image: ravioli, route: '/recipe', tag: 'italian' },
+            { image: 'https://res.cloudinary.com/dbfuiddgm/image/upload/v1601131162/makeeat/humburger2_tdphnt_cropped_rruupt.jpg', route: '/recipe', tag: 'american' },
             // TBD: add more tags
         ];
         return (
             <div className="home-page flex column">
                 <div className="hero">
                     {/* poster={heroposter} */}
-                    <video className="video-home" autoPlay muted preload="auto" loop>
-                        <source src={hero} type="video/mp4" />
+                    <div className="video-container">
+                        <video className="video-home" autoPlay muted preload="auto" loop>
+                            <source src={hero} type="video/mp4" />
                         Your browser doesn't support the video tag
                     </video>
-                    <div className="caption">
-                        <div className="hp-titles">
-                            <h1><span>Make</span> <span>Eat</span> <span>Share</span></h1>
+                    </div>
+                    <div className="caption-container">
+                        <div className="caption">
+                            <div className="hp-titles">
+                                <h1>Recipes from around the world</h1>
+                                <h2>Community tested</h2>
+                                <PrimaryButton text="Get cooking" onClick={() => console.log('Explore')} classes="hp-primary" />
+                            </div>
+                            {/* <Search /> */}
                         </div>
-                        <Search />
                     </div>
                 </div>
                 <div className="main-container cuisine-container">
-                        <h2>Best recipes from around the world</h2>
+                    <h2>Our most cooked cuisines</h2>
                     <div className="cuisine-card">
                         {images.map((img, idx) => {
                             return (<div key={`${idx}${img.image}`}>
                                 <img onClick={() => this.changeRoute(img.route, img.tag)} src={img.image} alt="" />
-                                <span className="description flex">{img.tag}</span>
+                                <h5 className="description flex">{img.tag}</h5>
                             </div>)
                         })}
 

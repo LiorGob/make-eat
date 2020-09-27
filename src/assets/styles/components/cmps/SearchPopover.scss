@@ -1,0 +1,15 @@
+.search-popover {
+    padding: 40px;
+}
+
+.search-recipes {
+    display: flex;
+    flex-direction: column;
+    .name-filter {
+        margin-right: 1em;
+    }
+    input {
+        font-family: $titleFont;
+        min-width: 300px;
+    }
+}

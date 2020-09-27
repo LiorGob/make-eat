@@ -9,7 +9,7 @@ import SpoonIcon from './icons/SpoonIcon.jsx'
 
 export function AppFooter() {
     return (
-      <footer>
+        <footer>
             <section className="section-footer">
                 <div className="logo"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo5.png')} alt="logo" /></div>
                 <div className="footer-coloums">
@@ -27,19 +27,19 @@ export function AppFooter() {
                         <Link to={`/user/signup`}> < Button>Sign up</Button></Link>
                     </div>
                 </div>
-                </section>
-                <section className="second-footer">
-                    <div className="coffe-right"><h5>Allrecipes is part of the MakeEat Food Group. © Copyright 2020 MakeEat Corporationthis link opens in a new tab. All Rights Reserved.</h5></div>
-                 <div className="spoon"><SpoonIcon/></div> 
-                    <div className="terms">
-                        <h6>Privacy Policy</h6>
-                        <h6>Terms of Service</h6>
-                        <h6>Web accessibility</h6>
-                    </div>
-                
             </section>
-            </footer>
-     
+            <section className="second-footer">
+                <div className="coffe-right"><h5>makeEat is part of the makeEat Food Group. © Copyright 2020 makeEat Corporation. All Rights Reserved.</h5></div>
+                <div className="spoon"><SpoonIcon /></div>
+                <div className="terms">
+                    <h6>Privacy Policy</h6>
+                    <h6>Terms of Service</h6>
+                    <h6>Web accessibility</h6>
+                </div>
+
+            </section>
+        </footer>
+
 
     )
 }

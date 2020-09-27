@@ -1,6 +1,6 @@
 export const utilService = {
-    template
-    //,    getRandomInt
+    template,
+    deepClone
 }
 
 function template(strings, ...keys) {
@@ -15,6 +15,9 @@ function template(strings, ...keys) {
     });
 }
 
+function deepClone(arr){
+    return JSON.parse(JSON.stringify(arr));
+}
 // function getRandomInt(min, max) {
 //     min = Math.ceil(min);
 //     max = Math.floor(max);
