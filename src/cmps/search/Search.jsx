@@ -2,11 +2,11 @@ import React from 'react'
 import { IngredientSearch } from './IngredientSearch';
 import { RecipeSearch } from './RecipeSearch';
 
-export default function Search() {
+export default function Search({onDoSearch}) {
     return (
         <div className="search-recipes">
-            <RecipeSearch placeholder="Find a recipe" />
-            <IngredientSearch placeholder="Search by ingredient" />
+            <RecipeSearch onDoSearch={onDoSearch}/>
+            <IngredientSearch onDoSearch={onDoSearch} />
         </div>
     )
 }

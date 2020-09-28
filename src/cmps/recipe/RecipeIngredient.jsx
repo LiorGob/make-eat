@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { withRouter } from 'react-router'
+// import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -10,19 +11,24 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { utilService } from '../../services/utilService';
+import { updateOrderList } from '../../store/actions/orderActions.js';
 
-
-function _RecipeIngredient({ recipe }) {
+function _RecipeIngredient({ recipe},props) {
+   
     let history = useHistory()
     const [ingredients, setIngredients] = useState(recipe.ingredients.map(ingredient => { return { ...ingredient, selected: false } }));
     const [addedToCart, setAddedToCart] = useState(false);
 
     function handleSelectIngredient(selectedIngredient) {
-        let ingredientsToUpdate = [...ingredients];
+        console.log(selectedIngredient);
+        let ingredientsToUpdate = JSON.parse(JSON.stringify(ingredients));
         let ind = ingredientsToUpdate.findIndex((ingredient) => ingredient.produceId === selectedIngredient.produceId);
         if (ind >= 0) ingredientsToUpdate[ind].selected = !ingredientsToUpdate[ind].selected;
         setIngredients(ingredientsToUpdate);
+        // updateProduceInOrderList(selectedIngredient)
+   
         if (getSelectedIngredientsNum() === 0) setAddedToCart(false);
+       
     }
 
     function addIngredients() {
@@ -61,7 +67,14 @@ function _RecipeIngredient({ recipe }) {
         const copyIngr = JSON.parse(JSON.stringify(getSelectedIngredients()));
         const selected = copyIngr.map(ingredient => { delete ingredient.selected; return ingredient });
         history.push({ pathname: '/order', state: { selectedIngredients: selected } })
+        
     }
+
+    // function updateProduceInOrderList(selectedNum) {
+    //     selectedNum = getSelectedIngredientsNum();
+    //     this.props.updateOrderList(selectedNum)
+
+    // }
 
     return (
         <div className="recipe-ingredients">
@@ -95,7 +108,7 @@ function _RecipeIngredient({ recipe }) {
                                 </StyledBadge>
                             </IconButton>
                         }
-                        
+
                     </div>
                 </CSSTransition>
             </SwitchTransition>
@@ -111,5 +124,17 @@ const StyledBadge = withStyles((theme) => ({
         padding: '0 4px'
     },
 }))(Badge);
-export const RecipeIngredient = withRouter(_RecipeIngredient)
+// export const RecipeIngredient = withRouter(_RecipeIngredient)
 
+const mapStateToProps = state => {
+    return {
+
+        orderList: state.orderReducer.orderList,
+    }
+}
+
+const mapDispatchToProps = {
+    updateOrderList
+}
+
+export const RecipeIngredient = connect(mapStateToProps, mapDispatchToProps)(_RecipeIngredient)

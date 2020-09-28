@@ -4,12 +4,12 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import InstagramIcon from '@material-ui/icons/Instagram';
-import Button from '@material-ui/core/Button';
+
 import SpoonIcon from './icons/SpoonIcon.jsx'
 
 export function AppFooter() {
     return (
-      <footer>
+        <footer>
             <section className="section-footer">
                 <div className="logo"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo5.png')} alt="logo" /></div>
                 <div className="footer-coloums">
@@ -24,22 +24,28 @@ export function AppFooter() {
                     <div className="connect"><h4>Connect</h4>
                         <a href="/">Follow Us</a>
                         <a href="/"><FacebookIcon /><TwitterIcon /><PinterestIcon /><InstagramIcon /></a>
-                        <Link to={`/user/signup`}> < Button>Sign up</Button></Link>
+                        {/* <div className="social-btn flex row justify-center">
+                                <Button className="btn btn-primary" color="secondary" startIcon={<FacebookIcon className="relative-left" />}></Button>
+                                <Button className="btn btn-primary" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
+                                <Button className="btn btn-primary" color="secondary" startIcon={<InstagramIcon className="relative-left" />}></Button>
+                            </div> */}
+                        <Link to={`/user/signup`}> < button>Sign up</button></Link>
+                     
                     </div>
                 </div>
-                </section>
-                <section className="second-footer">
-                    <div className="coffe-right"><h5>Allrecipes is part of the MakeEat Food Group. © Copyright 2020 MakeEat Corporationthis link opens in a new tab. All Rights Reserved.</h5></div>
-                 <div className="spoon"><SpoonIcon/></div> 
-                    <div className="terms">
-                        <h6>Privacy Policy</h6>
-                        <h6>Terms of Service</h6>
-                        <h6>Web accessibility</h6>
-                    </div>
-                
             </section>
-            </footer>
-     
+            <section className="second-footer">
+                <div className="coffe-right"><h5>makeEat is part of the makeEat Food Group. © Copyright 2020 makeEat Corporation. All Rights Reserved.</h5></div>
+                <div className="spoon"><SpoonIcon /></div>
+                <div className="terms">
+                    <h6>Privacy Policy</h6>
+                    <h6>Terms of Service</h6>
+                    <h6>Web accessibility</h6>
+                </div>
+
+            </section>
+        </footer>
+
 
     )
 }

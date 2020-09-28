@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getRecipe } from '../store/actions/recipeActions.js';
-import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
-// import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import Button from '@material-ui/core/Button';
-import { addNotification } from '../store/actions/orderActions.js';
+// import Button from '@material-ui/core/Button';
+import { addNotification, updateOrderList } from '../store/actions/orderActions.js';
+// import SpoonIcon from '../cmps/icons/SpoonIcon';
+import PrimaryButton from '../cmps/buttons/PrimaryButton'
+
 // import { Badge } from '@material-ui/core';
 
 export class _OrderList extends Component {
@@ -17,12 +18,14 @@ export class _OrderList extends Component {
 
 
     componentDidMount() {
+        window.scroll(0, 0);
         const { location } = this.props
         let selectedIngredients = location && location.state ? location.state.selectedIngredients : []
         if (selectedIngredients.length > 0) sessionStorage.setItem("orderList", JSON.stringify(selectedIngredients))
         else
             selectedIngredients = JSON.parse(sessionStorage.getItem("orderList"))
         this.setState({ selectedIngredients }, console.log(location.state))
+        this.updateProduceInOrderList(selectedIngredients)
         console.log('mount');
     }
 
@@ -35,6 +38,7 @@ export class _OrderList extends Component {
         selectedIngredients.splice(ingredientToRemoveIndex, 1)
 
         this.setState({ selectedIngredients })
+        this.updateProduceInOrderList(selectedIngredients)
 
     }
 
@@ -58,7 +62,11 @@ export class _OrderList extends Component {
         let sheeping = 5
         let sumWithSheeping = totalAmount + sheeping
         console.log(sumWithSheeping);
-        return sumWithSheeping
+        return sumWithSheeping.toFixed(2)
+    }
+
+    updateProduceInOrderList(list) {
+        this.props.updateOrderList(list)
     }
 
     render() {
@@ -67,16 +75,18 @@ export class _OrderList extends Component {
         return (
             <div className="main-container">
                 <div className="main-content">
-
                     <h1 className="order-title flex">Shopping Cart</h1>
+
                     <div className="shopping-details">
-                        <h3 className="total-amount">Total Order : ${this.getTotalAmount()}</h3>
-                        <h3>sheeping : 5$</h3>
-                        <h3>Total with Sheeping : ${this.getTotalAmountWithSheepping()}</h3>
-                        <Button onClick={() => this.onCheckout()} variant="outlined" color="secondary" className="recipe-details-btn align-end btn btn-primary
-" style={{ width: '100px' }} >
-                            Pay Now!
-                </Button>
+                        <p className="total-amount">Total Order :<span> ${this.getTotalAmount().toFixed(2)}</span></p>
+                        <p className="shipping" style={{ borderBottom:"1px solid #00000026"}}>Shipping :<span> $5</span>
+                        {/* <div className="spoon-decoration" style={{position:"absolute", bottom:"299px", right:"170px"}}><SpoonIcon/></div> */}
+                        </p>
+                        <p>Total With Shipping : ${this.getTotalAmountWithSheepping()}</p>
+                        <PrimaryButton text="Pay Now" onClick={() => this.onCheckout()} variant="outlined"
+                            color="secondary" className="align-end btn btn-primary bg-pan-left"
+                             style={{ width: '250px', height:"60px", backgroundColor:"#ff385c", color:"white" }}/>
+                           
 
                     </div>
 
@@ -85,9 +95,11 @@ export class _OrderList extends Component {
                         {this.state.selectedIngredients.map((ingredient, index) =>
                             <li className="produce-list clean list" key={`${ingredient.produceId}${index}`}>
                                 {/* <Checkbox type="checkbox" /> */}
+                                <div className="ingredient-name">
                                 <label>{ingredient.name}</label>
+                                </div>
                                 <img className="produce-img" src={ingredient.img} alt="produce" />
-                                <label>{`$${ingredient.price}`}</label>
+                                <div className="produce-price">{`$${ingredient.price}`}</div>
                                 <div className="shopping-cartbtn">
                                     <button onClick={() => this.onRemove(ingredient.name)}><DeleteIcon /></button>
 
@@ -107,7 +119,9 @@ export class _OrderList extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state);
     return {
+
         recipe: state.recipeReducer.recipe
 
     }
@@ -115,7 +129,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     getRecipe,
-    addNotification
+    addNotification,
+    updateOrderList
 }
 
 export const OrderList = connect(mapStateToProps, mapDispatchToProps)(_OrderList)

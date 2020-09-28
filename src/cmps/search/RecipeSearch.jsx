@@ -36,17 +36,33 @@ class _RecipeSearch extends Component {
         if (ev.keyCode === 13) {
             ev.preventDefault();
             this.props.searchRecipes(this.props.recipes, this.state.searchTerm);
-            this.props.history.push('/recipe');
+            this.setState({ defaultSearchTerm: '' })
+            this.props.onDoSearch();
+            this.props.history.push(`/recipe?searchRecipe=${this.state.searchTerm}`);
         }
     }
 
     render() {
-        const { placeholder } = this.props;
         return (
             <div className="name-filter">
-                 <TextField type="text" name="title" autoComplete="off" InputProps={{disableUnderline: true }}  value={this.defaultSearchTerm} 
-                  className="input-color"  onKeyUp={this.onKeyUp} placeholder={placeholder} onChange={this.onHandleChange} />
-
+                <TextField
+                    name="title"
+                    autoComplete="off"
+                    type="search"
+                    label="Find a recipe"
+                    placeholder="Pizza"
+                    helperText="Search for a dish type"
+                    fullWidth
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    variant="outlined"
+                    className="input-color"
+                    value={this.state.defaultSearchTerm} 
+                    onKeyUp={this.onKeyUp} 
+                    onChange={this.onHandleChange}
+                />
             </div>
         )
     }

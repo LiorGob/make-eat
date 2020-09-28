@@ -3,19 +3,17 @@
     margin-bottom: 3rem;
     width: 100%;
     background-color: $clr6;
-    color: $clr12;
-    display: flex;
-    justify-content: space-between;
+    color: $clr9;
     align-items: center;
     border-bottom: 1px solid $clr14;
-
-    .input-color {
-        // background-color: $clr2;
-        background-color: $clr3;
-        padding: 10px;
-        border-radius: 5px;
+    .btn-primary {
+        padding: 0.4em 1em;
+        font-size: 1.1em;
+        min-width: 300px;
     }
-
+    .MuiButton-label {
+        justify-content: space-between;
+    }
     .logo {
         margin-left: rem(20px);
         font-size: rem(30px);
@@ -29,35 +27,29 @@
             padding-top: 10px;
         }
     }
-    .search-recipes {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        div:first-child {
-            margin-right: 1em;
-        }
-    }
+
     .main-nav {
         margin-right: 30px;
         .link {
             font-size: rem(20px);
             color: 1px solid rgba(0, 0, 0, 0.15);
-            padding: 0 10px;
+            padding: 0;
             a:hover,
             a:visited {
                 cursor: pointer;
-                color: $clr12;
+                color: $clr9;
             }
             &:not(:last-child):after {
                 content: "|";
                 padding-left: 1em;
             }
         }
-        .join-now-img {
+        svg {
             width: 24px;
             position: relative;
             top: 4px;
-            right: 4px;
+            right: 7px;
+            fill: $clr8;
         }
         .user-image-wrapper {
             width: 48px;

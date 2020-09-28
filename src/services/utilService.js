@@ -1,5 +1,6 @@
 export const utilService = {
     template,
+    deepClone,
     getRandomInt
 }
 
@@ -13,6 +14,10 @@ function template(strings, ...keys) {
         });
         return result.join('');
     });
+}
+
+function deepClone(arr){
+    return JSON.parse(JSON.stringify(arr));
 }
 
 function getRandomInt(min, max) {

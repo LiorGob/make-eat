@@ -14,6 +14,13 @@ export function searchIngredients(recipes, searchTerm) {
     }
 }
 
+export function searchTag(recipes, searchTerm) {
+    return async dispatch => {
+        const searchedRecipes = await searchService.searchTag(recipes, searchTerm);
+        dispatch({ type: 'SEARCH_TAG', searchedRecipes, searchTerm });
+    }
+}
+
 export function resetRecipeSearch() {
     return dispatch => {
         dispatch({ type: 'SEARCH_RECIPE_RESET' });
