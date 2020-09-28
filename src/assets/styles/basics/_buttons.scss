@@ -38,4 +38,17 @@
         padding: 1em;
         font-size: 1em;
     }
+    &.btn-primary{
+        color: $clr12;
+        &:visited{
+            color: $clr12;
+        }
+    }
+    &.btn-right {
+        float: right;
+    }
+    &.btn-left {
+        float: left;
+    }
+
 }

@@ -1,5 +1,28 @@
+.recipe-stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    span {
+        display: inline-block;
+    }
+    span.rating {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
 .recipe-details {
     font-size: rem(18px);
+    .recipe-stats {
+        span.rating {
+            margin-right: rem(15px);
+            svg{
+                position: relative;
+                top:3px;
+            }
+        }
+    }
     .absract-recipe {
         padding-bottom: rem(36px);
         .abstract {
@@ -101,6 +124,9 @@
             .save-icon {
                 position: relative;
                 bottom: 2px;
+                &.saved{
+                    fill: $clr12;
+                }
             }
 
             .made-it {

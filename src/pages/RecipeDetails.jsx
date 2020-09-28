@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SpoonIcon from '../cmps/icons/SpoonIcon';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoritesIcon from '../cmps/icons/FavoritesIcon';
 import InstagramIcon from '@material-ui/icons/Instagram';
 // import PrintIcon from '@material-ui/icons/Print';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -12,7 +12,7 @@ import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 import GroupIcon from '@material-ui/icons/Group';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-// import SecondaryButton from '../cmps/buttons/SecondaryButton';
+import SecondaryButton from '../cmps/buttons/SecondaryButton';
 // import ScheduleIcon from '@material-ui/icons/Schedule';
 import RatingStar from '../cmps/icons/RatingStar';
 import { ImageCarousel } from '../cmps/ImageCarousel';
@@ -26,11 +26,17 @@ import { LatestReviews } from '../cmps/review/LatestReviews';
 
 class _RecipeDetails extends Component {
 
-
-    componentDidMount() {
+    state = {}
+    async componentDidMount() {
         window.scroll(0, 0);
         const { id } = this.props.match.params;
-        this.props.getRecipe(id);
+        await this.props.getRecipe(id);
+        if (this.props.loggedInUser && this.props.recipe && this.props.recipe.likers){
+            let isSaved = this.props.recipe.likers.some(({_id}) => {
+                return _id === this.props.loggedInUser._id;
+            });
+            this.setState({saved: isSaved});
+        }
     }
 
     getAvg = () => {
@@ -48,6 +54,7 @@ class _RecipeDetails extends Component {
         }
         else {
             this.props.addToFavorites(this.props.recipe, this.props.loggedInUser);
+            this.setState({saved:true});
         }
     }
 
@@ -71,9 +78,12 @@ class _RecipeDetails extends Component {
                 <div className="recipe-details">
                     <div className="absract-recipe flex column">
                         <h1>{recipe.name}</h1>
-                        <div className="review-details flex row padding-bottom">
-                            <RatingStar />
-                            <span><Link to={`/recipe/${recipe._id}#latest-review-list`} className="color-underline font-bold">{`${ratingAvg}(${reviewsNum})`}</Link></span>
+                        <div className="recipe-stats padding-bottom">
+                            <span className="rating">
+                                <span><RatingStar /></span>
+                                <span><Link to={`/recipe/${recipe._id}#latest-review-list`} className="color-underline font-bold">{`${ratingAvg}(${reviewsNum})`}</Link></span>
+                            </span>
+                            <span>{recipeService.getMadeByLabel(recipe._id)}</span>
                         </div>
                         <div className="gallery-warapper flex row">
                             <ImageCarousel images={recipe.imgs} /*recipeName={recipe.name}*/ />
@@ -105,17 +115,13 @@ class _RecipeDetails extends Component {
                     <div className="grid-container">
                         <div className="share-btns flex column border-grey">
                             {/* <div className="docked"> */}
-                            {/* <ButtonGroup className="btn btn-primary" size="large" color="secondary"  aria-label="large outlined primary button group" orientation="vertical"> */}
-                            <Button className="btn btn-primary" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon className="save-icon" />}>Save</Button>
+                            <SecondaryButton onClick={this.onAddToFavorites} startIcon={<FavoritesIcon className={`save-icon ${this.state.saved && 'saved'}`} />} text={this.state.saved ?'saved':'save'}/>
                             <div className="social-btn flex row justify-center">
                                 <Button className="btn btn-primary"  color="secondary" startIcon={<FacebookIcon className="relative-left" />}></Button>
                                 <Button className="btn btn-primary" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
                                 <Button className="btn btn-primary" color="secondary" startIcon={<InstagramIcon className="relative-left" />}></Button>
                             </div>
-                            <Button className="made-it btn btn-primary" color="secondary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt}>
-                                I Made It
-                                       </Button>
-                            {/* </ButtonGroup> */}
+                            <SecondaryButton startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt} text="I made it"/>
                             {/* </div> */}
                         </div>
 

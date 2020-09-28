@@ -7,7 +7,8 @@ export const recipeService = {
     save,
     remove,
     getRatingAvg,
-    getReviewsNum
+    getReviewsNum,
+    getMadeByLabel
 }
 
 function query(filterBy) {
@@ -48,10 +49,23 @@ function getRatingAvg(recipe) {
 // }
 
 function getReviewsNum(id) {
-    if (!sessionStorage.getItem("recipe-" + id)) {
-        sessionStorage.setItem("recipe-" + id, (utilService.getRandomInt(1,10)) * 50)
+    const sessionItem = `recipe-${id}-reviews-num`;
+    if (!sessionStorage.getItem(sessionItem)) {
+        sessionStorage.setItem(sessionItem, (utilService.getRandomInt(1,10)) * 50)
     }
-    return sessionStorage.getItem("recipe-" + id)
+    return sessionStorage.getItem(sessionItem);
 }
 
+function getMadeIt(id){
+    const reviews = getReviewsNum(id);
+    const sessionItem = `recipe-${id}-madeit-num`;
+    if (!sessionStorage.getItem(sessionItem)) {
+        sessionStorage.setItem(sessionItem, utilService.getRandomInt(reviews / 2, reviews));
+    }
+    return sessionStorage.getItem(sessionItem);
+}
 
+function getMadeByLabel(id) {
+    const madeBy = getMadeIt(id);
+    return madeBy ? `${madeBy} made it` : '';
+}

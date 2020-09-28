@@ -5,7 +5,9 @@ export const userService={
     getById,
     login,
     signup,
-    logout
+    logout,
+    getLocalUser,
+    getGuestUser
 }
 
 function getUsers() {
@@ -38,4 +40,12 @@ async function logout() {
 function _handleLogin(user) {
     sessionStorage.setItem('loggedInUser', JSON.stringify(user))
     return user;
+}
+
+function getLocalUser(){
+    return (sessionStorage.loggedInUser) ? JSON.parse(sessionStorage.loggedInUser) : getGuestUser();
+}
+
+function getGuestUser(){
+    return { _id: Date.now(), fullName: 'Guest', isGuest: true, imgUrl: 'https://res.cloudinary.com/dbfuiddgm/image/upload/v1601299454/makeeat/users/guest_hpqyy9.png' };
 }

@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import RatingStar from '../icons/RatingStar';
 import Truncate from 'react-truncate';
 import { recipeService } from '../../services/recipeService';
-// import {utilService} from '../../services/utilService';
-
 
 export function RecipePreview({ recipe, showReviewBy }) {
 
@@ -13,14 +11,15 @@ export function RecipePreview({ recipe, showReviewBy }) {
     const reviewByUser = showReviewBy ? recipe.reviews.filter(review => review.by._id === showReviewBy._id)[0] : null;
 
     return (
+
         <div className="recipe-card">
             <div>
                 <Link to={`/recipe/${recipe._id}`}>
                     <img src={recipe.imgs[0]} alt="" />
                 </Link>
             </div>
-            <div className="recipe-card-body">
-                <h3>{recipe.name}</h3>
+            <div className="recipe-card-body">                
+                <h3><Link to={`/recipe/${recipe._id}`}>{recipe.name}</Link></h3>
                 {(showReviewBy && (
                     <div>
                         <div>
@@ -33,12 +32,15 @@ export function RecipePreview({ recipe, showReviewBy }) {
                     </div>))}
                 {(!showReviewBy && (
                     <React.Fragment>
-                        <div className="recipe-card-rating flex row">
-                            <span><RatingStar /></span>
-                            <span>{`${ratingAvg}(${reviewsNum})`}</span>
+                        <div className="recipe-stats">
+                            <span className="rating">
+                                <span><RatingStar /></span>
+                                <span>{`${ratingAvg}(${reviewsNum})`}</span>
+                            </span>
+                            <span>{recipeService.getMadeByLabel(recipe._id)}</span>
                         </div>
                         <div className="abstract">
-                            <Truncate lines={3} ellipsis={<span>...</span>}>
+                            <Truncate lines={1} ellipsis={<span>...</span>}>
                                 {recipe.abstract}
                             </Truncate>
                         </div>

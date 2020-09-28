@@ -1,9 +1,12 @@
+.MuiDialog-paperScrollPaper{
+    max-height: auto;
+}
 section.uiForm {
+    box-sizing: border-box;
     width: 450px;
-    margin: 0 auto;
+    padding: rem(20px);
     h1 {
         font-size: 2em;
-        font-weight: 300;
         padding-bottom: 0 !important;
         display: inline-block;
         color: #4d4d4d;
@@ -26,7 +29,7 @@ section.uiForm {
         font-weight: 300;
         font-size: 1em;
         box-sizing: initial !important;
-        font-family: "Source Sans Pro";
+        font-family: $bodyFont;
     }
     input[type="submit"] {
         cursor: pointer;
@@ -47,14 +50,6 @@ section.uiForm {
         color: $clr12;
         span {
             color: $clr15;
-        }
-    }
-    .btn-right {
-        float: right;
-        font-size: 0.875em;
-        color: $clr12;
-        *:visited{
-            color: $clr12;
         }
     }
 }

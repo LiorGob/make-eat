@@ -23,6 +23,7 @@ export function getUser(id) {
 export function login(userCred) {
     return async dispatch => {
         const user = await userService.login(userCred)
+        console.log(user);
         dispatch({ type: 'LOGIN_USER', user })
     }
 }
