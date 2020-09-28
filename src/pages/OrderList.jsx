@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getRecipe } from '../store/actions/recipeActions.js';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import { addNotification, updateOrderList } from '../store/actions/orderActions.js';
 // import SpoonIcon from '../cmps/icons/SpoonIcon';
+import PrimaryButton from '../cmps/buttons/PrimaryButton'
 
 // import { Badge } from '@material-ui/core';
 
@@ -82,11 +83,10 @@ export class _OrderList extends Component {
                         {/* <div className="spoon-decoration" style={{position:"absolute", bottom:"299px", right:"170px"}}><SpoonIcon/></div> */}
                         </p>
                         <p>Total With Shipping : ${this.getTotalAmountWithSheepping()}</p>
-                        <Button onClick={() => this.onCheckout()} variant="outlined"
-                            color="secondary" className="align-end btn btn-primary bg-pan-left
-                            " style={{ width: '250px', height:"60px", backgroundColor:"#ff385c", color:"white" }} >
-                            Pay Now!
-                </Button>
+                        <PrimaryButton text="Pay Now" onClick={() => this.onCheckout()} variant="outlined"
+                            color="secondary" className="align-end btn btn-primary bg-pan-left"
+                             style={{ width: '250px', height:"60px", backgroundColor:"#ff385c", color:"white" }}/>
+                           
 
                     </div>
 

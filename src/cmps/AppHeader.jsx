@@ -3,13 +3,11 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getUser, logout } from '../store/actions/userActions';
 import { SearchPopover } from './search/SearchPopover';
-// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SecondaryButton from './buttons/SecondaryButton';
 import SearchIcon from '@material-ui/icons/Search';
 import UserImage from './user/UserImage';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { Badge } from '@material-ui/core';
-
 
 function _AppHeader(props) {
     const [openSearch, setOpenSearch] = useState(false);
@@ -33,14 +31,9 @@ function _AppHeader(props) {
             <ul className="main-nav flex row pipe">
                 {!props.loggedInUser &&
                     <React.Fragment>
-                        <Badge className="badge-shopping" style={{right:"42px"}} badgeContent={props.orderList?.length} anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }} color="secondary">
                         <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ cursor: "pointer", width: "40px" }} />
-                        </Badge>
-                        {/* <div>{props.orderList?.length}</div> */}
-                        <li className="link flex align-center"><Link to='/user/signup'><img className="join-now-img" src={require('../assets/images/profile.png')} alt="profile-img" />Join now</Link></li>
+                        <div>{props.orderList?.length}</div>
+                        <li className="link flex align-center"><Link to='/user/signup'><AccountCircleIcon/>Join now</Link></li>
                         <li className="link flex align-center"><Link to='/user/login'>Login</Link></li>
                     </React.Fragment>
                 }
