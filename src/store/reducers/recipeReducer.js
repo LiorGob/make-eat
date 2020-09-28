@@ -15,6 +15,7 @@ export function recipeReducer(state = initialState, action = {}) {
         case 'ADD_RECIPE':
         case 'ADD_FAVORITE':
         case 'ADD_MADEIT':
+        case 'ADD_REVIEW':
             return { ...state, recipes: [action.recipe, ...state.recipes] }
         case 'EDIT_RECIPE':
             return {
@@ -23,7 +24,6 @@ export function recipeReducer(state = initialState, action = {}) {
                     return recipe
                 })
             }
-
         default:
             return state;
     }

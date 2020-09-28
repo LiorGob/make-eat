@@ -35,7 +35,7 @@ export function RecipePreview({ recipe, showReviewBy }) {
                         <div className="recipe-stats">
                             <span className="rating">
                                 <span><RatingStar /></span>
-                                <span>{`${ratingAvg}(${reviewsNum})`}</span>
+                                <span>{`${ratingAvg} (${reviewsNum})`}</span>
                             </span>
                             <span>{recipeService.getMadeByLabel(recipe._id)}</span>
                         </div>
