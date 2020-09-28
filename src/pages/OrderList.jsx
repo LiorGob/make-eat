@@ -66,7 +66,7 @@ export class _OrderList extends Component {
     }
 
     updateProduceInOrderList(list) {
-        this.props.updateOrderList(list)
+        this.props.updateOrderList(list.length)
     }
 
     render() {

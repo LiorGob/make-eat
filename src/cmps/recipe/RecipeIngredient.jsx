@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -13,19 +13,28 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { utilService } from '../../services/utilService';
 import { updateOrderList } from '../../store/actions/orderActions.js';
 
-function _RecipeIngredient({ recipe},props) {
+function _RecipeIngredient(props) {
+const { recipe }= props
    
     let history = useHistory()
     const [ingredients, setIngredients] = useState(recipe.ingredients.map(ingredient => { return { ...ingredient, selected: false } }));
     const [addedToCart, setAddedToCart] = useState(false);
+ 
+
+
+
+    useEffect(()=>{
+      let selectedIngredients = ingredients.filter((ingredient)=>ingredient.selected)
+      let selectedIngredientsNumbers=selectedIngredients.length
+      props.updateOrderList(selectedIngredientsNumbers)
+    },[ingredients,props])
 
     function handleSelectIngredient(selectedIngredient) {
-        console.log(selectedIngredient);
+        console.log('handleSelectIngredient');
         let ingredientsToUpdate = JSON.parse(JSON.stringify(ingredients));
         let ind = ingredientsToUpdate.findIndex((ingredient) => ingredient.produceId === selectedIngredient.produceId);
         if (ind >= 0) ingredientsToUpdate[ind].selected = !ingredientsToUpdate[ind].selected;
-        setIngredients(ingredientsToUpdate);
-        // updateProduceInOrderList(selectedIngredient)
+        setIngredients(ingredientsToUpdate)
    
         if (getSelectedIngredientsNum() === 0) setAddedToCart(false);
        
@@ -36,6 +45,7 @@ function _RecipeIngredient({ recipe},props) {
             const updated = ingredients.map(ingr => { return { ...ingr, selected: true } });
             setIngredients(updated);
         }
+      
         setAddedToCart(true);
     }
 
@@ -70,11 +80,6 @@ function _RecipeIngredient({ recipe},props) {
         
     }
 
-    // function updateProduceInOrderList(selectedNum) {
-    //     selectedNum = getSelectedIngredientsNum();
-    //     this.props.updateOrderList(selectedNum)
-
-    // }
 
     return (
         <div className="recipe-ingredients">

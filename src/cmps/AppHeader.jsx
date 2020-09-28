@@ -8,8 +8,11 @@ import SecondaryButton from './buttons/SecondaryButton';
 import SearchIcon from '@material-ui/icons/Search';
 import UserImage from './user/UserImage';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Badge } from '@material-ui/core';
+// import NavBarHumburger from '../cmps/navBar/NavBarHumburger'
 
 function _AppHeader(props) {
+    const[openMenu,setOpenMenu]=useState(false)
     const [openSearch, setOpenSearch] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const logoRef = React.createRef();
@@ -17,12 +20,20 @@ function _AppHeader(props) {
         setOpenSearch(true);
         setAnchorEl(event.currentTarget);
     };
-
+  
     const handleCloseSearch = (value) => {
         setOpenSearch(false);
         const mouseoverEvent = new Event('mousedown');
         logoRef.current.dispatchEvent(mouseoverEvent);
     };
+
+    const toggleOpenMenu=(event)=>{
+        setOpenMenu(true) 
+    }
+    const toggleCloseMenu=(event)=>{
+        setOpenMenu(false) 
+    }
+
     return (
         <header className="main-header main-container flex align-center space-between">
             <div className="logo" ref={logoRef}><a href="/"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo5.png')} alt="logo" /></a></div>
@@ -31,9 +42,16 @@ function _AppHeader(props) {
             <ul className="main-nav flex row pipe">
                 {!props.loggedInUser &&
                     <React.Fragment>
+                        <Badge badgeContent={props.orderList} anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }} color="secondary">
+                           
                         <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ cursor: "pointer", width: "40px" }} />
-                        <div>{props.orderList?.length}</div>
-                        <li className="link flex align-center"><Link to='/user/signup'><AccountCircleIcon/>Join now</Link></li>
+                        </Badge>
+                        <div className="btn-nav-menu" style={{display:'none'}} open={openMenu} onClick={toggleOpenMenu}>☰</div>
+                        <div className="btn-nav-menu" style={{display:'none'}} onClick={toggleCloseMenu}>X</div>
+                        <li className="link flex align-center"><Link to='/user/signup'><AccountCircleIcon />Join now</Link></li>
                         <li className="link flex align-center"><Link to='/user/login'>Login</Link></li>
                     </React.Fragment>
                 }
