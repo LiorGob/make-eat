@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
+import { Dialog } from '@material-ui/core';
+import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
 // import Rating from '@material-ui/lab/Rating';
 // import Typography from '@material-ui/core/Typography';
 // import Box from '@material-ui/core/Box';
 import { recipeService } from '../../services/recipeService';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export class AddReview extends Component {
 
@@ -33,9 +39,21 @@ export class AddReview extends Component {
         this.props.onAddReview(newReview)
     }
 
+    handleClose = () => {
+        this.props.onClose();
+    };
+
     render() {
 
         return (
+            <Dialog
+                open={this.props.open}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={this.handleClose}
+                aria-labelledby="alert-dialog-slide-title"
+                aria-describedby="alert-dialog-slide-description"
+            >
             <div>
                 <form onSubmit={this.onAddReview}>
                     <TextField type="text" name="txt" variant="outlined" color="secondary" onChange={this.onHandleChange} />
@@ -49,7 +67,7 @@ export class AddReview extends Component {
                     <button type="submit">save</button>
                 </form>
 
-            </div>
+                </div></Dialog>
         )
     }
 }

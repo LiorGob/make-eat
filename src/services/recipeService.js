@@ -8,7 +8,9 @@ export const recipeService = {
     remove,
     getRatingAvg,
     getReviewsNum,
-    getMadeByLabel
+    getMadeByLabel,
+    updateRecipeUserList,
+    markAsMade
 }
 
 function query(filterBy) {
@@ -37,7 +39,7 @@ function getRatingAvg(recipe) {
     if (!recipe.reviews) return 'no reviews yet'
     else {
         let ratingAvg = recipe.reviews.reduce((acc, a) => acc + a.rating, 0) / recipe.reviews.length
-        return ratingAvg
+        return ratingAvg.toFixed(1);
     }
 }
 
@@ -69,3 +71,19 @@ function getMadeByLabel(id) {
     const madeBy = getMadeIt(id);
     return madeBy ? `${madeBy} made it` : '';
 }
+
+function markAsMade(recipe, user) {
+    if (recipe.makers.find((maker) => maker._id === user._id)) {
+        return;
+    }
+    var recipeToUpdate = { ...recipe, makers: updateRecipeUserList(recipe.makers, user) };
+    return recipeToUpdate;
+}
+
+function updateRecipeUserList(list, user) {
+    var minUser = { _id: user._id, fullName: user.fullName, imgUrl: user.imgUrl };
+    var updatedList = [...list];
+    updatedList.push(minUser);
+    return updatedList;
+}
+
