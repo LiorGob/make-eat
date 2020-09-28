@@ -21,14 +21,16 @@ import { HashLink as Link } from 'react-router-hash-link';
 import { RecipeIngredient } from '../cmps/recipe/RecipeIngredient';
 import { RecipeDirection } from '../cmps/recipe/RecipeDirection'
 import { recipeService } from '../services/recipeService';
-import { getRecipe, addToFavorites, addToMadeIt, saveRecipe } from '../store/actions/recipeActions';
+import { getRecipe, addToFavorites, addReview, saveRecipe } from '../store/actions/recipeActions';
 import { LatestReviews } from '../cmps/review/LatestReviews';
 import { AddReview } from '../cmps/review/AddReview';
 
 
 class _RecipeDetails extends Component {
 
-    state = {}
+    state = {
+        openAddReview: false
+    }
     async componentDidMount() {
         window.scroll(0, 0);
         const { id } = this.props.match.params;
@@ -65,15 +67,21 @@ class _RecipeDetails extends Component {
             this.props.history.push('/user/login');
         }
         else {
-            this.props.addToMadeIt(this.props.recipe, this.props.loggedInUser);
+            this.setState({openAddReview: true});
         }
     }
-
-    onAddReview = async (review) => {
-        let newRecipe = { ...this.props.recipe };
+    
+    onCloseAddReview = () => {
+        this.setState({ openAddReview: false });
+    }
+    
+    onAddReview = (review) => {
+        let newRecipe = { ...recipeService.markAsMade(this.props.recipe, this.props.loggedInUser) };
         newRecipe.reviews.push(review);
-        await this.props.saveRecipe(newRecipe)
-        console.log('this.props.recipe', this.props.recipe);
+        //this.props.addToMadeIt(newRecipe, this.props.loggedInUser);
+        this.onCloseAddReview();
+        this.props.addReview(newRecipe)
+        //console.log('this.props.recipe', this.props.recipe);
     }
 
     render() {
@@ -136,7 +144,7 @@ class _RecipeDetails extends Component {
 
                         <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
                         <RecipeDirection recipe={recipe} /*onAddToMadeIt={this.onAddToMadeIt}*/ />
-                        <AddReview recipe={recipe._id} onAddReview={this.onAddReview} loggedInUser={this.props.loggedInUser} />
+                        <AddReview open={this.state.openAddReview} onClose={this.onCloseAddReview} recipe={recipe._id} onAddReview={this.onAddReview} loggedInUser={this.props.loggedInUser} />
                         <LatestReviews recipe={recipe} count="1" reviewsNum={reviewsNum} ratingAvg={ratingAvg} />
                         {/* <ReviewDialog recipe={recipe} doOpen={this.state.openReviewDialog}/> */}
                     </div>
@@ -158,7 +166,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     getRecipe,
     addToFavorites,
-    addToMadeIt,
+    addReview,
     saveRecipe
 }
 

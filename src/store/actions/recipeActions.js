@@ -65,35 +65,36 @@ export function addToFavorites(recipe, user) {
             dispatch({ type: 'NOTIFY', msg: { type: 'warning', txt: 'This recipe is already in your Favorites' } });
             return;
         }
-        var recipeToUpdate = { ...recipe, likers: _updateRecipeUserList(recipe.likers, user) };
+        var recipeToUpdate = { ...recipe, likers: recipeService.updateRecipeUserList(recipe.likers, user) };
         console.log('recipeToUpdate', recipeToUpdate);
         const recipeU = await recipeService.save(recipeToUpdate);
         dispatch({ type: 'ADD_FAVORITE', recipe: recipeU })
         dispatch({ type: 'NOTIFY', msg: { type: 'success', txt: 'Congrats! The recipe was added to your Favorites', icon: 'favorites' } });
-        socketService.emit('ADDED TO FAVORITES', {recipe, user});
+        //socketService.emit('ADDED TO FAVORITES', {recipe, user});
     }
 }
 
-export function addToMadeIt(recipe, user) {
-    return async dispatch => {
-        if (recipe.makers.find((maker) => maker._id === user._id)) {
-            dispatch({ type: 'NOTIFY', msg: { type: 'warning', txt: 'This recipe is already in your Made It list' } });
-            return;
-        }
+// export function addToMadeIt(recipe, user) {
+//     return async dispatch => {
+//         if (recipe.makers.find((maker) => maker._id === user._id)) {
+//             dispatch({ type: 'NOTIFY', msg: { type: 'warning', txt: 'This recipe is already in your Made It list' } });
+//             return;
+//         }
 
-        var recipeToUpdate = { ...recipe, makers: _updateRecipeUserList(recipe.makers, user) };
-        const recipeU = await recipeService.save(recipeToUpdate);
-        dispatch({ type: 'ADD_MADEIT', recipe: recipeU })
-        dispatch({ type: 'NOTIFY', msg: { type: 'success', txt: 'Congrats! The recipe was added to your Made It list', icon: 'favorites' } });
-        socketService.emit('ADDED TO MADE IT', { recipe, user });
-    }
+//         var recipeToUpdate = { ...recipe, makers: _updateRecipeUserList(recipe.makers, user) };
+//         const recipeU = await recipeService.save(recipeToUpdate);
+//         dispatch({ type: 'ADD_MADEIT', recipe: recipeU })
+//         dispatch({ type: 'NOTIFY', msg: { type: 'success', txt: 'Congrats! The recipe was added to your Made It list', icon: 'favorites' } });
+//         socketService.emit('ADDED TO MADE IT', { recipe, user });
+//     }
+// }
+
+
+export function addReview(recipe, user) {
+     return async dispatch => {
+         const recipeToUpdate = await recipeService.save(recipe);
+         dispatch({ type: 'ADD_REVIEW', recipe: recipeToUpdate })
+         dispatch({ type: 'NOTIFY', msg: { type: 'success', txt: 'Thank you for submitting a review. The recipe was added to your Made It list', icon: 'favorites' } });
+         //socketService.emit('ADDED REVIEW', { recipe, user });
+     }
 }
-
-
-function _updateRecipeUserList(list, user) {
-    var minUser = { _id: user._id, fullName: user.fullName, imgUrl: user.imgUrl };
-    var updatedList = [...list];
-    updatedList.push(minUser);
-    return updatedList;
-}
-
