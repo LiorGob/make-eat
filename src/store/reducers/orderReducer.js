@@ -3,7 +3,7 @@ const initialState = {
         type: null,
         txt: null
     },
-    orderList: 0
+    orderListSize: 0
 }
 
 export function orderReducer(state = initialState, action = {}) {
@@ -13,8 +13,8 @@ export function orderReducer(state = initialState, action = {}) {
         case 'CLOSE_ORDER_NOTIFICATION':
             return { ...state, msg: { type: null, txt: null } };
         case 'UPDATE_ORDER_LIST':
-            console.log(action.orderList);
-            return { ...state, orderList: action.orderList }
+            console.log(action.orderListSize);
+            return { ...state, orderListSize: action.orderListSize }
         default:
             return state;
     }
