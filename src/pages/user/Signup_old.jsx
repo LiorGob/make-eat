@@ -22,9 +22,8 @@ class _Signup extends Component {
         return (
             <section className="uiForm login">
                 <h1>Sign up with email.</h1>
-                <Link to="/user/login" className="btn-right" >Already a member? Sign in!</Link>
                 <Formik initialValues={{ fullName: '', email: '', password: '' }}
-                    validationSchema={SignupSchema}                    
+                    validationSchema={SignupSchema}
                     onSubmit={values => {
                         this.props.signup(values);
                     }}
@@ -32,7 +31,7 @@ class _Signup extends Component {
                     {({ errors, touched }) => (
                         <Form>
                             <Field type="text" name="fullName" placeholder="Display name" />
-                            {errors.fullName && touched.fullName ? (<div>{errors.fullName}</div>) : null}                            
+                            {errors.fullName && touched.fullName ? (<div>{errors.fullName}</div>) : null}
                             <Field type="email" name="email" placeholder="Email" />
                             {errors.email && touched.email ? <div>{errors.email}</div> : null}
                             <Field type="password" name="password" placeholder="Password" />
@@ -41,6 +40,7 @@ class _Signup extends Component {
                         </Form>
                     )}
                 </Formik>
+                <p>Already a member? <Link to="/user/login" className="link-primary">Log in</Link></p>
             </section>
         )
     }

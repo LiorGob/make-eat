@@ -22,8 +22,8 @@
         a:hover {
             color: $clr12;
         }
-        .logo-image {
-            width: 120px;
+        .logo-img {
+            width: 70px;
             padding-top: 10px;
         }
     }
@@ -32,11 +32,10 @@
         margin-right: 30px;
         .link {
             font-size: rem(20px);
-            color: 1px solid rgba(0, 0, 0, 0.15);
             padding: 0;
+            cursor: pointer;
             a:hover,
             a:visited {
-                cursor: pointer;
                 color: $clr9;
             }
             &:not(:last-child):after {
@@ -63,3 +62,89 @@
     padding-left: 1em;
     color: rgba(166, 166, 166, 0.4);
 }
+
+
+
+
+@media (max-width: 750px) {
+    .main-header {
+        margin-right: 30px;
+        margin-bottom: 3rem;
+        width: 100%;
+        background-color: $clr6;
+        color: $clr9;
+        align-items: center;
+        border-bottom: 1px solid $clr14;
+        .btn-primary {
+            padding: 0.4em 1em;
+            font-size: 1.1em;
+            min-width: 300px;
+        }
+        .MuiButton-label {
+            justify-content: space-between;
+        }
+        .logo {
+            margin-left: rem(20px);
+            font-size: rem(30px);
+            a,
+            a:visited,
+            a:hover {
+                color: $clr12;
+            }
+            .logo-image {
+                width: 70px;
+                padding-top: 10px 5px;
+            }
+        }
+    
+        .main-nav {
+            margin-right: 30px;
+            .link {
+                font-size: rem(20px);
+                color: 1px solid rgba(0, 0, 0, 0.15);
+                padding: 0;
+                a:hover,
+                a:visited {
+                    cursor: pointer;
+                    color: $clr9;
+                }
+                &:not(:last-child):after {
+                    content: "|";
+                    padding-left: 1em;
+                }
+            }
+            svg {
+                width: 24px;
+                position: relative;
+                top: 4px;
+                right: 7px;
+                fill: $clr8;
+            }
+            .user-image-wrapper {
+                width: 48px;
+                margin-right: 0.7em;
+                height: 48px;
+            }
+        }
+    }
+    .main-header .link:not(:last-child):after {
+        content: "|";
+        padding-left: 1em;
+        color: rgba(166, 166, 166, 0.4);
+    }
+
+
+
+}
+
+
+
+
+
+
+    
+   
+
+
+    
+

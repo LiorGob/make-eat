@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { FavoritesIcon } from '../cmps/icons/FavoritesIcon';
+import FavoritesIcon from '../cmps/icons/FavoritesIcon';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 
 function _Notification(props) {

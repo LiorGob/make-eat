@@ -8,8 +8,60 @@ import SecondaryButton from './buttons/SecondaryButton';
 import SearchIcon from '@material-ui/icons/Search';
 import UserImage from './user/UserImage';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Badge } from '@material-ui/core';
+// import NavBarHumburger from '../cmps/navBar/NavBarHumburger'
+import { Login } from './user/Login';
+import { Signup } from './user/Signup';
 
+function ShoppingCartBadge({ orderList }) {
+    return (
+        <React.Fragment>
+            {
+                orderList ? <Badge badgeContent={orderList} anchorOrigin={{ vertical: 'top', horizontal: 'right', }} color="secondary">
+
+                    <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ cursor: "pointer", width: "40px" }} />
+                </Badge>
+                    :
+                    <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ cursor: "pointer", width: "40px" }} />}
+        </React.Fragment>)
+}
+
+function LoggedUserLinks({ user, logout, orderList }) {
+    console.log('orderList:', orderList);
+    return (
+        <React.Fragment>
+            <li className="link flex align-center">
+                <ShoppingCartBadge orderList={orderList} />
+
+                <UserImage user={user} />
+                <Link to={`/user/myprofile/about`}>Profile</Link></li>
+            <li className="link flex align-center"><Link to='' onClick={logout}>Log out</Link></li>
+        </React.Fragment>
+    )
+}
+
+function GuestUserLinks({ orderList }) {
+    const [openLogin, setOpenLogin] = useState(false);
+    const [openSignup, setOpenSignup] = useState(false);
+    const handleOpenSignup = (event) => {
+        setOpenSignup(true);
+    };
+    const handleOpenLogin = (event) => {
+        setOpenLogin(true);
+    };
+
+    return (
+        <React.Fragment>
+            <ShoppingCartBadge orderList={orderList} />
+            <li className="link flex align-center"><span onClick={handleOpenSignup}><AccountCircleIcon />Join now</span></li>
+            <li className="link flex align-center"><span onClick={handleOpenLogin}>Log in</span></li>
+            <Signup open={openSignup} onClose={() => setOpenSignup(false)} />
+            <Login open={openLogin} onClose={() => setOpenLogin(false)} />
+        </React.Fragment>
+    )
+}
 function _AppHeader(props) {
+    // const[openMenu,setOpenMenu]=useState(false)
     const [openSearch, setOpenSearch] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const logoRef = React.createRef();
@@ -23,28 +75,28 @@ function _AppHeader(props) {
         const mouseoverEvent = new Event('mousedown');
         logoRef.current.dispatchEvent(mouseoverEvent);
     };
+
+    // const toggleOpenMenu=(event)=>{
+    //     setOpenMenu(true) 
+    // }
+    // const toggleCloseMenu=(event)=>{
+    //     setOpenMenu(false) 
+    // }
+
+    const isGuestMode = () => {
+        return !props.loggedInUser || props.loggedInUser.isGuest;
+    }
+    console.log(props.orderList);
     return (
         <header className="main-header main-container flex align-center space-between">
             <div className="logo" ref={logoRef}><a href="/"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo5.png')} alt="logo" /></a></div>
             <div className="search-btn-container"><SecondaryButton onClick={handleClickOpen} text="Find a recipe" endIcon={<SearchIcon />} /></div>
             <div style={{ position: 'relative' }}><SearchPopover open={openSearch} onClose={handleCloseSearch} anchorEl={anchorEl} /></div>
             <ul className="main-nav flex row pipe">
-                {!props.loggedInUser &&
-                    <React.Fragment>
-                        <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ cursor: "pointer", width: "40px" }} />
-                        <div>{props.orderList?.length}</div>
-                        <li className="link flex align-center"><Link to='/user/signup'><AccountCircleIcon/>Join now</Link></li>
-                        <li className="link flex align-center"><Link to='/user/login'>Login</Link></li>
-                    </React.Fragment>
-                }
-                {props.loggedInUser &&
-                    <React.Fragment>
-                        <li className="link flex align-center">
-                            <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ width: "40px", paddingRight: "10px", cursor: "pointer" }} />
-                            <UserImage user={props.loggedInUser} />
-                            <Link to={`/user/myprofile/about`}>Profile</Link></li>
-                        <li className="link flex align-center"><Link to='' onClick={props.logout}>Log out</Link></li>
-                    </React.Fragment>
+                {isGuestMode() ?
+                    <GuestUserLinks orderList={props.orderList} />
+                    :
+                    <LoggedUserLinks orderList={props.orderList} user={props.loggedInUser} logout={props.logout} />
                 }
             </ul>
         </header>
