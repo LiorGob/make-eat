@@ -11,7 +11,7 @@ import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 // import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import GroupIcon from '@material-ui/icons/Group';
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+// import ButtonGroup from '@material-ui/core/ButtonGroup';
 // import SecondaryButton from '../cmps/buttons/SecondaryButton';
 // import ScheduleIcon from '@material-ui/icons/Schedule';
 import RatingStar from '../cmps/icons/RatingStar';
@@ -21,8 +21,10 @@ import { HashLink as Link } from 'react-router-hash-link';
 import { RecipeIngredient } from '../cmps/recipe/RecipeIngredient';
 import { RecipeDirection } from '../cmps/recipe/RecipeDirection'
 import { recipeService } from '../services/recipeService';
-import { getRecipe, addToFavorites, addToMadeIt } from '../store/actions/recipeActions';
+import { getRecipe, addToFavorites, addToMadeIt, saveRecipe } from '../store/actions/recipeActions';
 import { LatestReviews } from '../cmps/review/LatestReviews';
+import { AddReview } from '../cmps/review/AddReview';
+
 
 class _RecipeDetails extends Component {
 
@@ -58,6 +60,13 @@ class _RecipeDetails extends Component {
         else {
             this.props.addToMadeIt(this.props.recipe, this.props.loggedInUser);
         }
+    }
+
+    onAddReview = async (review) => {
+        let newRecipe = { ...this.props.recipe };
+        newRecipe.reviews.push(review);
+        await this.props.saveRecipe(newRecipe)
+        console.log('this.props.recipe', this.props.recipe);
     }
 
     render() {
@@ -108,7 +117,7 @@ class _RecipeDetails extends Component {
                             {/* <ButtonGroup className="btn btn-primary" size="large" color="secondary"  aria-label="large outlined primary button group" orientation="vertical"> */}
                             <Button className="btn btn-primary" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoriteBorderIcon className="save-icon" />}>Save</Button>
                             <div className="social-btn flex row justify-center">
-                                <Button className="btn btn-primary"  color="secondary" startIcon={<FacebookIcon className="relative-left" />}></Button>
+                                <Button className="btn btn-primary" color="secondary" startIcon={<FacebookIcon className="relative-left" />}></Button>
                                 <Button className="btn btn-primary" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
                                 <Button className="btn btn-primary" color="secondary" startIcon={<InstagramIcon className="relative-left" />}></Button>
                             </div>
@@ -121,6 +130,7 @@ class _RecipeDetails extends Component {
 
                         <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
                         <RecipeDirection recipe={recipe} /*onAddToMadeIt={this.onAddToMadeIt}*/ />
+                        <AddReview recipe={recipe._id} onAddReview={this.onAddReview} loggedInUser={this.props.loggedInUser} />
                         <LatestReviews recipe={recipe} count="1" reviewsNum={reviewsNum} ratingAvg={ratingAvg} />
                         {/* <ReviewDialog recipe={recipe} doOpen={this.state.openReviewDialog}/> */}
                     </div>
@@ -142,7 +152,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     getRecipe,
     addToFavorites,
-    addToMadeIt
+    addToMadeIt,
+    saveRecipe
 }
 
 export const RecipeDetails = connect(mapStateToProps, mapDispatchToProps)(_RecipeDetails)
