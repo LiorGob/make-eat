@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import hero from '../assets/images/hero/hero.mp4';
 import sushi from '../assets/images/sushi.jpg'
-import macaroons1 from '../assets/images/french/macaroons1.jpg'
-import ravioli from '../assets/images/italian/ravioli.jpg'
+// import macaroons1 from '../assets/images/french/macaroons1.jpg'
+// import ravioli from '../assets/images/italian/ravioli.jpg'
 import { RecipeList } from '../cmps/recipe/RecipeList'
 import { loadRecipes } from '../store/actions/recipeActions.js'
 import { populateDBService } from '../services/populateDB.js';
@@ -32,8 +32,8 @@ class _Home extends Component {
         let images = [
             { image: sushi, route: '/recipe', tag: 'japanese' },
             { image: 'https://res.cloudinary.com/duzhu2ejx/image/upload/v1600716009/sprint%204/mexican/tacos_ejumt3.webp', route: '/recipe', tag: 'mexican' },
-            { image: macaroons1, route: '/recipe', tag: 'french' },
-            { image: ravioli, route: '/recipe', tag: 'italian' },
+            { image: 'https://res.cloudinary.com/duzhu2ejx/image/upload/v1601335563/sprint%204/french/macaroons_n22y6s.jpg', route: '/recipe', tag: 'french' },
+            { image: 'https://res.cloudinary.com/duzhu2ejx/image/upload/v1600527675/sprint%204/italian/pizza1_mqqq0a.jpg', route: '/recipe', tag: 'italian' },
             { image: 'https://res.cloudinary.com/dbfuiddgm/image/upload/v1601131162/makeeat/humburger2_tdphnt_cropped_rruupt.jpg', route: '/recipe', tag: 'american' },
             // TBD: add more tags
         ];
