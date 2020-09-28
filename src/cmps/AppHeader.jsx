@@ -13,26 +13,29 @@ import { Badge } from '@material-ui/core';
 import { Login } from './user/Login';
 import { Signup } from './user/Signup';
 
-function ShoppingCartBadge({ orderList }) {
+function ShoppingCartBadge({ orderListSize }) {
+    function ShoppingCart(){
+        return (
+        <ShoppingCartIcon className="shopping-cart self-center" style={{ cursor: "pointer", width: "40px" }} />
+        )
+    }
     return (
         <React.Fragment>
             {
-                orderList ? <Badge badgeContent={orderList} anchorOrigin={{ vertical: 'top', horizontal: 'right', }} color="secondary">
-
-                    <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ cursor: "pointer", width: "40px" }} />
+                orderListSize ? 
+                <Badge badgeContent={orderListSize} anchorOrigin={{ vertical: 'top', horizontal: 'right', }} color="secondary">
+                    <ShoppingCart/>
                 </Badge>
-                    :
-                    <ShoppingCartIcon className="shopping-cart self-center" color="secondary" style={{ cursor: "pointer", width: "40px" }} />}
+                :
+                <ShoppingCart/>
+            }
         </React.Fragment>)
 }
 
-function LoggedUserLinks({ user, logout, orderList }) {
-    console.log('orderList:', orderList);
+function LoggedUserLinks({ user, logout }) {
     return (
         <React.Fragment>
             <li className="link flex align-center">
-                <ShoppingCartBadge orderList={orderList} />
-
                 <UserImage user={user} />
                 <Link to={`/user/myprofile/about`}>Profile</Link></li>
             <li className="link flex align-center"><Link to='' onClick={logout}>Log out</Link></li>
@@ -40,7 +43,7 @@ function LoggedUserLinks({ user, logout, orderList }) {
     )
 }
 
-function GuestUserLinks({ orderList }) {
+function GuestUserLinks() {
     const [openLogin, setOpenLogin] = useState(false);
     const [openSignup, setOpenSignup] = useState(false);
     const handleOpenSignup = (event) => {
@@ -52,7 +55,6 @@ function GuestUserLinks({ orderList }) {
 
     return (
         <React.Fragment>
-            <ShoppingCartBadge orderList={orderList} />
             <li className="link flex align-center"><span onClick={handleOpenSignup}><AccountCircleIcon />Join now</span></li>
             <li className="link flex align-center"><span onClick={handleOpenLogin}>Log in</span></li>
             <Signup open={openSignup} onClose={() => setOpenSignup(false)} />
@@ -86,19 +88,21 @@ function _AppHeader(props) {
     const isGuestMode = () => {
         return !props.loggedInUser || props.loggedInUser.isGuest;
     }
-    console.log(props.orderList);
     return (
         <header className="main-header main-container flex align-center space-between">
             <div className="logo" ref={logoRef}><a href="/"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo5.png')} alt="logo" /></a></div>
             <div className="search-btn-container"><SecondaryButton onClick={handleClickOpen} text="Find a recipe" endIcon={<SearchIcon />} /></div>
             <div style={{ position: 'relative' }}><SearchPopover open={openSearch} onClose={handleCloseSearch} anchorEl={anchorEl} /></div>
+            <div className="flex row">
+            <ShoppingCartBadge orderListSize={props.orderListSize} />
             <ul className="main-nav flex row pipe">
                 {isGuestMode() ?
-                    <GuestUserLinks orderList={props.orderList} />
+                    <GuestUserLinks />
                     :
-                    <LoggedUserLinks orderList={props.orderList} user={props.loggedInUser} logout={props.logout} />
+                    <LoggedUserLinks user={props.loggedInUser} logout={props.logout} />
                 }
             </ul>
+            </div>
         </header>
     )
 }
@@ -109,7 +113,7 @@ const mapStateToProps = state => {
         recipes: state.recipeReducer.recipes,
         filterBy: state.produceReducer.filterBy,
         searchedRecipes: state.searchReducer.searchedRecipes,
-        orderList: state.orderReducer.orderList,
+        orderListSize: state.orderReducer.orderListSize,
     }
 }
 

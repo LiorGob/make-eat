@@ -13,16 +13,11 @@
                 background-color: #fff;
                 border-radius: 4px;
             }
-        }
-        .main-header .search-recipes {
-            // display: none;
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            input {
-                border-radius: 10px !important;
+            .shopping-cart{
+                fill: $clr6;
             }
         }
+
         .main-nav li {
             color: $clr6;
             a:hover,

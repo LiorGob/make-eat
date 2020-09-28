@@ -29,7 +29,7 @@
     }
 
     .main-nav {
-        margin-right: 30px;
+        margin: 0 30px;
         .link {
             font-size: rem(20px);
             padding: 0;
@@ -54,6 +54,9 @@
             width: 48px;
             margin-right: 0.7em;
             height: 48px;
+        }
+        .shopping-cart{
+            fill: $clr9;
         }
     }
 }
