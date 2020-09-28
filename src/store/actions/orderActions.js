@@ -12,9 +12,9 @@ export function closeOrderNotification() {
     }
 }
 
-export function updateOrderList(orderList) {
+export function updateOrderList(orderListSize) {
     return dispatch => {
-        dispatch({ type: 'UPDATE_ORDER_LIST', orderList })
+        dispatch({ type: 'UPDATE_ORDER_LIST', orderListSize })
     }
 
 

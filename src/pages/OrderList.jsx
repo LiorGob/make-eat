@@ -21,9 +21,9 @@ export class _OrderList extends Component {
         window.scroll(0, 0);
         const { location } = this.props
         let selectedIngredients = location && location.state ? location.state.selectedIngredients : []
-        if (selectedIngredients.length > 0) sessionStorage.setItem("orderList", JSON.stringify(selectedIngredients))
+        if (selectedIngredients.length > 0) sessionStorage.setItem("orderListSize", JSON.stringify(selectedIngredients))
         else
-            selectedIngredients = JSON.parse(sessionStorage.getItem("orderList"))
+            selectedIngredients = JSON.parse(sessionStorage.getItem("orderListSize"))
         this.setState({ selectedIngredients }, console.log(location.state))
         this.updateProduceInOrderList(selectedIngredients)
         console.log('mount');

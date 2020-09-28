@@ -134,7 +134,7 @@ const StyledBadge = withStyles((theme) => ({
 const mapStateToProps = state => {
     return {
 
-        orderList: state.orderReducer.orderList,
+        orderListSize: state.orderReducer.orderListSize,
     }
 }
 
