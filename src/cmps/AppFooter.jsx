@@ -4,7 +4,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import InstagramIcon from '@material-ui/icons/Instagram';
-import Button from '@material-ui/core/Button';
+
 import SpoonIcon from './icons/SpoonIcon.jsx'
 
 export function AppFooter() {
@@ -29,7 +29,8 @@ export function AppFooter() {
                                 <Button className="btn btn-primary" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
                                 <Button className="btn btn-primary" color="secondary" startIcon={<InstagramIcon className="relative-left" />}></Button>
                             </div> */}
-                        <Link to={`/user/signup`}> < Button>Sign up</Button></Link>
+                        <Link to={`/user/signup`}> < button>Sign up</button></Link>
+                     
                     </div>
                 </div>
                 </section>

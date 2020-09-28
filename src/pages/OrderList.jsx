@@ -61,7 +61,7 @@ export class _OrderList extends Component {
         let sheeping = 5
         let sumWithSheeping = totalAmount + sheeping
         console.log(sumWithSheeping);
-        return sumWithSheeping
+        return sumWithSheeping.toFixed(2)
     }
 
     updateProduceInOrderList(list) {
@@ -77,8 +77,10 @@ export class _OrderList extends Component {
                     <h1 className="order-title flex">Shopping Cart</h1>
 
                     <div className="shopping-details">
-                        <p className="total-amount">Total Order :<span> ${this.getTotalAmount()}</span></p>
-                        <p className="shipping" style={{ borderBottom:"1px solid #00000026"}}>Shipping :<span> $5</span><SpoonIcon/></p>
+                        <p className="total-amount">Total Order :<span> ${this.getTotalAmount().toFixed(2)}</span></p>
+                        <p className="shipping" style={{ borderBottom:"1px solid #00000026"}}>Shipping :<span> $5</span>
+                        {/* <div className="spoon-decoration" style={{position:"absolute", bottom:"299px", right:"170px"}}><SpoonIcon/></div> */}
+                        </p>
                         <p>Total With Shipping : ${this.getTotalAmountWithSheepping()}</p>
                         <Button onClick={() => this.onCheckout()} variant="outlined"
                             color="secondary" className="align-end btn btn-primary bg-pan-left
@@ -97,7 +99,7 @@ export class _OrderList extends Component {
                                 <label>{ingredient.name}</label>
                                 </div>
                                 <img className="produce-img" src={ingredient.img} alt="produce" />
-                                <label>{`$${ingredient.price}`}</label>
+                                <div className="produce-price">{`$${ingredient.price}`}</div>
                                 <div className="shopping-cartbtn">
                                     <button onClick={() => this.onRemove(ingredient.name)}><DeleteIcon /></button>
 
