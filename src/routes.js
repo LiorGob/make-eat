@@ -1,6 +1,4 @@
 //import { Home } from './pages/Home.jsx'
-import { Login } from './pages/user/Login.jsx'
-import { Signup } from './pages/user/Signup.jsx'
 import { RecipeApp } from './pages/RecipeApp.jsx'
 import { RecipeDetails } from './pages/RecipeDetails.jsx'
 import { RecipeEdit } from './pages/RecipeEdit.jsx'
@@ -14,14 +12,6 @@ export default [
     {
         path: '/shopping-cart',
         component: ShoppingCart
-    },
-    {
-        path: '/user/signup',
-        component: Signup
-    },
-    {
-        path: '/user/login',
-        component: Login
     },
     {
         path: '/user/:id/:path',
@@ -47,10 +37,6 @@ export default [
         path: '/recipe',
         component: RecipeApp
     },
-    // {
-    //     path: '/',
-    //     component: Home
-    // },
     {
         path: '/order/',
         component: OrderList

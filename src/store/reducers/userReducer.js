@@ -1,5 +1,5 @@
-let localLoggedinUser = null;
-if (sessionStorage.loggedInUser) localLoggedinUser = JSON.parse(sessionStorage.loggedInUser);
+import { userService } from '../../services/userService'
+let localLoggedinUser = userService.getLocalUser();
 
 const initialState = {
     users: [],

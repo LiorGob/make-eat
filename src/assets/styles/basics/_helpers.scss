@@ -145,6 +145,13 @@
         color: $clr9;
     }
 }
+.link-primary {
+    color: $clr12;
+    &.visited,
+    &.active {
+        color: $clr12;
+    }
+}
 .rating-star {
     margin-right: 0.3em;
 }

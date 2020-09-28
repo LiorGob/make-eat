@@ -2,7 +2,14 @@
     // width: 285px;
     margin-bottom: 2em;
     // border: 1px solid $clr15;
-
+    h3{
+        a{
+            color: $clr9;
+            &:visited, &:hover{
+                color: $clr9;
+            }
+        }
+    }
     .recipe-card-body {
         padding: 1em;
         font-size: 0.85em;
@@ -13,7 +20,8 @@
     img{
         height: 250px;
     }
-    .recipe-card-rating {
-        align-items: center;
+    .recipe-stats {
+        justify-content: space-between;
+        margin-inline-end: 10px;
     }
 }
