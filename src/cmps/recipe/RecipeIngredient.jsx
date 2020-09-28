@@ -20,7 +20,8 @@ function _RecipeIngredient({ recipe},props) {
     const [addedToCart, setAddedToCart] = useState(false);
 
     function handleSelectIngredient(selectedIngredient) {
-        let ingredientsToUpdate = [...ingredients];
+        console.log(selectedIngredient);
+        let ingredientsToUpdate = JSON.parse(JSON.stringify(ingredients));
         let ind = ingredientsToUpdate.findIndex((ingredient) => ingredient.produceId === selectedIngredient.produceId);
         if (ind >= 0) ingredientsToUpdate[ind].selected = !ingredientsToUpdate[ind].selected;
         setIngredients(ingredientsToUpdate);

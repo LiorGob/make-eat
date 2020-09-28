@@ -10,9 +10,12 @@ html {
 body {
     font-size: rem(16px);
     margin: 0;
-    font-family: 'Heebo', sans-serif;
-    color: rgba(0,0,0,0.95);
+    font-family: $bodyFont;
+    color: rgba(0, 0, 0, 0.95);
     // padding: 0 20px;
+}
+.MuiTypography-root, .MuiButton-root{
+    font-family: $bodyFont;
 }
 h1,
 h2,
@@ -21,7 +24,7 @@ h4,
 h5,
 h6 {
     margin: 0 0 0.6em;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: $titleFont;
     font-weight: bold;
 }
 // h1{
@@ -45,7 +48,8 @@ button {
     cursor: pointer;
     outline: none;
 }
-ul, li{
+ul,
+li {
     list-style-type: none;
     padding: 0;
     margin: 0;

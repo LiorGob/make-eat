@@ -36,17 +36,37 @@ class _IngredientSearch extends Component {
         if (ev.keyCode === 13) {
             ev.preventDefault();
             this.props.searchIngredients(this.props.recipes, this.state.searchTerm);
-            this.props.history.push('/recipe');
+            this.setState({defaultSearchTerm: ''})
+            this.props.onDoSearch();
+            this.props.history.push(`/recipe?searchIngredient=${this.state.searchTerm}`);
         }
     }
 
     render() {
-        const { placeholder } = this.props;
+//        const { placeholder } = this.props;
         return (
             <div className="produce-filter">
-                <TextField className="input-color" type="text" name="ingredient" autoComplete="off" InputProps={{disableUnderline: true }} value={this.defaultSearchTerm}
-                    onKeyUp={this.onKeyUp} placeholder={placeholder} onChange={this.onHandleChange} />
-
+                {/* <TextField className="input-color" type="text" name="ingredient" autoComplete="off" InputProps={{disableUnderline: true }} value={this.defaultSearchTerm}
+                    onKeyUp={this.onKeyUp} placeholder={placeholder} onChange={this.onHandleChange} /> */}
+                <TextField
+                    name="title"
+                    autoComplete="off"
+                    type="search"
+                    label="Search by ingredient"
+                    //style={{ margin: 8 }}
+                    placeholder="Eggs"
+                    helperText="Search by an ingredient included in a recipe"
+                    fullWidth
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    variant="outlined"
+                    className="input-color"
+                    value={this.state.defaultSearchTerm}
+                    onKeyUp={this.onKeyUp}
+                    onChange={this.onHandleChange}
+                />
             </div>
         )
     }

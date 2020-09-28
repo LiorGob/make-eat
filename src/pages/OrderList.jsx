@@ -4,7 +4,7 @@ import { getRecipe } from '../store/actions/recipeActions.js';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import { addNotification, updateOrderList } from '../store/actions/orderActions.js';
-import SpoonIcon from '../cmps/icons/SpoonIcon';
+// import SpoonIcon from '../cmps/icons/SpoonIcon';
 
 // import { Badge } from '@material-ui/core';
 

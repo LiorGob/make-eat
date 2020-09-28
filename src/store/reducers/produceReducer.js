@@ -1,6 +1,5 @@
 const initialState = {
-    produces: [],
-    filterBy: ''
+    produces: []
 }
 
 export function produceReducer(state = initialState, action = {}) {
@@ -9,8 +8,6 @@ export function produceReducer(state = initialState, action = {}) {
             return { ...state, produces: action.produces }
         case 'GET_PRODUCE':
             return { ...state, produce: action.produce }
-        case 'SET_FILTER':
-            return { ...state, filterBy: action.filterBy }
         default:
             return state
     }
