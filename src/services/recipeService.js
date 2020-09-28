@@ -49,7 +49,7 @@ function getRatingAvg(recipe) {
 
 function getReviewsNum(id) {
     if (!sessionStorage.getItem("recipe-" + id)) {
-        sessionStorage.setItem("recipe-" + id, (utilService.getRandomInt(1,10)) * 50)
+        sessionStorage.setItem("recipe-" + id, (utilService.getRandomInt(7,13)) * (utilService.getRandomInt(23,43)))
     }
     return sessionStorage.getItem("recipe-" + id)
 }
