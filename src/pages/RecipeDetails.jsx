@@ -95,13 +95,18 @@ class _RecipeDetails extends Component {
                 <div className="recipe-details">
                     <div className="absract-recipe flex column">
                         <h1>{recipe.name}</h1>
-                        <div className="recipe-stats padding-bottom">
+                        <div className="review-details flex row padding-bottom">
+                            <RatingStar />
+                            <span><Link to={`/recipe/${recipe._id}#latest-review-list`} className="color-underline font-bold">{`${ratingAvg}(${reviewsNum})`}</Link></span>
+                            <span>{recipeService.getMadeByLabel(recipe._id)}</span>
+                        </div>
+                        {/* <div className="recipe-stats padding-bottom">
                             <span className="rating">
                                 <span><RatingStar /></span>
                                 <span><Link to={`/recipe/${recipe._id}#latest-review-list`} className="color-underline font-bold">{`${ratingAvg}(${reviewsNum})`}</Link></span>
                             </span>
                             <span>{recipeService.getMadeByLabel(recipe._id)}</span>
-                        </div>
+                        </div> */}
                         <div className="gallery-warapper flex row">
                             <ImageCarousel images={recipe.imgs} /*recipeName={recipe.name}*/ />
                         </div>
@@ -133,12 +138,15 @@ class _RecipeDetails extends Component {
                         <div className="share-btns flex column border-grey">
                             {/* <div className="docked"> */}
                             <SecondaryButton onClick={this.onAddToFavorites} startIcon={<FavoritesIcon className={`save-icon ${this.state.saved && 'saved'}`} />} text={this.state.saved ?'saved':'save'}/>
+                            {/* <Button className="btn btn-primary" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoritesIcon className={`save-icon ${this.state.saved && 'saved'}`} />} text={this.state.saved ?'saved':'save'}></Button> */}
+
                             <div className="social-btn flex row justify-center">
                                 <Button className="btn btn-primary" color="secondary" startIcon={<FacebookIcon className="relative-left" />}></Button>
                                 <Button className="btn btn-primary" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
                                 <Button className="btn btn-primary" color="secondary" startIcon={<InstagramIcon className="relative-left" />}></Button>
                             </div>
-                            <SecondaryButton startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt} text="I made it"/>
+                            <SecondaryButton  className="made-it btn btn-primary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt} text="I made it"/>
+                            {/* <Button className="btn btn-primary" color="secondary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt} text="I made it"></Button> */}
                             {/* </div> */}
                         </div>
 
