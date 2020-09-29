@@ -1,4 +1,5 @@
-import { userService } from '../../services/userService'
+import { userService } from '../../services/userService';
+import { socketService } from '../../services/socketService';
 
 export function loadUsers() {
     return async dispatch => {
@@ -23,7 +24,7 @@ export function getUser(id) {
 export function login(userCred) {
     return async dispatch => {
         const user = await userService.login(userCred)
-        console.log(user);
+        socketService.setup();
         dispatch({ type: 'LOGIN_USER', user })
     }
 }

@@ -25,7 +25,7 @@ export class AddReview extends Component {
     }
 
     componentDidMount = async () => {
-        const recipeId = this.props
+        const recipeId = this.props.recipeId;
         if (recipeId) {
             const recipe = await recipeService.getById(recipeId)
             this.setState({ recipe })

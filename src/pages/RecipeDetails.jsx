@@ -155,7 +155,7 @@ class _RecipeDetails extends Component {
 
                         <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
                         <RecipeDirection recipe={recipe} /*onAddToMadeIt={this.onAddToMadeIt}*/ />
-                        <AddReview open={this.state.openAddReview} onClose={this.onCloseAddReview} recipe={recipe._id} onSubmitReview={this.onSubmitReview} loggedInUser={this.props.loggedInUser} />
+                        <AddReview open={this.state.openAddReview} onClose={this.onCloseAddReview} recipeId={recipe._id} onSubmitReview={this.onSubmitReview} loggedInUser={this.props.loggedInUser} />
                         <LatestReviews recipe={recipe} count="1" reviewsNum={reviewsNum} ratingAvg={ratingAvg} />
                         {/* <ReviewDialog recipe={recipe} doOpen={this.state.openReviewDialog}/> */}
                     </div>
