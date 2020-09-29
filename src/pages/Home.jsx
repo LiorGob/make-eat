@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import hero from '../assets/images/hero/hero.mp4';
+// import hero from '../assets/images/hero/hero.mp4';
 import sushi from '../assets/images/sushi.jpg'
 // import macaroons1 from '../assets/images/french/macaroons1.jpg'
 // import ravioli from '../assets/images/italian/ravioli.jpg'
@@ -42,10 +42,15 @@ class _Home extends Component {
                 <div className="hero">
                     {/* poster={heroposter} */}
                     <div className="video-container">
-                        <video className="video-home" autoPlay muted preload="auto" loop>
+                        {/* <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363981/sprint%204/hero_Moment1jpg_hkxodf.jpg"></img> */}
+                        {/* <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363986/sprint%204/hero_Moment4_qk2czp.jpg"></img> */}
+                        <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363984/sprint%204/hero_Moment3_r6khe1.jpg"></img>
+
+
+                        {/* <video className="video-home" autoPlay muted preload="auto" loop>
                             <source src={hero} type="video/mp4" />
                         Your browser doesn't support the video tag
-                    </video>
+                    </video> */}
                     </div>
                     <div className="caption-container">
                         <div className="caption">

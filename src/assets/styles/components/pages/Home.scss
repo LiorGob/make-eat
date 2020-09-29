@@ -147,6 +147,9 @@
     .more-recipes {
         display: flex;
         justify-content: space-between;
+        a{
+            color:$clr9;
+        }
     }
     .recipe-list {
         .recipe-card {
