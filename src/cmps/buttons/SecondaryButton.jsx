@@ -12,11 +12,12 @@ const ColorButton = withStyles((theme) => ({
     },
 }))(Button);
 
-export default function SecondaryButton({ onClick, text, classes, startIcon, endIcon, variant }) {
+export default function SecondaryButton({ onClick, text, classes, startIcon, endIcon, variant, type }) {
     return (
         <ColorButton variant={variant} color="secondary"
             className={`btn btn-primary${classes ? ' ' + classes : ''}`}
             onClick={onClick}
+            type={type}
             startIcon={startIcon}
             endIcon={endIcon}
         >

@@ -1,16 +1,20 @@
-// .recipe-stats {
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     span {
-//         display: inline-block;
-//     }
-//     span.rating {
-//         display: flex;
-//         flex-direction: row;
-//         align-items: center;
-//     }
-// }
+.recipe-stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    span {
+        display: inline-block;
+    }
+    span.rating {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    svg{
+        position: relative;
+        top: 2px;
+    }
+}
 
 .recipe-details {
     font-size: rem(18px);
@@ -25,7 +29,7 @@
     }
 
     .review-details > *:last-child {
-       padding-left: rem(10px);
+        padding-left: rem(10px);
     }
     // .recipe-stats {
     //     span.rating {
@@ -136,7 +140,7 @@
             }
             .save-icon {
                 position: relative;
-                bottom: 2px;
+                top: 2px;
                 &.saved {
                     fill: $clr12;
                 }
@@ -146,11 +150,16 @@
                 .MuiButton-label {
                     height: rem(31px);
                 }
+               
+            }
+
+            .spoon-top {
                 svg {
                     position: relative;
                     top: 3px;
                 }
             }
+
         }
         .recipe-section {
             list-style-type: none;

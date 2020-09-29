@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import SpoonIcon from '../cmps/icons/SpoonIcon';
 import FavoritesIcon from '../cmps/icons/FavoritesIcon';
 import InstagramIcon from '@material-ui/icons/Instagram';
-// import PrintIcon from '@material-ui/icons/Print';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import AlarmIcon from '@material-ui/icons/Alarm';
@@ -11,7 +10,6 @@ import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 // import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import GroupIcon from '@material-ui/icons/Group';
 import Button from '@material-ui/core/Button';
-// import ButtonGroup from '@material-ui/core/ButtonGroup';
 import SecondaryButton from '../cmps/buttons/SecondaryButton';
 // import ScheduleIcon from '@material-ui/icons/Schedule';
 import RatingStar from '../cmps/icons/RatingStar';
@@ -35,11 +33,11 @@ class _RecipeDetails extends Component {
         window.scroll(0, 0);
         const { id } = this.props.match.params;
         await this.props.getRecipe(id);
-        if (this.props.loggedInUser && this.props.recipe && this.props.recipe.likers){
-            let isSaved = this.props.recipe.likers.some(({_id}) => {
+        if (this.props.loggedInUser && this.props.recipe && this.props.recipe.likers) {
+            let isSaved = this.props.recipe.likers.some(({ _id }) => {
                 return _id === this.props.loggedInUser._id;
             });
-            this.setState({saved: isSaved});
+            this.setState({ saved: isSaved });
         }
     }
 
@@ -58,7 +56,7 @@ class _RecipeDetails extends Component {
         }
         else {
             this.props.addToFavorites(this.props.recipe, this.props.loggedInUser);
-            this.setState({saved:true});
+            this.setState({ saved: true });
         }
     }
 
@@ -67,16 +65,21 @@ class _RecipeDetails extends Component {
             this.props.history.push('/user/login');
         }
         else {
-            this.setState({openAddReview: true});
+            this.setState({ openAddReview: true });
         }
     }
-    
+
     onCloseAddReview = () => {
         this.setState({ openAddReview: false });
     }
-    
-    onAddReview = (review) => {
-        let newRecipe = { ...recipeService.markAsMade(this.props.recipe, this.props.loggedInUser) };
+
+    onSubmitReview = (review) => {
+        if (this.props.recipe.makers.find((maker) => maker._id === this.props.loggedInUser._id)) {
+            this.onCloseAddReview();
+            return;
+        }
+        let newRecipe = { ...this.props.recipe, makers: recipeService.updateRecipeUserList(this.props.recipe.makers, this.props.loggedInUser) };
+       console.log('newrecipe', newRecipe);
         newRecipe.reviews.push(review);
         //this.props.addToMadeIt(newRecipe, this.props.loggedInUser);
         this.onCloseAddReview();
@@ -137,7 +140,7 @@ class _RecipeDetails extends Component {
                     <div className="grid-container">
                         <div className="share-btns flex column border-grey">
                             {/* <div className="docked"> */}
-                            <SecondaryButton onClick={this.onAddToFavorites} startIcon={<FavoritesIcon className={`save-icon ${this.state.saved && 'saved'}`} />} text={this.state.saved ?'saved':'save'}/>
+                            <SecondaryButton onClick={this.onAddToFavorites} startIcon={<FavoritesIcon className={`save-icon ${this.state.saved && 'saved'}`} />} text={this.state.saved ? 'saved' : 'save'} />
                             {/* <Button className="btn btn-primary" color="secondary" onClick={this.onAddToFavorites} startIcon={<FavoritesIcon className={`save-icon ${this.state.saved && 'saved'}`} />} text={this.state.saved ?'saved':'save'}></Button> */}
 
                             <div className="social-btn flex row justify-center">
@@ -145,14 +148,14 @@ class _RecipeDetails extends Component {
                                 <Button className="btn btn-primary" color="secondary" startIcon={<PinterestIcon className="relative-left" />}></Button>
                                 <Button className="btn btn-primary" color="secondary" startIcon={<InstagramIcon className="relative-left" />}></Button>
                             </div>
-                            <SecondaryButton  className="made-it btn btn-primary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt} text="I made it"/>
+                            <SecondaryButton className="made-it btn btn-primary" startIcon={<div className="spoon-top"><SpoonIcon /></div>} onClick={this.onAddToMadeIt} text="I made it" />
                             {/* <Button className="btn btn-primary" color="secondary" startIcon={<SpoonIcon />} onClick={this.onAddToMadeIt} text="I made it"></Button> */}
                             {/* </div> */}
                         </div>
 
                         <RecipeIngredient recipe={recipe} selectIngredient={this.selectIngredient} />
                         <RecipeDirection recipe={recipe} /*onAddToMadeIt={this.onAddToMadeIt}*/ />
-                        <AddReview open={this.state.openAddReview} onClose={this.onCloseAddReview} recipe={recipe._id} onAddReview={this.onAddReview} loggedInUser={this.props.loggedInUser} />
+                        <AddReview open={this.state.openAddReview} onClose={this.onCloseAddReview} recipe={recipe._id} onSubmitReview={this.onSubmitReview} loggedInUser={this.props.loggedInUser} />
                         <LatestReviews recipe={recipe} count="1" reviewsNum={reviewsNum} ratingAvg={ratingAvg} />
                         {/* <ReviewDialog recipe={recipe} doOpen={this.state.openReviewDialog}/> */}
                     </div>
