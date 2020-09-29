@@ -21,13 +21,15 @@ function terminate() {
   }
   
   function on(eventName, cb) {
-    socket.on(eventName, cb);
+    socket && socket.on(eventName, cb);
   }
   
   function off(eventName, cb) {
-    socket.off(eventName, cb);
+    socket && socket.off(eventName, cb);
   }
   
   function emit(eventName, data) {
-    socket.emit(eventName, data);
+    console.log('eventName', eventName);
+    console.log('data', data);
+    socket && socket.emit(eventName, data);
   }

@@ -19,6 +19,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 import { RecipeIngredient } from '../cmps/recipe/RecipeIngredient';
 import { RecipeDirection } from '../cmps/recipe/RecipeDirection'
 import { recipeService } from '../services/recipeService';
+import { socketService } from '../services/socketService';
 import { getRecipe, addToFavorites, addReview, saveRecipe } from '../store/actions/recipeActions';
 import { LatestReviews } from '../cmps/review/LatestReviews';
 import { AddReview } from '../cmps/review/AddReview';
@@ -51,13 +52,14 @@ class _RecipeDetails extends Component {
     // }
 
     onAddToFavorites = () => {
-        if (!this.props.loggedInUser) {
-            this.props.history.push('/user/login');
-        }
-        else {
-            this.props.addToFavorites(this.props.recipe, this.props.loggedInUser);
-            this.setState({ saved: true });
-        }
+        // if (!this.props.loggedInUser) {
+        //     this.props.history.push('/user/login');
+        // }
+        // else {
+        //     this.props.addToFavorites(this.props.recipe, this.props.loggedInUser);
+        //     this.setState({ saved: true });
+        // }
+        socketService.emit('ADDED TO FAVORITES', JSON.stringify({ recipe: this.props.recipe, user: this.props.loggedInUser }));
     }
 
     onAddToMadeIt = () => {

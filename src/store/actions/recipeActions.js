@@ -69,7 +69,7 @@ export function addToFavorites(recipe, user) {
         const recipeU = await recipeService.save(recipeToUpdate);
         dispatch({ type: 'ADD_FAVORITE', recipe: recipeU })
         dispatch({ type: 'NOTIFY', msg: { type: 'success', txt: 'Congrats! The recipe was added to your Favorites', icon: 'favorites' } });
-        //socketService.emit('ADDED TO FAVORITES', JSON.stringify({recipe, user}));
+        socketService.emit('ADDED TO FAVORITES', JSON.stringify({recipe, user}));
     }
 }
 
