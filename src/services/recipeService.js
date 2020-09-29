@@ -19,6 +19,7 @@ function query(filterBy) {
 }
 
 function getById(recipeId) {
+    console.log('front end ', recipeId);
     return httpService.get(`recipe/${recipeId}`)
 }
 
