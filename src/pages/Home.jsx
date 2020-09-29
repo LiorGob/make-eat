@@ -42,9 +42,9 @@ class _Home extends Component {
                 <div className="hero">
                     {/* poster={heroposter} */}
                     <div className="video-container">
-                        {/* <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363981/sprint%204/hero_Moment1jpg_hkxodf.jpg"></img> */}
-                        {/* <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363986/sprint%204/hero_Moment4_qk2czp.jpg"></img> */}
-                        <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363984/sprint%204/hero_Moment3_r6khe1.jpg"></img>
+                        {/* <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363981/sprint%204/hero_Moment1jpg_hkxodf.jpg""></img> */}
+                        {/* < src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363986/sprint%204/hero_Moment4_qk2czp.jpg"alt="/> */}
+                        <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363984/sprint%204/hero_Moment3_r6khe1.jpg" alt=""/>
 
 
                         {/* <video className="video-home" autoPlay muted preload="auto" loop>
