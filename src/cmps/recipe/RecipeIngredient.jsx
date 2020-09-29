@@ -124,7 +124,7 @@ const { recipe }= props
 const StyledBadge = withStyles((theme) => ({
     badge: {
         right: -3,
-        top: 13,
+        top: 0,
         border: `2px solid ${theme.palette.background.paper}`,
         padding: '0 4px'
     },

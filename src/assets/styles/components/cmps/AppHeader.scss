@@ -16,8 +16,8 @@
          color:$clr9;
     }
     .logo {
-        margin-left: rem(20px);
-        font-size: rem(30px);
+        // margin-left: rem(20px);
+        // font-size: rem(30px);
         a,
         a:visited,
         a:hover {
@@ -25,7 +25,7 @@
         }
         .logo-img {
             width: 162px;
-            padding-top: 10px;
+            padding: rem(30px);
         }
     }
 
@@ -38,7 +38,7 @@
             cursor: pointer;
             a:hover,
             a:visited {
-                color: $clr9;
+                color: $clr12;
             }
             &:not(:last-child):after {
                 content: "|";
@@ -60,6 +60,14 @@
         .shopping-cart{
             fill: $clr9;
         }
+        .MuiBadge-anchorOriginTopRightRectangle {
+            top: 5px;
+            right: 0;
+            transform: scale(1) translate(50%, -50%);
+            transform-origin: 100% 0%;
+            fill:  $clr12;
+        }
+
     }
 }
 .main-header .link:not(:last-child):after {
@@ -67,6 +75,7 @@
     padding-left: 1em;
     color: rgba(166, 166, 166, 0.4);
 }
+
 
 
 
@@ -83,27 +92,29 @@
         .btn-primary {
             padding: 0.4em 1em;
             font-size: 1.1em;
-            min-width: 300px;
+            min-width: 100px;
            
         }
         .MuiButton-label {
             justify-content: space-between;
+            font-size: 10px;
         }
         .logo {
-            margin-left: rem(20px);
-            font-size: rem(30px);
+            // margin-left: rem(20px);
+            // font-size: rem(30px);
             a,
             a:visited,
             a:hover {
                 color: $clr12;
             }
             .logo-img {
-                width: 162px;
-                padding-top: 10px 5px;
+                width: 100px;
+                padding: rem(20px);
             }
         }
     
         .main-nav {
+        display: none;
             margin-right: 30px;
             .link {
                 font-size: rem(20px);
@@ -112,7 +123,7 @@
                 a:hover,
                 a:visited {
                     cursor: pointer;
-                    color: $clr9;
+                    color: $clr12;
                 }
                 &:not(:last-child):after {
                     content: "|";

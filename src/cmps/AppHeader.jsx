@@ -22,7 +22,7 @@ function ShoppingCartBadge({ orderListSize }) {
         <React.Fragment>
             {
                 orderListSize ? 
-                <Badge badgeContent={orderListSize} anchorOrigin={{ vertical: 'top', horizontal: 'right', }} color="secondary">
+                <Badge badgeContent={orderListSize} anchorOrigin={{ vertical: 'top', horizontal: 'right'}} color="secondary">
                     <ShoppingCart/>
                 </Badge>
                 :

@@ -10,9 +10,25 @@
         flex-direction: row;
         align-items: center;
     }
-    svg{
+    svg {
         position: relative;
         top: 2px;
+    }
+}
+
+.form-add-review {
+    padding: rem(50px);
+    .MuiRating-root {
+        padding-bottom: rem(20px);
+    }
+    .MuiButton-label {
+        color: $clr13;
+    }
+    .spoon-top {
+        svg {
+            position: relative;
+            top: 5px;
+        }
     }
 }
 
@@ -87,6 +103,8 @@
         .createdBy-name {
             margin-left: 1.5em;
             align-self: center;
+            position: relative;
+            top: rem(9px);
         }
     }
 
@@ -150,7 +168,6 @@
                 .MuiButton-label {
                     height: rem(31px);
                 }
-               
             }
 
             .spoon-top {
@@ -159,7 +176,6 @@
                     top: 3px;
                 }
             }
-
         }
         .recipe-section {
             list-style-type: none;
@@ -249,12 +265,20 @@
                     font-size: rem(14px);
                 }
             }
+
             .share-btns {
                 grid-column: 1/4;
                 grid-row: 2/3;
                 height: rem(197px);
                 border-radius: rem(3px);
                 box-shadow: $clr17 0px 6px 16px;
+
+                .spoon-top {
+                    svg {
+                        position: relative;
+                        top: 2px;
+                    }
+                }
 
                 // .MuiButton-iconSizeMedium > *:first-child {
                 //     font-size: rem(25px);

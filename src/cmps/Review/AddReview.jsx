@@ -4,7 +4,9 @@ import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
 import Rating from '@material-ui/lab/Rating';
 import SecondaryButton from '../buttons/SecondaryButton';
-import FavoritesIcon from '../icons/FavoritesIcon';
+// import FavoritesIcon from '../icons/FavoritesIcon';
+import SpoonIcon from '../icons/SpoonIcon';
+import { cloudinaryService } from '../../services/cloudinaryService.js';
 // import Typography from '@material-ui/core/Typography';
 // import Box from '@material-ui/core/Box';
 import { recipeService } from '../../services/recipeService';
@@ -17,7 +19,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export class AddReview extends Component {
 
     state = {
-
+        // recipe: {
+        //     imgs:[]
+        // }
     }
 
     componentDidMount = async () => {
@@ -47,6 +51,21 @@ export class AddReview extends Component {
         this.props.onClose();
     };
 
+    onAddImg = async (ev) => {
+        ev.preventDefault()
+        const res = await cloudinaryService.uploadImg(ev)
+        console.log(res, 'res');
+        this.setState(prevState => {
+            var newImgs = [...this.state.recipe.imgs]
+            newImgs.push(res.secure_url)
+            return {
+                recipe: {
+                    ...prevState.recipe,
+                    imgs: newImgs
+                }
+            }
+        })
+    }
     render() {
 
         return (
@@ -58,7 +77,7 @@ export class AddReview extends Component {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description">
 
-                <form className="flex column" onSubmit={this.onAddReview}>
+                <form className="form-add-review flex column" onSubmit={this.onAddReview}>
                     <Rating name="rating" type="number" onChange={this.onHandleChange} />
                     <TextField type="text" name="txt" variant="outlined" color="secondary" onChange={this.onHandleChange} />
                     {/* <input type="number" min="1" max="5" name="rating" onChange={this.onHandleChange} /> */}
@@ -68,8 +87,8 @@ export class AddReview extends Component {
                     <Rating  name="rating" onChange={this.onHandleChange}/>
                     </Box> */}
                     {/* <button type="submit">save</button> */}
-                    <SecondaryButton type="submit" startIcon={<FavoritesIcon className="save-icon" />} text='save' />
-
+                    {/* <input type="file" name="imgs" onChange={this.onAddImg} /> */}
+                    <SecondaryButton type="submit" startIcon={<div className="spoon-top"><SpoonIcon /></div>} text='I made it' />
 
                 </form>
             </Dialog>
