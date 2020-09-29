@@ -1,10 +1,12 @@
 import React from 'react';
-import { ReviewPreview } from './ReviewPreview';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
+import { ReviewPreview } from './ReviewPreview';
+import {recipeService} from '../../services/recipeService.js'
+
 
 export function LatestReviews({ recipe, count, reviewsNum, ratingAvg }) {
-
+const sumReviews= recipeService.getReviewsNum(recipe._id)
     const latest = recipe.reviews.sort((review1, review2) => { return review1?.date > review2.date }).slice(0, count);
     return (
         <section className="review-in-details">
@@ -15,7 +17,7 @@ export function LatestReviews({ recipe, count, reviewsNum, ratingAvg }) {
                 })}
             </div>
             {latest.length < recipe.reviews.length &&
-                <Link to={`/recipe/${recipe._id}/review`}><Button className="btn btn-primary border-grey" color="secondary" variant="outlined">Show all {recipe.reviews.length} reviews</Button></Link>
+                <Link to={`/recipe/${recipe._id}/review`}><Button className="btn btn-primary border-grey" color="secondary" variant="outlined">Show all {sumReviews} reviews</Button></Link>
             }
         </section>
     )
