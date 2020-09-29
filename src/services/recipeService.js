@@ -74,10 +74,12 @@ function getMadeByLabel(id) {
 }
 
 function markAsMade(recipe, user) {
+    console.log('recipe3', recipe);
     if (recipe.makers.find((maker) => maker._id === user._id)) {
-        return;
+        return recipe;
     }
     var recipeToUpdate = { ...recipe, makers: updateRecipeUserList(recipe.makers, user) };
+    console.log('recipeToUpdate', recipeToUpdate);
     return recipeToUpdate;
 }
 

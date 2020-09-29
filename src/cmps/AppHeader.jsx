@@ -12,11 +12,10 @@ import { Badge } from '@material-ui/core';
 // import NavBarHumburger from '../cmps/navBar/NavBarHumburger'
 import { Login } from './user/Login';
 import { Signup } from './user/Signup';
-
 function ShoppingCartBadge({ orderListSize }) {
     function ShoppingCart(){
         return (
-        <ShoppingCartIcon className="shopping-cart self-center" style={{ cursor: "pointer", width: "40px" }} />
+        <ShoppingCartIcon className="shopping-cart self-center" style={{ cursor: "pointer", width: "40px", color:" #ff385c" }} />
         )
     }
     return (
@@ -31,7 +30,6 @@ function ShoppingCartBadge({ orderListSize }) {
             }
         </React.Fragment>)
 }
-
 function LoggedUserLinks({ user, logout }) {
     return (
         <React.Fragment>
@@ -42,7 +40,6 @@ function LoggedUserLinks({ user, logout }) {
         </React.Fragment>
     )
 }
-
 function GuestUserLinks() {
     const [openLogin, setOpenLogin] = useState(false);
     const [openSignup, setOpenSignup] = useState(false);
@@ -52,7 +49,6 @@ function GuestUserLinks() {
     const handleOpenLogin = (event) => {
         setOpenLogin(true);
     };
-
     return (
         <React.Fragment>
             <li className="link flex align-center"><span onClick={handleOpenSignup}><AccountCircleIcon />Join now</span></li>
@@ -71,27 +67,24 @@ function _AppHeader(props) {
         setOpenSearch(true);
         setAnchorEl(event.currentTarget);
     };
-
     const handleCloseSearch = (value) => {
         setOpenSearch(false);
         const mouseoverEvent = new Event('mousedown');
         logoRef.current.dispatchEvent(mouseoverEvent);
     };
-
     // const toggleOpenMenu=(event)=>{
     //     setOpenMenu(true) 
     // }
     // const toggleCloseMenu=(event)=>{
     //     setOpenMenu(false) 
     // }
-
     const isGuestMode = () => {
         return !props.loggedInUser || props.loggedInUser.isGuest;
     }
     return (
         <header className="main-header main-container flex align-center space-between">
             <div className="logo" ref={logoRef}><a href="/"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo5.png')} alt="logo" /></a></div>
-            <div className="search-btn-container"><SecondaryButton onClick={handleClickOpen} text="Find a recipe" endIcon={<SearchIcon />} /></div>
+            <div className="search-btn-container"><SecondaryButton variant="outlined" onClick={handleClickOpen} text="Find a recipe" endIcon={<SearchIcon />} /></div>
             <div style={{ position: 'relative' }}><SearchPopover open={openSearch} onClose={handleCloseSearch} anchorEl={anchorEl} /></div>
             <div className="flex row">
             <ShoppingCartBadge orderListSize={props.orderListSize} />
@@ -106,7 +99,6 @@ function _AppHeader(props) {
         </header>
     )
 }
-
 const mapStateToProps = state => {
     return {
         loggedInUser: state.userReducer.loggedInUser,
@@ -116,10 +108,10 @@ const mapStateToProps = state => {
         orderListSize: state.orderReducer.orderListSize,
     }
 }
-
 const mapDispatchToProps = {
     getUser,
     logout
 }
-
 export const AppHeader = connect(mapStateToProps, mapDispatchToProps)(_AppHeader)
+
+

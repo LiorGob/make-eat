@@ -15,8 +15,8 @@ export function SearchPopover(props) {
             open={open}
             anchorEl={anchorEl}
             onClose={handleClose}
-            anchorReference="anchorPosition"
-            anchorPosition={{ top: 100, left: 502 }}
+            // anchorReference="anchorPosition"
+            // anchorPosition={{ top: 100, left: 502 }}
             anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
