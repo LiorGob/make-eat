@@ -20,9 +20,6 @@ const { recipe }= props
     const [ingredients, setIngredients] = useState(recipe.ingredients.map(ingredient => { return { ...ingredient, selected: false } }));
     const [addedToCart, setAddedToCart] = useState(false);
  
-
-
-
     useEffect(()=>{
       let selectedIngredients = ingredients.filter((ingredient)=>ingredient.selected)
       let selectedIngredientsNumbers=selectedIngredients.length
@@ -30,7 +27,7 @@ const { recipe }= props
     },[ingredients,props])
 
     function handleSelectIngredient(selectedIngredient) {
-        console.log('handleSelectIngredient');
+        // console.log('handleSelectIngredient');
         let ingredientsToUpdate = JSON.parse(JSON.stringify(ingredients));
         let ind = ingredientsToUpdate.findIndex((ingredient) => ingredient.produceId === selectedIngredient.produceId);
         if (ind >= 0) ingredientsToUpdate[ind].selected = !ingredientsToUpdate[ind].selected;
@@ -44,8 +41,7 @@ const { recipe }= props
         if (getSelectedIngredientsNum() === 0) {
             const updated = ingredients.map(ingr => { return { ...ingr, selected: true } });
             setIngredients(updated);
-        }
-      
+        }    
         setAddedToCart(true);
     }
 
@@ -79,7 +75,6 @@ const { recipe }= props
         history.push({ pathname: '/order', state: { selectedIngredients: selected } })
         
     }
-
 
     return (
         <div className="recipe-ingredients">
@@ -133,7 +128,6 @@ const StyledBadge = withStyles((theme) => ({
 
 const mapStateToProps = state => {
     return {
-
         orderListSize: state.orderReducer.orderListSize,
     }
 }

@@ -39,7 +39,9 @@ async function save(recipe) {
 function getRatingAvg(recipe) {
     if (!recipe.reviews) return 'no reviews yet'
     else {
-        let ratingAvg = recipe.reviews.reduce((acc, a) => acc + a.rating, 0) / recipe.reviews.length
+        let ratingAvg = recipe.reviews.reduce((acc, a) => acc + +a.rating, 0) / recipe.reviews.length
+        console.log('ratingAvg whitoutfixed',ratingAvg);
+        console.log(ratingAvg.toFixed(1));
         return ratingAvg.toFixed(1);
     }
 }
@@ -54,7 +56,7 @@ function getRatingAvg(recipe) {
 function getReviewsNum(id) {
     const sessionItem = `recipe-${id}-reviews-num`;
     if (!sessionStorage.getItem(sessionItem)) {
-        sessionStorage.setItem(sessionItem, (utilService.getRandomInt(1,10)) * 50)
+        sessionStorage.setItem(sessionItem, (utilService.getRandomInt(7,13)) * (utilService.getRandomInt(23,43)))
     }
     return sessionStorage.getItem(sessionItem);
 }

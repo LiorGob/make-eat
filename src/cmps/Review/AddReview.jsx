@@ -78,16 +78,9 @@ export class AddReview extends Component {
                 aria-describedby="alert-dialog-slide-description">
 
                 <form className="form-add-review flex column" onSubmit={this.onAddReview}>
+                    <h2>Rate This Recipe</h2>
                     <Rating name="rating" type="number" onChange={this.onHandleChange} />
                     <TextField type="text" name="txt" variant="outlined" color="secondary" onChange={this.onHandleChange} />
-                    {/* <input type="number" min="1" max="5" name="rating" onChange={this.onHandleChange} /> */}
-                    {/* <Rating name="rating" defaultValue={2.5} precision={0.5} onChange={this.onHandleChange} /> */}
-                    {/* <Box component="fieldset" mb={3} borderColor="transparent">
-                    <Typography component="legend">Controlled</Typography>
-                    <Rating  name="rating" onChange={this.onHandleChange}/>
-                    </Box> */}
-                    {/* <button type="submit">save</button> */}
-                    {/* <input type="file" name="imgs" onChange={this.onAddImg} /> */}
                     <SecondaryButton type="submit" startIcon={<div className="spoon-top"><SpoonIcon /></div>} text='I made it' />
 
                 </form>

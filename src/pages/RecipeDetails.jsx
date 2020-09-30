@@ -90,6 +90,7 @@ class _RecipeDetails extends Component {
     render() {
         const { recipe /*loggedInUser*/ } = this.props;
         if (!recipe) return <div>Loading...</div>
+        // if (!recipe) return <img src="https://cdn.dribbble.com/users/139899/screenshots/968095/loading.gif" alt=""/>
         const ratingAvg = this.getAvg()
         const reviewsNum = recipeService.getReviewsNum(recipe._id)
         // const isOwner = loggedInUser && loggedInUser._id === recipe.createdBy._id;
