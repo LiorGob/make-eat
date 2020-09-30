@@ -44,7 +44,7 @@ export function RecipePreview({ recipe, showReviewBy }) {
                                 {recipe.abstract}
                             </Truncate>
                         </div>
-                        <div>By <Link to={`/user/${recipe.createdBy._id}/about`} className="link-black">{recipe.createdBy?.fullName}</Link></div>
+                        <div>By <Link to={`/user/${recipe.createdBy._id}/favorites`} className="link-black">{recipe.createdBy?.fullName}</Link></div>
                     </React.Fragment>
                 ))}
             </div>

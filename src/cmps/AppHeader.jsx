@@ -37,7 +37,7 @@ function LoggedUserLinks({ user, logout }) {
         <React.Fragment>
             <li className="link flex align-center">
                 <UserImage user={user} />
-                <Link to={`/user/myprofile/about`}>Profile</Link></li>
+                <Link to={`/user/myprofile/favorites`}>Profile</Link></li>
             <li className="link flex align-center"><Link to='' onClick={logout}>Log out</Link></li>
         </React.Fragment>
     )

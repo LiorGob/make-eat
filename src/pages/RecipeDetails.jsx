@@ -7,11 +7,9 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
-// import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import GroupIcon from '@material-ui/icons/Group';
 import Button from '@material-ui/core/Button';
 import SecondaryButton from '../cmps/buttons/SecondaryButton';
-// import ScheduleIcon from '@material-ui/icons/Schedule';
 import RatingStar from '../cmps/icons/RatingStar';
 import { ImageCarousel } from '../cmps/ImageCarousel';
 import { HashLink as Link } from 'react-router-hash-link';
@@ -46,10 +44,6 @@ class _RecipeDetails extends Component {
         return recipeService.getRatingAvg(currRecipe)
     }
 
-    // getRandomNum = () => {
-    //     return utilService.getRandomInt(1, 10)
-    // }
-
     onAddToFavorites = () => {
         if (!this.props.loggedInUser) {
             this.props.history.push('/user/login');
@@ -79,12 +73,9 @@ class _RecipeDetails extends Component {
             return;
         }
         let newRecipe = { ...this.props.recipe, makers: recipeService.updateRecipeUserList(this.props.recipe.makers, this.props.loggedInUser) };
-       console.log('newrecipe', newRecipe);
         newRecipe.reviews.push(review);
-        //this.props.addToMadeIt(newRecipe, this.props.loggedInUser);
         this.onCloseAddReview();
         this.props.addReview(newRecipe)
-        //console.log('this.props.recipe', this.props.recipe);
     }
 
     render() {
@@ -93,7 +84,6 @@ class _RecipeDetails extends Component {
         // if (!recipe) return <img src="https://cdn.dribbble.com/users/139899/screenshots/968095/loading.gif" alt=""/>
         const ratingAvg = this.getAvg()
         const reviewsNum = recipeService.getReviewsNum(recipe._id)
-        // const isOwner = loggedInUser && loggedInUser._id === recipe.createdBy._id;
         return (
             <div className="main-container">
                 <div className="recipe-details">

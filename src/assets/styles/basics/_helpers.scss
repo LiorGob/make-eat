@@ -191,6 +191,12 @@
     position: relative;
     left:5px;
 }
+.box-shadow-light{
+    box-shadow: $clr17 0px 6px 16px;
+}
+.padding-15{
+    padding: rem(15px);
+}
 // Media helpers
 
 // .square-ratio {

@@ -25,6 +25,7 @@ export function login(userCred) {
     return async dispatch => {
         const user = await userService.login(userCred)
         socketService.setup();
+        socketService.emit('USER CHANNEL', user._id);        
         dispatch({ type: 'LOGIN_USER', user })
     }
 }
