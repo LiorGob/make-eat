@@ -15,14 +15,14 @@ import { Signup } from './user/Signup';
 function ShoppingCartBadge({ orderListSize }) {
     function ShoppingCart(){
         return (
-        <ShoppingCartIcon className="shopping-cart self-center" style={{ cursor: "pointer", width: "40px", color:" #ff385c" }} />
+        <ShoppingCartIcon className="shopping-cart self-center" style={{ cursor: "pointer", width: "40px", color:"#000000f2" }} />
         )
     }
     return (
         <React.Fragment>
             {
                 orderListSize ? 
-                <Badge badgeContent={orderListSize} anchorOrigin={{ vertical: 'top', horizontal: 'right'}} color="secondary">
+                <Badge badgeContent={orderListSize} anchorOrigin={{ vertical: 'top', horizontal: 'right'}}  color="secondary">
                     <ShoppingCart/>
                 </Badge>
                 :
