@@ -42,12 +42,12 @@ class _Home extends Component {
                 <div className="hero">
                     {/* poster={heroposter} */}
                     {/* <div className="video-container"> */}
-                        {/* <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363981/sprint%204/hero_Moment1jpg_hkxodf.jpg"></img> */}
-                        <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363986/sprint%204/hero_Moment4_qk2czp.jpg"/>
-                        {/* <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363984/sprint%204/hero_Moment3_r6khe1.jpg"></img> */}
+                    {/* <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363981/sprint%204/hero_Moment1jpg_hkxodf.jpg"></img> */}
+                    <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363986/sprint%204/hero_Moment4_qk2czp.jpg" />
+                    {/* <img src="https://res.cloudinary.com/duzhu2ejx/image/upload/v1601363984/sprint%204/hero_Moment3_r6khe1.jpg"></img> */}
 
 
-                        {/* <video className="video-home" autoPlay muted preload="auto" loop>
+                    {/* <video className="video-home" autoPlay muted preload="auto" loop>
                             <source src={hero} type="video/mp4" />
                         Your browser doesn't support the video tag
                     </video> */}
@@ -63,16 +63,17 @@ class _Home extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="main-container cuisine-container">
-                    <h2>Our most cooked cuisines</h2>
-                    <div className="cuisine-card">
-                        {images.map((img, idx) => {
+
+                <div className="main-container">
+                    <div className="more-recipes"><h2>Our most cooked cuisines</h2><Link to="/recipe">See all</Link></div>
+                    <div className="cuisine-container">
+                        <div className="cuisine-card">{images.map((img, idx) => {
                             return (<div key={`${idx}${img.image}`}>
                                 <img onClick={() => this.changeRoute(img.route, img.tag)} src={img.image} alt="" />
                                 <h5 className="description flex">{img.tag}</h5>
                             </div>)
                         })}
-
+                        </div>
                     </div>
                     <div className="more-recipes"><h2>Top rated</h2> <Link to="/recipe">See all</Link></div>
                     <RecipeList recipes={recipes.slice(0, 4)} />

@@ -35,13 +35,15 @@ class _UserHome extends Component {
 
     async componentDidMount() {
         if (this.props.match.params.id === 'myprofile') {
-            this.props.setLoggedUserAsUser();
+            await this.props.setLoggedUserAsUser();
+            console.log('user id:', this.props.user._id);
         }
         else {
             await this.props.getUser(this.props.match.params.id);
         }
         socketService.on('LIKER ADDED', (data) => {
             const recipe = JSON.parse(data);
+            console.log(recipe);
             this.setState({ popoverOpen: true, recipeLiked: recipe.name });
         })
         this.props.loadRecipes();
