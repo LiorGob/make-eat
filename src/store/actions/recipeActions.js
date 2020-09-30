@@ -1,5 +1,5 @@
 import { recipeService } from '../../services/recipeService';
-import { socket, socketService } from '../../services/socketService'
+import { socketService } from '../../services/socketService'
 
 export function loadRecipes(filterBy) {
     return async dispatch => {
@@ -67,9 +67,9 @@ export function addToFavorites(recipe, user) {
         }
         var recipeToUpdate = { ...recipe, likers: recipeService.updateRecipeUserList(recipe.likers, user) };
         const recipeU = await recipeService.save(recipeToUpdate);
+        socketService.emit('ADDED TO FAVORITES', JSON.stringify({recipe}));
         dispatch({ type: 'ADD_FAVORITE', recipe: recipeU })
         dispatch({ type: 'NOTIFY', msg: { type: 'success', txt: 'Congrats! The recipe was added to your Favorites', icon: 'favorites' } });
-        socketService.emit('ADDED TO FAVORITES', JSON.stringify({recipe, user}));
     }
 }
 

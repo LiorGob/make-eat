@@ -9,11 +9,13 @@ import SearchIcon from '@material-ui/icons/Search';
 import UserImage from './user/UserImage';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Badge } from '@material-ui/core';
+// import TemporaryDrawer from '../cmps/navBar/HumBurgerHeader'
 // import NavBarHumburger from '../cmps/navBar/NavBarHumburger'
 import { Login } from './user/Login';
 import { Signup } from './user/Signup';
+
 function ShoppingCartBadge({ orderListSize }) {
-    function ShoppingCart(){
+    function ShoppingCart() {
         return (
         <ShoppingCartIcon className="shopping-cart self-center" style={{ cursor: "pointer", width: "40px", color:"#000000f2" }} />
         )
@@ -21,12 +23,12 @@ function ShoppingCartBadge({ orderListSize }) {
     return (
         <React.Fragment>
             {
-                orderListSize ? 
-                <Badge badgeContent={orderListSize} anchorOrigin={{ vertical: 'top', horizontal: 'right'}}  color="secondary">
-                    <ShoppingCart/>
-                </Badge>
-                :
-                <ShoppingCart/>
+                orderListSize ?
+                    <Badge badgeContent={orderListSize} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} color="secondary">
+                        <ShoppingCart />
+                    </Badge>
+                    :
+                    <ShoppingCart />
             }
         </React.Fragment>)
 }
@@ -35,7 +37,7 @@ function LoggedUserLinks({ user, logout }) {
         <React.Fragment>
             <li className="link flex align-center">
                 <UserImage user={user} />
-                <Link to={`/user/myprofile/about`}>Profile</Link></li>
+                <Link to={`/user/myprofile/favorites`}>Profile</Link></li>
             <li className="link flex align-center"><Link to='' onClick={logout}>Log out</Link></li>
         </React.Fragment>
     )
@@ -85,16 +87,17 @@ function _AppHeader(props) {
         <header className="main-header main-container flex align-center space-between">
             <div className="logo" ref={logoRef}><a href="/"><img className="logo-img" src={require('../assets/images/logo/makeeatlogo5.png')} alt="logo" /></a></div>
             <div className="search-btn-container"><SecondaryButton variant="outlined" onClick={handleClickOpen} text="Find a recipe" endIcon={<SearchIcon />} /></div>
+            {/* <TemporaryDrawer /> */}
             <div style={{ position: 'relative' }}><SearchPopover open={openSearch} onClose={handleCloseSearch} anchorEl={anchorEl} /></div>
             <div className="flex row">
-            <ShoppingCartBadge orderListSize={props.orderListSize} />
-            <ul className="main-nav flex row pipe">
-                {isGuestMode() ?
-                    <GuestUserLinks />
-                    :
-                    <LoggedUserLinks user={props.loggedInUser} logout={props.logout} />
-                }
-            </ul>
+                <ShoppingCartBadge orderListSize={props.orderListSize} />
+                <ul className="main-nav flex row pipe">
+                    {isGuestMode() ?
+                        <GuestUserLinks />
+                        :
+                        <LoggedUserLinks user={props.loggedInUser} logout={props.logout} />
+                    }
+                </ul>
             </div>
         </header>
     )

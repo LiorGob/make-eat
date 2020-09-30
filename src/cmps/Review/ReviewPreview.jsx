@@ -7,7 +7,7 @@ export function ReviewPreview({ review }) {
         <div className="recipe-review-wrapper">
             <div className="recipe-review-byline">
                 {/* <div className="reviewer-image-wrapper">
-                    <Link to={`/user/${review.by._id}/about`}>
+                    <Link to={`/user/${review.by._id}/favorites`}>
                         <img className="" alt="profile-img" src={review.by.imgUrl} />
                     </Link>
                 </div> */}

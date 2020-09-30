@@ -2,8 +2,8 @@ import React from 'react'
 
 export function Orders() {
     return (
-        <div className="container">
+        <React.Fragment>
             <h4>My Orders</h4>
-        </div>
+        </React.Fragment>
     )
 }

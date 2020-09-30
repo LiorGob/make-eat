@@ -1,18 +1,16 @@
 import React from 'react'
 import { RecipeList } from '../recipe/RecipeList';
+//import { About } from '../../cmps/user/About';
 
-export function Favorites({recipes, about}) {
+export function Favorites({ recipes, user }) {
     return (
-        <React.Fragment>
-            <div className="container">
-                {recipes.length ? <div>
-                    <h3>My Favorites</h3>
-                    {about &&  <aside>{about}</aside>}
-                    <RecipeList recipes={recipes} /></div>
+        <React.Fragment>            
+                {recipes.length > 0 ? 
+                    <RecipeList recipes={recipes} />
                 :
-                    <h4>Your Favorites list is empty yet</h4>
+                <h4>Your Favorites list is empty yet</h4>
                 }
-            </div>
+            
         </React.Fragment>
     )
 }
