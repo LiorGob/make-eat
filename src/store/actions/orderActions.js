@@ -1,7 +1,7 @@
 
 export function addNotification() {
     return async dispatch => {
-        dispatch({ type: 'NOTIFY', msg: { type: 'success', txt: 'Your order is on the way! The order will be delivered in 30 minutes', icon: 'shipping' } });
+        dispatch({ type: 'NOTIFY', msg: { type: 'success', txt: 'Your order is on the way! The order will be delivered in 45 minutes', icon: 'shipping' } });
     }
 }
 

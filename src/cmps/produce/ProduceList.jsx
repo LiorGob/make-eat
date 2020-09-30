@@ -8,16 +8,12 @@ class _ProduceList extends Component {
     state = {
         filterBy: '',
         filterProduceList: []
-
     }
 
     async componentDidMount() {
-
         await this.props.loadProduces()
         const { produces } = this.props
-
         this.setState({ filterProduceList: produces }, () => console.log())
-
     }
 
     loadProduces = () => {
@@ -30,14 +26,9 @@ class _ProduceList extends Component {
         this.setState(newState)
     }
 
-
-
-
     render() {
         // const { produces } = this.props
-
         return (
-
             <div className="produce-container">
                 <ul>
                     {
@@ -49,13 +40,10 @@ class _ProduceList extends Component {
                         })
                     }
                 </ul>
-
             </div>
         )
     }
 }
-
-
 
 const mapStateToProps = state => {
     return {

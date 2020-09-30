@@ -58,6 +58,7 @@ class _RecipeApp extends Component {
     render() {
         const recipes = this.getRecipesToDisplay();
         if (!recipes) return <div>Loading...</div>
+        // if (!recipes) return <img src="https://cdn.dribbble.com/users/139899/screenshots/968095/loading.gif" alt=""/>
         const { searchReady, recipeSearchTerm, ingredientSearchTerm, searchedRecipes, tagSearch } = this.props;
         return (
             <div className="main-container">
