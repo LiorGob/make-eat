@@ -8,13 +8,12 @@ import Typography from '@material-ui/core/Typography';
 import { getUser, setLoggedUserAsUser } from '../../store/actions/userActions';
 import { loadRecipes, addToFavorites } from '../../store/actions/recipeActions';
 import { About } from '../../cmps/user/About';
-import { Favorites } from '../../cmps/user/Favorites';
-import { MadeIt } from '../../cmps/user/MadeIt.jsx';
+import { UserRecipesList } from '../../cmps/user/UserRecipesList';
 import { UserReviews } from '../../cmps/user/UserReviews';
 import { Orders } from '../../cmps/user/Orders';
 import { AddRecipe } from '../../cmps/user/AddRecipe';
-import { UserRecipes } from '../../cmps/user/UserRecipes';
 import { socketService } from '../../services/socketService';
+import FavoritesIcon from '../../cmps/icons/FavoritesIcon';
 
 class _UserHome extends Component {
 
@@ -27,28 +26,25 @@ class _UserHome extends Component {
             },
         }));
     }
-    
+
     state = {
         favoriteRecipes: null,
-        popoverOpen: false
+        popoverOpen: false,
+        recipeLiked: ''
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         if (this.props.match.params.id === 'myprofile') {
             this.props.setLoggedUserAsUser();
         }
         else {
-            this.props.getUser(this.props.match.params.id);
+            await this.props.getUser(this.props.match.params.id);
         }
+        socketService.on('LIKER ADDED', (data) => {
+            const recipe = JSON.parse(data);
+            this.setState({ popoverOpen: true, recipeLiked: recipe.name });
+        })
         this.props.loadRecipes();
-        socketService.on('LIKER ADDED', (data) =>{
-            // console.log('my recipe liked:', data);
-            // const {recipe} = JSON.parse(data);
-            // console.log('my recipe was liked:', recipe);
-            console.log('liker added');
-            this.setState({popoverOpen: true})
-            
-        })        
     }
 
     get favorites() {
@@ -82,12 +78,24 @@ class _UserHome extends Component {
         this.props.addToFavorites(recipe, this.props.loggedInUser);
     }
 
-    handleClosePopover = () =>{
-        this.setState({popoverOpen: false});
+    handleClosePopover = () => {
+        this.setState({ popoverOpen: false, recipeLiked: '' });
     }
 
     render() {
+        if (!this.props.recipes) return;
         const { user } = this.props;
+        const favs = this.favorites;
+        const made = this.madeIt;
+        const reviewed = this.reviewedRecipes;
+        const personal = this.personalRecipes;
+        let userStats = [
+            { txt: 'My favorite recipes', val: favs.length },
+            { txt: 'I made it', val: made.length },
+            { txt: 'My reviews', val: reviewed.length },
+            { txt: 'My submitted recipes', val: personal.length }
+        ];
+
         return (
             <div className="main-container user-profile">
                 <nav className="profile-subnav" ref={this.navRef}>
@@ -96,8 +104,8 @@ class _UserHome extends Component {
                     <NavLink to="./reviews">My Reviews</NavLink>
                     <NavLink to="./recipes">Personal Recipes</NavLink>
                     <NavLink to="./orders">My Orders</NavLink>
-                    <NavLink to="./add">Submit a recipe</NavLink>
-                    <NavLink to="./recipe/edit/:id?">Submit a recipe</NavLink>
+                    {/* <NavLink to="./add">Submit a recipe</NavLink>
+                    <NavLink to="./recipe/edit/:id?">Submit a recipe</NavLink> */}
                 </nav>
                 <Popover
                     open={this.state.popoverOpen}
@@ -112,21 +120,24 @@ class _UserHome extends Component {
                         horizontal: 'center',
                     }}
                 >
-                    <div className="user-msg">
-                    <Typography className={this.classes.typography}>A user added you recipe to Favorites</Typography>
+                    <div className="user-socket-msg">
+                        <div className="icon"><FavoritesIcon style={{ fontSize: 24 }} /></div>
+                        <Typography className={this.classes.typography}>A user added your {this.state.recipeLiked} recipe to Favorites</Typography>
                     </div>
                 </Popover>
-                <Switch>
-                    <Route exact path="/user/:id/about" render={(props) => <Favorites {...props} onAddToFavorites={this.saveToFavorites} recipes={this.favorites} about={<About {...props} user={user} />} />} />
-                    <Route exact path="/user/:id/favorites" render={(props) => <Favorites {...props} onAddToFavorites={this.saveToFavorites} recipes={this.favorites} />} />
-                    <Route exact path="/user/:id/madeit" render={(props) => <MadeIt {...props} recipes={this.madeIt} />} />
-                    <Route exact path="/user/:id/reviews" render={(props) => <UserReviews {...props} user={user} recipes={this.reviewedRecipes} />} />
-                    <Route exact path="/user/:id/recipes" render={(props) => <UserRecipes {...props} user={user} recipes={this.personalRecipes} />} />
-                    <Route exact component={Orders} path="/user/:id/orders" />
-                    <Route exact component={AddRecipe} path="/user/:id/add" />
-                    {/* <Route exact component={RecipeEdit} path="/recipe/edit/:id?"/> */}
-                    {/* <Route exact path="/..." render={(props) => <PAGE {...props} recipes={recepies} />} /> */}
-                </Switch>
+                <div className="container">
+                    <About user={{ ...user, userStats }} />
+                    <Switch>
+                        <Route exact path="/user/:id/favorites" render={(props) => <UserRecipesList {...props} recipes={favs} user={user} emptyText="Your Favorites list is empty yet" />} />
+                        <Route exact path="/user/:id/madeit" render={(props) => <UserRecipesList {...props} recipes={made} emptyText="Your I Made It list is empty yet"/>} />
+                        <Route exact path="/user/:id/reviews" render={(props) => <UserReviews {...props} user={user} recipes={reviewed} />} />
+                        <Route exact path="/user/:id/recipes" render={(props) => <UserRecipesList {...props} user={user} recipes={personal} emptyText="You didn't submit any recipes yet" />} />
+                        <Route exact component={Orders} path="/user/:id/orders" />
+                        <Route exact component={AddRecipe} path="/user/:id/add" />
+                        {/* <Route exact component={RecipeEdit} path="/recipe/edit/:id?"/> */}
+                        {/* <Route exact path="/..." render={(props) => <PAGE {...props} recipes={recepies} />} /> */}
+                    </Switch>
+                </div>
             </div>
         )
     }
